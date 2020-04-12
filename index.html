@@ -1,21 +1,200 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<script type="text/javascript" src="./app.js"></script>
-	</head>
+<head>
+    <script src="./jquery-3.4.1.slim.min.js"></script>
+    <script type="text/javascript" src="./app.js"></script>
+    <script src="Welcome.js"></script>
+    <link rel="stylesheet" type="text/css" href="Style.css"/>
+</head>
 
-	<body>
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
-		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
-		</div>
-	</body>
+<body>
+
+<div id="menu" align="center">
+    <ul>
+        <li><a class="menuList" href="#welcome">Welcome</a></li>
+        <li><a class="menuList" href="#about">About</a></li>
+    </ul>
+</div>
+
+<section id="welcome" class="section">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <button type="register"><a href="#register">Register</a></button>
+    <button type="login"><a href="#login">Log In </a></button>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</section>
+
+<section id="register" class="section">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <center>
+        <div class="form-popUp">
+            <p>
+                <label><strong>User Name</strong>
+                    <input name="User Name" type="text" id="userNameReg" placeholder="User Name" autocomplete="on">
+                </label>
+            </p>
+            <p>
+                <label><strong>Password</strong>
+                    <input name="Password" type="text" id="passwordReg" placeholder="Password" autocomplete="on">
+                </label>
+            </p>
+            <p>
+                <label><strong>Full Name</strong>
+                    <input name="Full Name" type="text" id="fullNameReg" placeholder="Full Name" autocomplete="on">
+                </label>
+            </p>
+            <p>
+                <label><strong>Email</strong>
+                    <input name="Email" type="text" id="emailReg" placeholder="name@domain.com" autocomplete="on">
+                </label>
+            </p>
+            <p>
+                <label><strong>BirthDate</strong>
+                    <input name="Birth Date" type="date" id="birthDateReg" placeholder="Birth Date" autocomplete="on">
+                </label>
+            </p>
+            <p>
+                <button type="submit"
+                        onclick="return validation(userNameReg,passwordReg,fullNameReg,emailReg,birthDateReg);">
+                    <a href="#settings">Sign Up</a>
+                </button>
+            </p>
+        </div>
+    </center>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</section>
+
+<section id="login" class="section">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <center>
+        <div class="form-popUp">
+            <p>
+                <label><strong>User Name</strong>
+                    <input name="User Name" type="text" id="userNameLogIn" placeholder="User Name" autocomplete="on">
+                </label>
+            </p>
+            <p>
+                <label><strong>Password</strong>
+                    <input name="Password" type="text" id="passwordLogIn" placeholder="Password" autocomplete="on">
+                </label>
+            </p>
+            <p>
+                <button type="submit" onclick="return validationLogIn(userNameLogIn,passwordLogIn)">
+                    <a href="#settings">Play</a>
+                </button>
+            </p>
+
+        </div>
+    </center>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</section>
+
+<section id="about" class="section">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p>about</p>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</section>
+
+<section id="settings" class="section">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p>settings</p>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</section>
+<div id="score">
+    <label for="lblScore">SCORE:</label>
+    <input id="lblScore" type="text"/>
+</div>
+<div id="time">
+    <label for="lblTime">TIME:</label>
+    <input id="lblTime" type="text"/>
+</div>
+<div id="game">
+    <canvas id="canvas" height="600" width="600"></canvas>
+</div>
+
+
+</body>
 </html>

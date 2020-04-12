@@ -1,0 +1,44 @@
+body{
+    background-image: url("3.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Comic Sans MS ", cursive, sans-serif;
+    font-style: italic;
+    font-size: 15px;
+}
+#menu{
+    position: fixed;
+    width: 100%;
+    height: 35px;
+    background: #B46F5F;
+    text-decoration: none;
+}
+ul{
+    overflow:hidden;
+    align-content: center;
+    font-family: "Comic Sans MS ", cursive, sans-serif;
+    font-size: 15px;
+    color: whitesmoke;
+    font-style: italic;
+
+}
+li{
+    display:inline-block;
+    padding-left: 10px;
+}
+button{
+    font-family: "Comic Sans MS ", cursive, sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    color: black;
+    text-decoration: none;
+}
+a.menuList:link {
+    color: 	whitesmoke;
+    text-effect: emboss;
+}
+a.menuList:visited{
+    color: 	whitesmoke;
+}
