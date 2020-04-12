@@ -1,3 +1,10 @@
+p.headerGame{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-style: italic;
+    font-size: 50px;
+    font-weight: bold;
+    background-color:rgba(180, 111, 95, 0.5);
+}
 body{
     background-image: url("3.jpg");
     background-attachment: fixed;
