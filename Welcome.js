@@ -126,4 +126,8 @@ function showMenus(shown,hidden1,hidden2,hidden3){
     document.getElementById(hidden1).style.display='none';
     document.getElementById(hidden2).style.display='none';
     document.getElementById(hidden3).style.display='none';
+
+    if(shown.toString().anchor('primary')){
+        document.getElementById('primary').style.display='none';
+    }
 }
