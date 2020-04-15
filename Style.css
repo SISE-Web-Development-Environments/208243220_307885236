@@ -19,17 +19,16 @@ body{
     position: fixed;
     width: 100%;
     height: 35px;
-    background: #38A5E8;
+    background: #D6AF74;
     text-decoration: none;
 }
 ul{
     overflow:hidden;
     align-content: center;
+    alignment: top;
     font-family: "Comic Sans MS ", cursive, sans-serif;
     font-size: 15px;
-    color: whitesmoke;
     font-style: italic;
-
 }
 li{
     display:inline-block;
@@ -43,9 +42,65 @@ button{
     text-decoration: none;
 }
 a.menuList:link {
-    color: 	whitesmoke;
+    color: 	#3E9FE3;
+    font-weight: bold;
     text-effect: emboss;
+    text-decoration: none;
 }
 a.menuList:visited{
-    color: 	whitesmoke;
+    color: #3E9FE3;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+div.form-popUp{
+    background-color: rgba(214, 175, 116,0.8);
+    display:inline-block;
+}
+button.welcome{
+    background-color: #3E9FE3;
+    color: black;
+    font-weight: bold;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border: 2px solid #D6AF74;
+    border-radius: 8px;
+}
+
+.button:link {
+    color: 	black;
+    font-weight: bold;
+    text-effect: emboss;
+    text-decoration: none;
+}
+.button:visited{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+button{
+    background-color: #3E9FE3;
+    color: black;
+    font-weight: bold;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    border: 2px solid #D6AF74;
+    border-radius: 8px;
+
+}
+button:hover {
+    background-color: #D6AF74;
+    color: #3E9FE3;
+}
+
+dialog{
+    background-color: rgba(214, 175, 116,0.8);
+    width: 300px;
 }
