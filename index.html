@@ -3,74 +3,96 @@
 <head>
     <script src="./jquery-3.4.1.slim.min.js"></script>
     <script type="text/javascript" src="./app.js"></script>
-    <script src="Welcome.js"></script>
-    <script src="About.js"></script>
+    <script src="Welcome.js" type="text/javascript"></script>
+    <script src="About.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="Style.css"/>
 </head>
 
 <body>
-<div id="menu" align="center" >
+
+<div id="menu" align="center">
+    <p class="logo">
+        <img src="face.png" width="40" height="40">
+        Pac<img src="header.png" width="40" height="40">Monster
+        <img src="face.png" width="40" height="40">
+    </p>
     <ul>
-        <li><a class="menuList" href="#welcome" onclick="return showMenus('welcome','register','login','aboutSection');">Welcome</a></li>
-        <li><a class="menuList" href="#register" onclick="return showMenus('register','welcome','login','aboutSection');">Register</a></li>
-        <li><a class="menuList" href="#login" onclick="return showMenus('login','register','welcome','aboutSection');">Login</a></li>
-        <li><a class="menuList" href="#aboutSection" onclick="return showMenus('aboutSection','register','login','welcome');">About</a></li>
+        <li><a class="menuList" href="#welcome"
+               onclick="return showMenus('welcome','register','login','aboutSection');">Welcome</a></li>
+        <li><a class="menuList" href="#register"
+               onclick="return showMenus('register','welcome','login','aboutSection');">Register</a></li>
+        <li><a class="menuList" href="#login" onclick="return showMenus('login','register','welcome','aboutSection');">Login</a>
+        </li>
+        <li><a class="menuList" id="aboutMenu" href="#aboutSection"
+               onclick="return showMenus('aboutSection','register','login','welcome');">About</a></li>
     </ul>
 </div>
 <br>
 <div id="primary" class="div">
-    <center>
-        <p class="headerGame">
-            Pac<img src="header.png" width="120" height="120">Monster
-        </p>
-    </center>
 </div>
+<br>
+<br>
 <br>
 <br>
 <br>
 <br>
 <div id="welcome" class="div" style="display:none">
+    <br><br>
     <center>
-    <button class="welcome" type="submit"><a href="#register" onclick="return show('register','welcome');">Register</a></button>
+        <a href="#register" onclick="return show('register','welcome');">
+            <button class="welcome" type="button">Register</button>
+        </a>
         <br><br>
-    <button class="welcome" type="submit"><a href="#login" onclick="return show('login','welcome');">Log In </a></button>
+        <a href="#login" onclick="return show('login','welcome');">
+            <button class="welcome" type="submit">Log In</button>
+        </a>
+
     </center>
 </div>
 
 <div id="register" class="div" style="display:none">
     <center>
-        <div class="form-popUp">
+        <div class="form-popUp" id="formReg">
             <table>
                 <tr>
                     <td><strong>User Name</strong></td>
-                    <td><input name="User Name" type="text" id="userNameReg" placeholder="User Name" autocomplete="on"></td>
+                    <td><input name="User Name" type="text" id="userNameReg" placeholder="User Name" autocomplete="on">
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>Password</strong></td>
-                    <td><input name="Password" type="text" id="passwordReg" placeholder="Password" autocomplete="on"></td>
+                    <td><input name="Password" type="password" id="passwordReg" placeholder="Password" autocomplete="on"
+                               title="At least 6 characters include a number and and a letter">
+                        <img src="eye.png" width="20" height="20" onmouseover="mouseoverPassReg();"
+                             onmouseout="mouseoutPassReg();"/>
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>Full Name</strong></td>
-                    <td><input name="Full Name" type="text" id="fullNameReg" placeholder="Full Name" autocomplete="on"></td>
+                    <td><input name="Full Name" type="text" id="fullNameReg" placeholder="Full Name" autocomplete="on">
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>Email</strong></td>
-                    <td><input name="Email" type="text" id="emailReg" placeholder="name@domain.com" autocomplete="on"></td>
+                    <td><input name="Email" type="email" id="emailReg" placeholder="name@domain.com" autocomplete="on">
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>Birth Date</strong></td>
-                    <td><input name="Birth Date" type="date" id="birthDateReg" placeholder="Birth Date" autocomplete="on"></td>
+                    <td><input name="Birth Date" type="date" id="birthDateReg" placeholder="Birth Date"
+                               autocomplete="on"></td>
                 </tr>
             </table>
             <p>
-                <button type="submit"
-                        onclick="return validation(userNameReg,passwordReg,fullNameReg,emailReg,birthDateReg);">
-                    <a href="#settings" >Sign Up</a>
-<!--                    onclick="return show('register','game')"-->
-                </button>
-                <button type="backWelcome">
-                    <a href="#settings" onclick="return show('primary','register')">Back</a>
-                </button>
+                <a href="#settings" onclick="return show('settings','register')" >
+                    <button class="subClassReg" type="button" id="submitReg" onclick="return validation()">
+                        Sign Up
+                    </button>
+                </a>
+
+                <a href="#settings" onclick="return show('welcome','register')">
+                    <button type="submit">Back</button>
+                </a>
             </p>
         </div>
     </center>
@@ -82,40 +104,56 @@
             <table>
                 <tr>
                     <td><strong>User Name</strong></td>
-                    <td><input name="User Name" type="text" id="userNameLogIn" placeholder="User Name" autocomplete="on"></td>
+                    <td><input name="User Name" type="text" id="userNameLogIn" placeholder="User Name"
+                               autocomplete="on"></td>
                 </tr>
                 <tr>
                     <td><strong>Password</strong></td>
-                    <td><input name="Password" type="text" id="passwordLogIn" placeholder="Password" autocomplete="on"></td>
+                    <td>
+                        <input name="Password" type="password" id="passwordLogIn" placeholder="Password"
+                               autocomplete="on">
+                        <img src="eye.png" width="20" height="20" onmouseover="mouseoverPassLogIn();"
+                             onmouseout="mouseoutPassLogIn();"/>
+                    </td>
                 </tr>
             </table>
             <p>
-                <button type="submit" onclick="return validationLogIn(userNameLogIn,passwordLogIn)">
-                    <a href="#settings" onclick="return show('settings','login')">Play</a>
-                </button>
-                <button type="submit">
-                    <a href="#settings" onclick="return show('primary','login')">Back</a>
-                </button>
+                <a href="#settings" onclick="return show('settings','login')">
+                    <button type="submit" id="submitLogIn" onclick="return validationLogIn()" >Play</button>
+                </a>
+                <a href="#settings" onclick="return show('welcome','login')">
+                    <button type="submit">Back</button>
+                </a>
+
             </p>
 
         </div>
     </center>
 </div>
 
-<dialog id="aboutSection">
-    <table>
-        <tr><b>about </b></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr><button id="closeButton" onclick="closeAbout();">X</button></tr>
+<dialog id="aboutSection" class="modal">
+    <table class="tableC">
+        <tr><b>about</b></tr>
+        <br>
+        <tr>hey</tr>
+        <br>
+        <tr>bay</tr>
+        <br>
+        <br>
+        <tr>
+            <button id="closeButton" onclick="closeAbout();">X</button>
+        </tr>
     </table>
-    </dialog>
+</dialog>
+
 
 <div id="settings" class="div" style="display:none">
-    <p>settings</p>
-    <button type="submit">
-        <a href="#game" onclick="return show('game','settings');">Play</a>
-    </button>
+    <center>
+        <p>settings</p>
+        <button type="submit">
+            <a href="#game" onclick="return show('game','settings');">Play</a>
+        </button>
+    </center>
 </div>
 
 <div id="game" style="display:none">
@@ -132,6 +170,5 @@
         <a href="#settings" onclick="return show('primary','game');">Back</a>
     </button>
 </div>
-
 </body>
 </html>

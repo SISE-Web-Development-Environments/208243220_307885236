@@ -1,12 +1,5 @@
-p.headerGame{
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    font-style: italic;
-    font-size: 100px;
-    font-weight: bold;
-    backface-visibility: inherit;
-}
 body{
-    background-image: url("back.jpg");
+    background-image: url("back4.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -15,24 +8,36 @@ body{
     font-style: italic;
     font-size: 15px;
 }
+
 #menu{
     position: fixed;
     width: 100%;
-    height: 35px;
-    background: #D6AF74;
+    height: 50px;
     text-decoration: none;
+    vertical-align: baseline;
+    margin-top: -30px;
 }
 ul{
     overflow:hidden;
     align-content: center;
     alignment: top;
-    font-family: "Comic Sans MS ", cursive, sans-serif;
+    font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 15px;
     font-style: italic;
+    margin-top: -30px;
+}
+p.logo{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: bold;
+    backface-visibility: inherit;
+    color: black;
+    background-color: #406CB2;
 }
 li{
     display:inline-block;
-    padding-left: 10px;
+    padding: 20px;
 }
 button{
     font-family: "Comic Sans MS ", cursive, sans-serif;
@@ -42,48 +47,51 @@ button{
     text-decoration: none;
 }
 a.menuList:link {
-    color: 	#3E9FE3;
+    color: 	#406CB2;
     font-weight: bold;
     text-effect: emboss;
     text-decoration: none;
 }
 a.menuList:visited{
-    color: #3E9FE3;
+    color: 	#406CB2;
     font-weight: bold;
     text-decoration: none;
 }
 
-div.form-popUp{
-    background-color: rgba(214, 175, 116,0.8);
-    display:inline-block;
-}
-button.welcome{
-    background-color: #3E9FE3;
-    color: black;
-    font-weight: bold;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    border: 2px solid #D6AF74;
-    border-radius: 8px;
-}
-
-.button:link {
+a:link {
     color: 	black;
     font-weight: bold;
     text-effect: emboss;
     text-decoration: none;
 }
-.button:visited{
+a:visited{
     color: black;
     font-weight: bold;
     text-decoration: none;
 }
 
+div.form-popUp{
+    border-style: dotted;
+    border-color: black;
+    display:inline-block;
+    color: #406CB2;
+}
+button.welcome{
+    background-color: #406CB2;
+    color: black;
+    font-weight: bold;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    border: 2px solid black;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+
 button{
-    background-color: #3E9FE3;
+    background-color: #406CB2;
     color: black;
     font-weight: bold;
     padding: 8px 15px;
@@ -91,16 +99,17 @@ button{
     text-decoration: none;
     display: inline-block;
     font-size: 10px;
-    border: 2px solid #D6AF74;
+    border: 2px solid black;
     border-radius: 8px;
 
 }
 button:hover {
-    background-color: #D6AF74;
-    color: #3E9FE3;
+    background-color: white;
+    /*color: white;*/
 }
 
 dialog{
-    background-color: rgba(214, 175, 116,0.8);
+    background-color: rgba(64, 108, 178,0.8);
     width: 300px;
+
 }

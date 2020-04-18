@@ -4,38 +4,18 @@ function showModal(){
 }
 
 function closeModal(){
-    document.getElementById("aboutSection").close();
-
-
-    $(document).keypress(function(e) {
+    $(document).keyup(function (e) {
         if (e.keyCode === 27) {
-           //closeModal();
-           window.close();
-           showMenu('primary');
+            $("#aboutSection").hide();
+            //document.getElementById("aboutSection").close();
         }
     });
 
-
-    // $(document).keyup(function (e) {
-    //     if (e.keyCode == 27) {
-    //
-    //         $('#aboutSection').dialog('close')
-    //     }
-    // });
-    // $(document).on('aboutSection', function(ev) {
-    //     if (ev.keyCode === 27) {
-    //         document.getElementById('aboutSection').remove();
-    //     }
-    // });
-
-
-
-    // $(document).on('aboutSection', function(ev) {
-    //     if ($(this).hasClass('you outside box class')) {
-    //         ev.preventDefault();
-    //     }
-    // });
+   // $("#aboutSection").hide();
+   document.getElementById("aboutSection").close();
 }
+
+
 
 function aboutFunction(shown){
     showModal();
