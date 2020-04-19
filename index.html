@@ -84,7 +84,7 @@
                 </tr>
             </table>
             <p>
-                <a href="#settings" >
+                <a href="#settings">
                     <button class="subClassReg" type="button" id="submitReg" onclick=" return validation();">
                         Sign Up
                     </button>
@@ -118,7 +118,7 @@
                 </tr>
             </table>
             <p>
-                <a href="#settings" >
+                <a href="#settings">
                     <button type="button" id="submitLogIn" onclick="return validationLogIn()">Play</button>
                 </a>
                 <a href="#welcome" onclick="return show('welcome','login')">
@@ -149,32 +149,70 @@
 
 <div id="settings" class="div" style="display:none">
     <center>
-        <p>settings</p>
+        <div class="formSettings">
+            <p>Choose keyboard to game: </p>
+            <table class="settingsTable">
+                <tr>
+                    <td><strong>Up key</strong></td>
+                    <td><input name="upKey" type="text" id="upKey" maxlength="1"></td>
+                </tr>
+                <tr>
+                    <td><strong>Right key</strong></td>
+                    <td><input name="rightKey" type="text" id="rightKey" maxlength="1"></td>
+                </tr>
+                <tr>
+                    <td><strong>Down key</strong></td>
+                    <td><input name="downKey" type="text" id="downKey" maxlength="1"></td>
+                </tr>
+                <tr>
+                    <td><strong>Left key</strong></td>
+                    <td><input name="leftKey" type="text" id="leftKey" maxlength="1"></td>
+                </tr>
+            </table>
             <a href="#game" onclick="return show('game','settings');">
                 <button type="submit">
-                Play
+                    Play
                 </button>
             </a>
-        <a href="#welcome" onclick="return show('welcome','settings')">
-            <button type="submit">Back</button>
-        </a>
+            <a href="#welcome" onclick="return show('welcome','settings')">
+                <button type="submit">Back</button>
+            </a>
+        </div>
     </center>
 </div>
 
 <div id="game" style="display:none">
     <center>
-    <div id="score">
-        <label for="lblScore">SCORE:</label>
-        <input id="lblScore" type="text"/>
-    </div>
-    <div id="time">
-        <label for="lblTime">TIME:</label>
-        <input id="lblTime" type="text"/>
-    </div>
-    <canvas id="canvas" height="600" width="600"></canvas>
-    <button type="submit">
-        <a href="#settings" onclick="return show('primary','game');">Back</a>
-    </button>
+        <table>
+            <td>
+                <div id="score">
+                    <label for="lblScore">SCORE:</label>
+                    <input id="lblScore" type="text"/>
+                </div>
+                <div id="time">
+                    <label for="lblTime">TIME: &nbsp;</label>
+                    <input id="lblTime" type="text"/>
+                </div>
+                <div id="live">
+                    <label for="lblLive">Live: &nbsp;</label>
+                    <input id="lblLive" type="text"/>
+                </div>
+            </td>
+            <td>
+                <canvas id="canvas" height="500" width="500"></canvas>
+            </td>
+            <td>
+                <p><b>Points:</b></p>
+                <p>black point: 50  <br> Pink point: 30<br></p>
+                <p><b>Game Settings:</b></p>
+                <p>up: key  <br></p>
+                <button type="submit">
+                    <a href="#settings" onclick="return show('primary','game');">Back</a>
+                </button>
+            </td>
+        </table>
+
+
     </center>
 </div>
 </body>

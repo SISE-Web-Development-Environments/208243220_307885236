@@ -113,3 +113,7 @@ dialog{
     width: 300px;
 
 }
+
+table.gameTable{
+    border: 1px dotted black;
+}
