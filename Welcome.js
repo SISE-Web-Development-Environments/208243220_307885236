@@ -1,52 +1,47 @@
-//var script;
-var listOfPlayers;
-var player;
-//listOfPlayers = {};
-//
-// var map = new Map();
-// //map.set('userName', 'p');
-// map.set('password', 'p');
-// map.set('fullName', 'ppp ppp');
-// map.set('email', 'pp@gmail.com');
-// map.set('birthDate', '12-04-2020');
 
+var listOfPlayers;
 var player = {userName:"p",password:"p",fullName:"ppp ppp",email:"pp@gmail.com",birthDate:"12-04-2020"};
 
-
-// Disable the button on initial page load
-
-function validationLogIn(userNameLogIn, passwordLogIn) {
+listOfPlayers=[player];
 
 
+function validationLogIn() {
+    //userNameLogIn, passwordLogIn
+    let keyUserName;//userName
+    let valueUserName;
+    let keyPassword;//password
+    let valuePassword;
 
 
-    // for (var x in listOfPlayers) {
-    //     alert('key ' + x);
-    //     alert('Values: ');
-    //     var value = listOfPlayers[x];
-    //     for (var y in value) {
-    //         alert('—- ' + y + ':' + value[y]);
-    //     }
-    //     alert('\n');
-    // }
-    // if(userNameLogIn.toString().localeCompare("p")){
-    //     alert("ssdfsdf");
-    // }else{
-    //     alert("banana");
-    // }
+    for (var playerToPush in listOfPlayers) {
+        let details=listOfPlayers[playerToPush];
+        keyUserName = Object.keys(details)[0];
+        valueUserName = details[keyUserName];
+        keyPassword = Object.keys(details)[1];//password
+        valuePassword = details[keyPassword];
 
+        if(valueUserName===$('#userNameLogIn').val() & valuePassword===$('#passwordLogIn').val()){
+            // alert("yes");
+            return show('settings','login');
+        }
+    }
+
+    alert("Wrong user name or password, try again!");
     return false;
 
 }
-$('#submitReg').click(function(event) {
-    // `event` is the event variable
-
-    alert("sd");
-    event.preventDefault();
-});
 
 function validation() {
+
     if (required() & checkpassword() & checkFullName() & checkEmail() & checkDate()) {
+        //adding new player to system
+        let newPlayer={};
+        newPlayer.userName=$('#userNameReg').val();
+        newPlayer.password=$('#passwordReg').val();
+        newPlayer.fullName=$('#fullNameReg').val();
+        newPlayer.email=$('#emailReg').val();
+        newPlayer.birthDate=$('#birthDate').val();
+        listOfPlayers.push(newPlayer);
         return show('settings','register');
     } else {
         return false;

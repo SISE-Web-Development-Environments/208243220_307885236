@@ -80,7 +80,7 @@
                 <tr>
                     <td><strong>Birth Date</strong></td>
                     <td><input name="Birth Date" type="date" id="birthDateReg" placeholder="Birth Date"
-                               autocomplete="on"></td>
+                               autocomplete="on" value="2000-01-01"></td>
                 </tr>
             </table>
             <p>
@@ -90,7 +90,7 @@
                     </button>
                 </a>
 
-                <a href="#settings" onclick="return show('welcome','register')">
+                <a href="#welcome" onclick="return show('welcome','register')">
                     <button type="submit">Back</button>
                 </a>
             </p>
@@ -118,10 +118,10 @@
                 </tr>
             </table>
             <p>
-                <a href="#settings" onclick="return show('settings','login')">
-                    <button type="submit" id="submitLogIn" onclick="return validationLogIn()" >Play</button>
+                <a href="#settings" >
+                    <button type="button" id="submitLogIn" onclick="return validationLogIn()">Play</button>
                 </a>
-                <a href="#settings" onclick="return show('welcome','login')">
+                <a href="#welcome" onclick="return show('welcome','login')">
                     <button type="submit">Back</button>
                 </a>
 
@@ -150,13 +150,19 @@
 <div id="settings" class="div" style="display:none">
     <center>
         <p>settings</p>
-        <button type="submit">
-            <a href="#game" onclick="return show('game','settings');">Play</a>
-        </button>
+            <a href="#game" onclick="return show('game','settings');">
+                <button type="submit">
+                Play
+                </button>
+            </a>
+        <a href="#welcome" onclick="return show('welcome','settings')">
+            <button type="submit">Back</button>
+        </a>
     </center>
 </div>
 
 <div id="game" style="display:none">
+    <center>
     <div id="score">
         <label for="lblScore">SCORE:</label>
         <input id="lblScore" type="text"/>
@@ -169,6 +175,7 @@
     <button type="submit">
         <a href="#settings" onclick="return show('primary','game');">Back</a>
     </button>
+    </center>
 </div>
 </body>
 </html>
