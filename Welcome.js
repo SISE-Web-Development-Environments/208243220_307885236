@@ -38,92 +38,21 @@ function validationLogIn(userNameLogIn, passwordLogIn) {
     return false;
 
 }
+$('#submitReg').click(function(event) {
+    // `event` is the event variable
 
-// $(function () {
-//     $('#submitReg').onkeyup(function () {
-//         if ($(this).val() === '') {
-//             $('.submitClassReg').prop('disabled', true);
-//         } else {
-//             $('.submitClassReg').prop('disabled', false);
-//         }
-//     });
-// });
+    alert("sd");
+    event.preventDefault();
+});
 
 function validation() {
-    //$("input[type=submit]").attr("disabled", "disabled");
-
-
-
-    // $("#submitReg").validate({
-    //     rules: {
-    //         userNameReg: {
-    //             required: true,
-    //             minLength:1
-    //         },
-    //         passwordReg: {
-    //             required: true,
-    //             minLength:6
-    //         },
-    //         fullNameReg: {
-    //             required: true,
-    //             minLength:1
-    //         },
-    //         emailReg: {
-    //             required: true,
-    //             email: true
-    //         },
-    //         birthDateReg: {
-    //             required: true,
-    //             minLength:1
-    //         },
-    //     },});
-
-
-
-        $( "#submitReg" ).prop("disabled", true);
-        if (required() & checkpassword() & checkFullName() & checkEmail() & checkDate()) {
-
-            $(document).ready(function () {
-
-                $("#formReg").submit(function (e) {
-
-                    //stop submitting the form to see the disabled button effect
-                    e.preventDefault();
-
-                    //disable the submit button
-                    $("#submitReg").attr("disabled", false);
-
-                    return true;
-
-                })});
-
-
-            alert("yay");
-            return true;
-        }else{
-            $("#submitReg").attr("disabled", true);
-            alert("sad");
-            return false;
-        }
-
-   // $( "#submitReg" ).onclick( "disabled", false );
-  //  document.getElementById("#submitReg").disable=false;
-  //   $( "#submitReg" ).prop("disabled", true);
-  //   if (required() & checkpassword() & checkFullName() & checkEmail() & checkDate()) {
-  //     //  document.getElementById("#submitReg").disable=false;
-  //       $( "#submitReg" ).prop("disabled", false);
-  //       alert("yay");
-  //       return true;
-  //   }else{
-  //      // document.getElementById("#submitReg").disable=true;
-  //       $( "#submitReg" ).prop("disabled", true);
-  //       alert("sad");
-  //       return false;
-  //   }
-    //
+    if (required() & checkpassword() & checkFullName() & checkEmail() & checkDate()) {
+        return show('settings','register');
+    } else {
+        return false;
 
     }
-
+}
 //check password
 function checkpassword() {
     let number = /([0-9])/;
