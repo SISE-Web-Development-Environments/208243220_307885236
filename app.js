@@ -110,17 +110,57 @@ function Draw() {
 				context.beginPath();
 				context.arc(center.x, center.y, 20, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
 				context.lineTo(center.x, center.y);
-				context.fillStyle = pac_color; //color
+				context.fillStyle = "#406CB2"; //color
 				context.fill();
 				context.beginPath();
-				context.arc(center.x + 5, center.y - 15, 4, 0, 2 * Math.PI); // circle
+				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+				context.fillStyle = "white"; //color //eye
+				context.fill();
+				context.beginPath();
+				context.arc(center.x + 5, center.y - 16, 3, 0, 2 * Math.PI); // circle
+				context.fillStyle = "black"; //color //eye
+				context.fill();
+				context.beginPath();
+				context.arc(center.x + 12, center.y - 20, 5, 0, 2 * Math.PI); // circle
+				context.fillStyle = "white"; //color //eye
+				context.fill();
+				context.beginPath();
+				context.arc(center.x + 10, center.y - 20, 3, 0, 2 * Math.PI); // circle
 				context.fillStyle = "black"; //color //eye
 				context.fill();
 			} else if (board[i][j] == 1) {
-				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color //dots-food
-				context.fill();
+					context.beginPath();
+					context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+					context.fillStyle = "#b37700"; //color //dots-food
+					context.fill();
+					context.beginPath();
+					context.arc(center.x + 4, center.y - 8, 4, 0, 2 * Math.PI); // circle
+					context.fillStyle = "#664400"; //color
+					context.fill();
+					context.beginPath();
+					context.arc(center.x - 5, center.y + 2, 4, 0, 2 * Math.PI); // circle
+					context.fillStyle = "#664400"; //color
+					context.fill();
+					context.beginPath();
+					context.arc(center.x + 9 , center.y + 6, 4, 0, 2 * Math.PI); // circle
+					context.fillStyle = "#664400"; //color
+					context.fill();
+				// 	context.beginPath();
+				// 	context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+				// 	context.fillStyle = "#331a00"; //color //dots-food
+				// 	context.fill();
+				// 	context.beginPath();
+				// 	context.arc(center.x + 4, center.y - 8, 4, 0, 2 * Math.PI); // circle
+				// 	context.fillStyle = "#fff3e6"; //color
+				// 	context.fill();
+				// 	context.beginPath();
+				// 	context.arc(center.x - 5, center.y + 2, 4, 0, 2 * Math.PI); // circle
+				// 	context.fillStyle = "#fff3e6"; //color
+				// 	context.fill();
+				// 	context.beginPath();
+				// 	context.arc(center.x + 9 , center.y + 6, 4, 0, 2 * Math.PI); // circle
+				// 	context.fillStyle = "#fff3e6"; //color
+				// 	context.fill();
 			} else if (board[i][j] == 4) {
 				context.beginPath();
 				context.rect(center.x - 30, center.y - 30, 60, 60);
