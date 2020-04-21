@@ -152,25 +152,68 @@
         <div class="formSettings">
             <p>Choose keyboard to game: </p>
             <table class="settingsTable">
-                <tr>
-                    <td><strong>Up key</strong></td>
-                    <td><input name="upKey" type="text" id="upKey" maxlength="1"></td>
-                </tr>
-                <tr>
-                    <td><strong>Right key</strong></td>
-                    <td><input name="rightKey" type="text" id="rightKey" maxlength="1"></td>
-                </tr>
-                <tr>
-                    <td><strong>Down key</strong></td>
-                    <td><input name="downKey" type="text" id="downKey" maxlength="1"></td>
-                </tr>
-                <tr>
-                    <td><strong>Left key</strong></td>
-                    <td><input name="leftKey" type="text" id="leftKey" maxlength="1"></td>
-                </tr>
+                <td>
+                    <strong>Number of Cookies</strong><br>
+                    choose number between 50 to 90<br>
+                    <input name="numberCookies" type="number" id="numberCookies" min="50" max="90">
+                    <br><br>
+                    <strong>Choose 5 points Cookies:</strong><br>
+                    <div>
+                        <input type="color" id="fiveCookie" name="Cookie"
+                               value="#b37700">
+                        <label for="fiveCookie">Cookie</label>
+                    </div>
+
+                    <div>
+                        <input type="color" id="fiveChip" name="ChocolateChips"
+                               value="#664400">
+                        <label for="fiveChip">Chocolate chips</label>
+                    </div>
+
+                    <strong>Choose 15 points Cookies:</strong><br>
+                    <div>
+                        <input type="color" id="fifthCookie" name="Base"
+                               value="#ffcc99">
+                        <label for="fifthCookie">Cookie</label>
+                    </div>
+
+                    <div>
+                        <input type="color" id="fifthChip" name="ChocolateChips"
+                               value="#fff2e6">
+                        <label for="fifthChip">Chocolate chips</label>
+                    </div>
+
+                    <strong>Choose 25 points Cookies:</strong><br>
+                    <div>
+                        <input type="color" id="twentyCookie" name="Base"
+                               value="#331a00">
+                        <label for="twentyCookie">Cookie</label>
+                    </div>
+
+                    <div>
+                        <input type="color" id="twentyChip" name="ChocolateChips"
+                               value="#ffffff">
+                        <label for="twentyChip">Chocolate chips</label>
+                    </div>
+                    <br><br>
+
+                    <strong>Choose Monsters:</strong><br>
+                    choose at least one<br>
+                    <input type="checkbox" id="monster1" name="monster1">
+                    <label for="monster1"> <img src="blue.png" width="40" height="40"></label>
+                    <input type="checkbox" id="monster2" name="monster1">
+                    <label for="monster2"> <img src="orange.png" width="40" height="40"></label>
+                    <br>
+                    <input type="checkbox" id="monster3" name="monster1">
+                    <label for="monster3"> <img src="green.png" width="40" height="40"></label>
+                    <input type="checkbox" id="monster4" name="monster1">
+                    <label for="monster4"> <img src="red.png" width="40" height="40"></label>
+                    <br>
+
+                </td>
             </table>
             <a href="#game" onclick="return show('game','settings');">
-                <button type="submit">
+                <button type="submit" id="startGameSettings">
                     Play
                 </button>
             </a>
@@ -185,6 +228,9 @@
     <center>
         <table>
             <td class="gameTableTd">
+                <p id="userNameShow">User Name: </p>
+                <br><br><br><br>
+                <br><br>
                 <div id="score">
                     <label for="lblScore">SCORE:</label>
                     <input id="lblScore" type="text"/>
@@ -194,18 +240,42 @@
                     <input id="lblTime" type="text"/>
                 </div>
                 <div id="live">
-                    <label for="lblLive">Live:  &nbsp;&nbsp;&nbsp;</label>
+                    <label for="lblLive">Live: &nbsp;&nbsp;&nbsp;</label>
                     <input id="lblLive" type="text"/>
                 </div>
+                <br>
+                <br>
+
             </td>
             <td class="gameTableTd">
                 <canvas id="canvas" height="500" width="500"></canvas>
             </td>
             <td class="gameTableTd">
-                <p><b>Points:</b></p>
-                <p>black point: 50  <br> Pink point: 30<br></p>
+                <div>
+                    <strong>5 points Cookies:</strong><br>
+                    <label for="fivePointsCook">Cookie: </label>
+                    <input id="fivePointsCook" onchange="doSometing()" />
+                    <br>
+                    <label for="fivePointsChip">Chocolate chips: </label>
+                    <input id="fivePointsChip" type="color" value=#twentyCookie/>
+                    <br>
+                    <strong>15 points Cookies:</strong><br>
+                    <label for="fifthPointsCook">Cookie: </label>
+                    <input id="fifthPointsCook" type="color" value="#twentyCookie"/>
+                    <br>
+                    <label for="fifthPointsChip">Chocolate chips: </label>
+                    <input id="fifthPointsChip" type="color" value=#twentyCookie/>
+                    <br>
+                    <strong>25 points Cookies:</strong><br>
+                    <label for="twentyPointsCook">Cookie: </label>
+                    <input id="twentyPointsCook" type="color" value="#twentyCookie"/>
+                    <br>
+                    <label for="twentyPointsChip">Chocolate chips: </label>
+                    <input id="twentyPointsChip" type="color" value=#twentyCookie/>
+                    <br>
+                </div>
                 <p><b>Game Settings:</b></p>
-                <p>up: key  <br></p>
+                <p>up: key <br></p>
                 <button type="submit">
                     <a href="#settings" onclick="return show('primary','game');">Back</a>
                 </button>
