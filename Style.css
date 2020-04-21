@@ -118,3 +118,7 @@ td.gameTableTd{
     border: dotted black;
 }
 
+.square {
+    height: 20px;
+    width: 20px;
+}

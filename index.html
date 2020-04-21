@@ -213,7 +213,7 @@
                 </td>
             </table>
             <a href="#game" onclick="return show('game','settings');">
-                <button type="submit" id="startGameSettings">
+                <button type="submit" id="startGameSettings" onclick="doSometing()">
                     Play
                 </button>
             </a>
@@ -254,24 +254,23 @@
                 <div>
                     <strong>5 points Cookies:</strong><br>
                     <label for="fivePointsCook">Cookie: </label>
-                    <input id="fivePointsCook" onchange="doSometing()" />
-                    <br>
+                    <div class="square" id="fivePointsCook"></div>
                     <label for="fivePointsChip">Chocolate chips: </label>
-                    <input id="fivePointsChip" type="color" value=#twentyCookie/>
+                    <div class="square" id="fivePointsChip"></div>
                     <br>
                     <strong>15 points Cookies:</strong><br>
                     <label for="fifthPointsCook">Cookie: </label>
-                    <input id="fifthPointsCook" type="color" value="#twentyCookie"/>
+                    <div class="square" id="fifthPointsCook"></div>
                     <br>
                     <label for="fifthPointsChip">Chocolate chips: </label>
-                    <input id="fifthPointsChip" type="color" value=#twentyCookie/>
+                    <div class="square" id="fifthPointsChip"></div>
                     <br>
                     <strong>25 points Cookies:</strong><br>
                     <label for="twentyPointsCook">Cookie: </label>
-                    <input id="twentyPointsCook" type="color" value="#twentyCookie"/>
+                    <div class="square" id="twentyPointsCook"></div>
                     <br>
                     <label for="twentyPointsChip">Chocolate chips: </label>
-                    <input id="twentyPointsChip" type="color" value=#twentyCookie/>
+                    <div class="square" id="twentyPointsChip"></div>
                     <br>
                 </div>
                 <p><b>Game Settings:</b></p>

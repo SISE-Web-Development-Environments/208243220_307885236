@@ -272,12 +272,14 @@ function UpdatePosition() {
 
 
 function doSometing() {
-    var color = document.getElementById("fiveCookie").value; // cached
+    document.getElementById("fivePointsCook").style.background = document.getElementById("fiveCookie").value;
+    document.getElementById("fivePointsChip").style.background = document.getElementById("fiveChip").value;
 
-    var tmp= document.getElementById("fivePointsCook").style.color.toString();
-    alert(tmp);
-    // The code I'd like to use for changing the text simultaneously - however it does not work.
-    document.getElementById("fivePointsCook").style.color = color;
+    document.getElementById("fifthPointsCook").style.background = document.getElementById("fifthCookie").value;
+    document.getElementById("fifthPointsChip").style.background = document.getElementById("fifthChip").value;
+
+    document.getElementById("twentyPointsCook").style.background = document.getElementById("twentyCookie").value;
+    document.getElementById("twentyPointsChip").style.background = document.getElementById("twentyChip").value;
 
 }
 
