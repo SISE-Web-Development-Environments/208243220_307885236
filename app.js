@@ -6,28 +6,29 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
-var tempFoodSize;
-var food_remain;
-// $("#startGameSettings").click(function() {
-// 	$(document).ready(function() {
-// 		context = canvas.getContext("2d");
-// 		Start();
-// 	});
-// });
 
 $(document).ready(function () {
     $("#startGameSettings").click(function () {
         context = canvas.getContext("2d");
         Start();
-        //$('#p.userNameShow').body.appendChild('#userNameLogIn');
-        //document.body.appendChild(btn);
 
         var paragraph = document.getElementById("userNameShow");
-        var textFromUser=document.getElementById("userNameLogIn").value;
-        var text = document.createTextNode(textFromUser);
+        var textFromUser = "User Name: "+document.getElementById("userNameLogIn").value;
+        //var text = document.createTextNode(textFromUser);
 
-        paragraph.appendChild(text);
+        paragraph.innerText=textFromUser;
+
+      // paragraph.appendChild(text);
     });
+
+    // $("#reloadNew").click(function () {
+    //     var paragraph = document.getElementById("userNameShow");
+    //     var textFromUser = document.getElementById("userNameLogIn").value;
+    //     paragraph.remove(textFromUser);
+    //     var text = document.createTextNode(textFromUser);
+    //     paragraph.appendChild(text);
+    // });
+    //
 });
 
 function Start() {
@@ -35,7 +36,7 @@ function Start() {
     board = new Array();
     score = 0;
     pac_color = "yellow";
-    var cnt = 100;
+    var cnt = 116;
     var food_remain = document.getElementById("numberCookies").value;
     if (food_remain < 50) {
         food_remain = 50;
@@ -45,16 +46,26 @@ function Start() {
 
     var pacman_remain = 1;
     start_time = new Date();
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 14; i++) {
         board[i] = new Array();
         //put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
-        for (var j = 0; j < 10; j++) {
+        for (var j = 0; j < 9; j++) {
             if (
+                //9 10 11
                 (i == 3 && j == 3) ||
                 (i == 3 && j == 4) ||
                 (i == 3 && j == 5) ||
                 (i == 6 && j == 1) ||
-                (i == 6 && j == 2)
+                (i == 6 && j == 2) ||
+                (i == 8 && j == 7) ||
+                (i == 8 && j == 8) ||
+                (i == 1 && j == 7) ||
+                (i == 2 && j == 7) ||
+                (i == 3 && j == 7) ||
+                (i == 9 && j == 4) ||
+                (i == 10 && j == 4) ||
+                (i == 11 && j == 4) ||
+                (i == 10) && (j == 2)
             ) {
                 board[i][j] = 4;
             } else {
@@ -70,7 +81,6 @@ function Start() {
                     } else {
                         board[i][j] = 1;
                     }
-
                 } else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
                     shape.i = i;
                     shape.j = j;
@@ -135,73 +145,73 @@ function Draw() {
     canvas.width = canvas.width; //clean board
     lblScore.value = score;
     lblTime.value = time_elapsed;
-    for (var i = 0; i < 10; i++) {
-        for (var j = 0; j < 10; j++) {
+    for (var i = 0; i < 14; i++) {
+        for (var j = 0; j < 9; j++) {
             var center = new Object();
-            center.x = i * 50 + 25;
-            center.y = j * 50 + 25;
-            if (board[i][j] == 2) {
+            center.x = i * 50 + 15;
+            center.y = j * 50 + 15;
+            if (board[i][j] === 2) {
                 context.beginPath();
-                context.arc(center.x, center.y, 20, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+                context.arc(center.x, center.y, 15, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
                 context.lineTo(center.x, center.y);
                 context.fillStyle = "#406CB2"; //color
                 context.fill();
                 context.beginPath();
-                context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+                context.arc(center.x + 5, center.y - 11, 4, 0, 2 * Math.PI); // circle
                 context.fillStyle = "white"; //color //eye
                 context.fill();
                 context.beginPath();
-                context.arc(center.x + 5, center.y - 16, 3, 0, 2 * Math.PI); // circle
+                context.arc(center.x + 5, center.y - 12, 2, 0, 2 * Math.PI); // circle
                 context.fillStyle = "black"; //color //eye
                 context.fill();
                 context.beginPath();
-                context.arc(center.x + 12, center.y - 20, 5, 0, 2 * Math.PI); // circle
+                context.arc(center.x + 12, center.y - 15, 4, 0, 2 * Math.PI); // circle
                 context.fillStyle = "white"; //color //eye
                 context.fill();
                 context.beginPath();
-                context.arc(center.x + 10, center.y - 20, 3, 0, 2 * Math.PI); // circle
+                context.arc(center.x + 10, center.y - 16, 2, 0, 2 * Math.PI); // circle
                 context.fillStyle = "black"; //color //eye
                 context.fill();
-            } else if (board[i][j] == 1) {
+            } else if (board[i][j] === 1) {
                 context.beginPath();
-                context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-                context.fillStyle =  document.getElementById("fiveCookie").value; //color //dots-food
+                context.arc(center.x, center.y, 8, 0, 2 * Math.PI); // circle
+                context.fillStyle = document.getElementById("fiveCookie").value; //color //dots-food
                 context.fill();
                 context.beginPath();
-                context.arc(center.x + 4, center.y - 8, 4, 0, 2 * Math.PI); // circle
+                context.arc(center.x + 3, center.y - 3, 2, 0, 2 * Math.PI); // circle
                 context.fillStyle = document.getElementById("fiveChip").value; //color
                 context.fill();
                 context.beginPath();
-                context.arc(center.x - 6, center.y + 2, 4, 0, 2 * Math.PI); // circle
-                context.fillStyle =  document.getElementById("fiveChip").value; //color
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 7, center.y + 6, 4, 0, 2 * Math.PI); // circle
+                context.arc(center.x - 4, center.y + 1, 2, 0, 2 * Math.PI); // circle
                 context.fillStyle = document.getElementById("fiveChip").value; //color
                 context.fill();
-            } else if (board[i][j] == 4) {
                 context.beginPath();
-                context.rect(center.x - 30, center.y - 30, 60, 60);
-                context.fillStyle = "grey"; //color //walls
+                context.arc(center.x + 3, center.y + 4, 2, 0, 2 * Math.PI); // circle
+                context.fillStyle = document.getElementById("fiveChip").value; //color
                 context.fill();
-            } else if (board[i][j] == 3) {
+            } else if (board[i][j] === 4) {//walls
                 context.beginPath();
-                context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+                context.rect(center.x - 25, center.y - 25, 50, 50);
+                context.fillStyle = "white"; //color
+                context.fill();
+            } else if (board[i][j] === 3) {
+                context.beginPath();
+                context.arc(center.x, center.y, 12, 0, 2 * Math.PI); // circle
                 context.fillStyle = document.getElementById("fifthCookie").value; //color //dots-food
                 context.fill();
                 context.beginPath();
-                context.arc(center.x + 4, center.y - 8, 4, 0, 2 * Math.PI); // circle
+                context.arc(center.x + 4, center.y - 5, 3, 0, 2 * Math.PI); // circle
                 context.fillStyle = document.getElementById("fifthChip").value; //color
                 context.fill();
                 context.beginPath();
-                context.arc(center.x - 6, center.y + 2, 4, 0, 2 * Math.PI); // circle
+                context.arc(center.x - 6, center.y + 2, 3, 0, 2 * Math.PI); // circle
                 context.fillStyle = document.getElementById("fifthChip").value; //color
                 context.fill();
                 context.beginPath();
-                context.arc(center.x + 7, center.y + 6, 4, 0, 2 * Math.PI); // circle
+                context.arc(center.x + 5, center.y + 6, 3, 0, 2 * Math.PI); // circle
                 context.fillStyle = document.getElementById("fifthChip").value; //color
                 context.fill();
-            } else if (board[i][j] == 5) {
+            } else if (board[i][j] === 5) {
                 context.beginPath();
                 context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
                 context.fillStyle = document.getElementById("twentyCookie").value; //color //dots-food
@@ -226,34 +236,34 @@ function Draw() {
 function UpdatePosition() {
     board[shape.i][shape.j] = 0;
     var x = GetKeyPressed();
-    if (x == 1) {//up
-        if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
+    if (x === 1) {//up
+        if (shape.j > 0 && board[shape.i][shape.j - 1] !== 4) {
             shape.j--;
         }
     }
-    if (x == 2) {
-        if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) {
+    if (x === 2) {
+        if (shape.j < 8 && board[shape.i][shape.j + 1] !== 4) {
             shape.j++;
         }
     }
-    if (x == 3) { //left
-        if (shape.i > 0 && board[shape.i - 1][shape.j] != 4) {
+    if (x === 3) { //left
+        if (shape.i > 0 && board[shape.i - 1][shape.j] !== 4) {
             shape.i--;
         }
     }
-    if (x == 4) {
-        if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
+    if (x === 4) {
+        if (shape.i < 13 && board[shape.i + 1][shape.j] !== 4) {
             shape.i++;
         }
     }
-    if (board[shape.i][shape.j] == 1) {
-        score+=5;
+    if (board[shape.i][shape.j] === 1) {
+        score += 5;
     }
-    if (board[shape.i][shape.j] == 3) {
-        score+=15;
+    if (board[shape.i][shape.j] === 3) {
+        score += 15;
     }
-    if (board[shape.i][shape.j] == 5) {
-        score+=25;
+    if (board[shape.i][shape.j] === 5) {
+        score += 25;
     }
     board[shape.i][shape.j] = 2;
     var currentTime = new Date();
@@ -262,7 +272,7 @@ function UpdatePosition() {
         pac_color = "green";
     }
     //todo!
-    if (score===50) {
+    if (score === 100) {
         window.clearInterval(interval);
         window.alert("Game completed");
     } else {
@@ -283,6 +293,9 @@ function doSometing() {
 
 }
 
-// $( document ).ready(function() {
-//     $('#p.userNameShow').append('#userNameLogIn');
-// });
+window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);

@@ -42,7 +42,8 @@ function validation() {
         newPlayer.email=$('#emailReg').val();
         newPlayer.birthDate=$('#birthDate').val();
         listOfPlayers.push(newPlayer);
-        return show('settings','register');
+        alert("Your register complete successfully");
+        return show('welcome','register');
     } else {
         return false;
 
@@ -113,14 +114,10 @@ function checkDate() {
 function show(shown, hidden) {
     document.getElementById(shown).style.display = 'block';
     document.getElementById(hidden).style.display = 'none';
-
-    //   return true;
 }
 
 function showMenu(shown) {
     document.getElementById(shown).style.display = 'block';
-    //  return true;
-
 }
 
 function showMenus(shown, hidden1, hidden2, hidden3) {
@@ -128,6 +125,7 @@ function showMenus(shown, hidden1, hidden2, hidden3) {
     document.getElementById(hidden1).style.display = 'none';
     document.getElementById(hidden2).style.display = 'none';
     document.getElementById(hidden3).style.display = 'none';
+    document.getElementById("settings").style.display = 'none';
 
     if (shown.toString().anchor('primary')) {
         document.getElementById('primary').style.display = 'none';
@@ -153,4 +151,16 @@ function mouseoverPassReg() {
 function mouseoutPassReg() {
     var obj = document.getElementById('passwordReg');
     obj.type = "password";
+}
+
+function exitGame(){
+    if(confirm("Do you sure you want to quit the game?")){
+        return show('welcome','game');
+    }
+}
+
+function startNewGame(){
+    if(confirm("Do you sure you want to start new game?")) {
+        return show('settings', 'game');
+    }
 }

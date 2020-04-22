@@ -122,3 +122,11 @@ td.gameTableTd{
     height: 20px;
     width: 20px;
 }
+
+td.gameTableTd{
+    font-size: 10px;
+}
+
+div.points{
+    display: inline;
+}

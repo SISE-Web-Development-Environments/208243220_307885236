@@ -84,15 +84,15 @@
                 </tr>
             </table>
             <p>
-                <a href="#settings">
+                <a href="#welcome">
                     <button class="subClassReg" type="button" id="submitReg" onclick=" return validation();">
                         Sign Up
                     </button>
                 </a>
 
-                <a href="#welcome" onclick="return show('welcome','register')">
-                    <button type="submit">Back</button>
-                </a>
+<!--                <a href="#welcome" onclick="return show('welcome','register')">-->
+<!--                    <button type="submit">Back</button>-->
+<!--                </a>-->
             </p>
         </div>
     </center>
@@ -210,6 +210,7 @@
                     <label for="monster4"> <img src="red.png" width="40" height="40"></label>
                     <br>
 
+                    <strong>Choose keyboard: </strong><br>
                 </td>
             </table>
             <a href="#game" onclick="return show('game','settings');">
@@ -228,8 +229,7 @@
     <center>
         <table>
             <td class="gameTableTd">
-                <p id="userNameShow">User Name: </p>
-                <br><br><br><br>
+                <p id="userNameShow"> </p>
                 <br><br>
                 <div id="score">
                     <label for="lblScore">SCORE:</label>
@@ -240,45 +240,60 @@
                     <input id="lblTime" type="text"/>
                 </div>
                 <div id="live">
-                    <label for="lblLive">Live: &nbsp;&nbsp;&nbsp;</label>
+                    <label for="lblLive">LIVE: &nbsp;&nbsp;</label>
                     <input id="lblLive" type="text"/>
                 </div>
-                <br>
-                <br>
-
-            </td>
-            <td class="gameTableTd">
-                <canvas id="canvas" height="500" width="500"></canvas>
-            </td>
-            <td class="gameTableTd">
-                <div>
+                <div class="points">
                     <strong>5 points Cookies:</strong><br>
-                    <label for="fivePointsCook">Cookie: </label>
+                    <label for="fivePointsCook">Cookie:</label>
                     <div class="square" id="fivePointsCook"></div>
-                    <label for="fivePointsChip">Chocolate chips: </label>
+                    <label for="fivePointsChip">Chocolate chips:</label>
                     <div class="square" id="fivePointsChip"></div>
-                    <br>
                     <strong>15 points Cookies:</strong><br>
                     <label for="fifthPointsCook">Cookie: </label>
                     <div class="square" id="fifthPointsCook"></div>
-                    <br>
                     <label for="fifthPointsChip">Chocolate chips: </label>
                     <div class="square" id="fifthPointsChip"></div>
-                    <br>
                     <strong>25 points Cookies:</strong><br>
                     <label for="twentyPointsCook">Cookie: </label>
                     <div class="square" id="twentyPointsCook"></div>
-                    <br>
                     <label for="twentyPointsChip">Chocolate chips: </label>
                     <div class="square" id="twentyPointsChip"></div>
                     <br>
                 </div>
-                <p><b>Game Settings:</b></p>
-                <p>up: key <br></p>
+                <button type="submit" id="reloadNew">
+                    <a href="#settings" onclick="startNewGame()">Start new Game</a>
+                </button>
                 <button type="submit">
-                    <a href="#settings" onclick="return show('primary','game');">Back</a>
+                    <a href="#welcome" onclick="exitGame()">Back</a>
                 </button>
             </td>
+            <td class="gameTableTd">
+                <br>
+                <canvas id="canvas" height="455" width="700"></canvas>
+            </td>
+            <!--            <td class="gameTableTd">-->
+            <!--                <div>-->
+            <!--                    <strong>5 points Cookies:</strong><br>-->
+            <!--                    <label for="fivePointsCook">Cookie:</label>-->
+            <!--                    <div class="square" id="fivePointsCook"></div>-->
+            <!--                    <label for="fivePointsChip">Chocolate chips:</label>-->
+            <!--                    <div class="square" id="fivePointsChip"></div>-->
+            <!--                    <br>-->
+            <!--                    <strong>15 points Cookies:</strong><br>-->
+            <!--                    <label for="fifthPointsCook">Cookie: </label>-->
+            <!--                    <div class="square" id="fifthPointsCook"></div>-->
+            <!--                    <label for="fifthPointsChip">Chocolate chips: </label>-->
+            <!--                    <div class="square" id="fifthPointsChip"></div>-->
+            <!--                    <br>-->
+            <!--                    <strong>25 points Cookies:</strong><br>-->
+            <!--                    <label for="twentyPointsCook">Cookie: </label>-->
+            <!--                    <div class="square" id="twentyPointsCook"></div>-->
+            <!--                    <label for="twentyPointsChip">Chocolate chips: </label>-->
+            <!--                    <div class="square" id="twentyPointsChip"></div>-->
+            <!--                    <br>-->
+            <!--                </div>-->
+            <!--            </td>-->
         </table>
 
 
