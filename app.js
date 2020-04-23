@@ -14,21 +14,10 @@ $(document).ready(function () {
 
         var paragraph = document.getElementById("userNameShow");
         var textFromUser = "User Name: "+document.getElementById("userNameLogIn").value;
-        //var text = document.createTextNode(textFromUser);
 
         paragraph.innerText=textFromUser;
 
-      // paragraph.appendChild(text);
     });
-
-    // $("#reloadNew").click(function () {
-    //     var paragraph = document.getElementById("userNameShow");
-    //     var textFromUser = document.getElementById("userNameLogIn").value;
-    //     paragraph.remove(textFromUser);
-    //     var text = document.createTextNode(textFromUser);
-    //     paragraph.appendChild(text);
-    // });
-    //
 });
 
 function Start() {
@@ -127,6 +116,7 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
+
     if (keysDown[38]) {//up
         return 1;
     }
@@ -282,6 +272,7 @@ function UpdatePosition() {
 
 
 function doSometing() {
+    alert($("keyUpInput").charCode.val());
     document.getElementById("fivePointsCook").style.background = document.getElementById("fiveCookie").value;
     document.getElementById("fivePointsChip").style.background = document.getElementById("fiveChip").value;
 
@@ -294,8 +285,9 @@ function doSometing() {
 }
 
 window.addEventListener("keydown", function(e) {
-    // space and arrow keys
-    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+    // arrow keys
+    if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
         e.preventDefault();
     }
 }, false);
+
