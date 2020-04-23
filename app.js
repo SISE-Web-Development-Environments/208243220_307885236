@@ -14,8 +14,8 @@ var keyRight;
 var keyDown;
 var keyLeft;
 
-var pacman=new Object();
-pacman.img=new Image();
+var pacman = new Object();
+pacman.img = new Image();
 pacman.img.src = "right.png";
 pacman.imgDown = new Image();
 pacman.imgDown.src = "down.png";
@@ -26,6 +26,18 @@ pacman.imgLeft.src = "left.png";
 pacman.imgRight = new Image();
 pacman.imgRight.src = "right.png";
 
+var monster = new Object();
+monster.img = new Image();
+monster.img.src = "blue.png";
+monster.blue = new Image();
+monster.blue.src = "blue.png";
+monster.orange = new Image();
+monster.orange.src = "orange.png";
+monster.green = new Image();
+monster.green.src = "green.png";
+monster.red = new Image();
+monster.red.src = "red.png";
+
 
 $(document).ready(function () {
     $("#startGameSettings").click(function () {
@@ -33,25 +45,19 @@ $(document).ready(function () {
         Start();
 
         var paragraph = document.getElementById("userNameShow");
-        var text="User Name: "+document.getElementById("userNameLogIn").value;
-        paragraph.innerText=text;
+        var text = "User Name: " + document.getElementById("userNameLogIn").value;
+        paragraph.innerText = text;
 
     });
 });
 
 function Start() {
-
+    createMonsterPositions();
     board = new Array();
     score = 0;
     pac_color = "yellow";
     var cnt = 116;
     var food_remain = document.getElementById("numberCookies").value;
-    if (food_remain < 50) {
-        food_remain = 50;
-    } else if (food_remain > 90) {
-        food_remain = 90;
-    }
-
     var pacman_remain = 1;
     start_time = new Date();
     for (var i = 0; i < 14; i++) {
@@ -59,7 +65,6 @@ function Start() {
         //put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
         for (var j = 0; j < 9; j++) {
             if (
-                //9 10 11
                 (i == 3 && j == 3) ||
                 (i == 3 && j == 4) ||
                 (i == 3 && j == 5) ||
@@ -76,6 +81,14 @@ function Start() {
                 (i == 10) && (j == 2)
             ) {
                 board[i][j] = 4;
+            } else if ((i == 0 && j == 0)) {
+                board[i][j] = 6;
+            } else if ((i == 0 && j == 8)) {
+                board[i][j] = 7;
+            } else if ((i == 13 && j == 0)) {
+                board[i][j] = 8;
+            } else if ((i == 13 && j == 8)) {
+                board[i][j] = 9;
             } else {
                 var randomNum = Math.random();
                 if (randomNum <= (1.0 * food_remain) / cnt) {
@@ -153,17 +166,19 @@ function GetKeyPressed() {
     }
 }
 
+
 function Draw() {
     canvas.width = canvas.width; //clean board
     lblScore.value = score;
     lblTime.value = time_elapsed;
+
     for (var i = 0; i < 14; i++) {
         for (var j = 0; j < 9; j++) {
             center = new Object();
             center.x = i * 50 + 15;
             center.y = j * 50 + 15;
             if (board[i][j] === 2) {
-                context.drawImage(pacman.img, center.x-18, center.y-18, 40, 40);
+                context.drawImage(pacman.img, center.x - 18, center.y - 18, 40, 40);
                 // context.beginPath();
                 // context.arc(center.x, center.y, 15, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
                 // context.lineTo(center.x, center.y);
@@ -203,6 +218,16 @@ function Draw() {
                 context.fillStyle = document.getElementById("fiveChip").value; //color
                 context.fill();
             } else if (board[i][j] === 4) {//walls
+
+//                 var grd = context.createRadialGradient(center.x - 25, center.y - 25,5,90,60,100);
+//                 context.addColorStop(0,"#406CB2");
+//                 context.addColorStop(1,"white");
+//
+// // Fill with gradient
+//                 context.fillStyle = grd;
+//                 context.fillRect(10,10,150,80);
+//
+
                 context.beginPath();
                 context.rect(center.x - 25, center.y - 25, 50, 50);
                 context.fillStyle = "white"; //color
@@ -241,6 +266,46 @@ function Draw() {
                 context.arc(center.x + 7, center.y + 6, 4, 0, 2 * Math.PI); // circle
                 context.fillStyle = document.getElementById("twentyChip").value; //color
                 context.fill();
+            } else if (board[i][j] === 6) {
+                if (randomMonster1 === 0) {
+                    context.drawImage(monster.blue, center.x-10, center.y-18, 32, 34);
+                } else if (randomMonster2 === 0) {
+                    context.drawImage(monster.orange, center.x-10, center.y-18, 32, 34);
+                } else if (randomMonster3 === 0) {
+                    context.drawImage(monster.green, center.x-10, center.y-18, 32, 34);
+                } else if (randomMonster4 === 0) {
+                    context.drawImage(monster.red, center.x-10, center.y-18, 32, 34);
+                }
+            } else if (board[i][j] == 7) {
+                if (randomMonster1 === 1) {
+                    context.drawImage(monster.blue, center.x-10, center.y-18, 32, 34);
+                } else if (randomMonster2 === 1) {
+                    context.drawImage(monster.orange, center.x-10, center.y-18, 32, 34);
+                } else if (randomMonster3 === 1) {
+                    context.drawImage(monster.green, center.x-10, center.y-18, 32, 34);
+                } else if (randomMonster4 === 1) {
+                    context.drawImage(monster.red, center.x-10,center.y-18, 32, 34);
+                }
+            } else if (board[i][j] == 8) {
+                if (randomMonster1 === 2) {
+                    context.drawImage(monster.blue, center.x-10, center.y-18, 32, 34);
+                } else if (randomMonster2 === 2) {
+                    context.drawImage(monster.orange, center.x-10, center.y-18, 32, 34);
+                } else if (randomMonster3 === 2) {
+                    context.drawImage(monster.green, center.x-10,center.y-18, 32, 34);
+                } else if (randomMonster4 === 2) {
+                    context.drawImage(monster.red,center.x-10, center.y-18, 32, 34);
+                }
+            } else if (board[i][j] == 9) {
+                if (randomMonster1 === 3) {
+                    context.drawImage(monster.blue, center.x-10, center.y-18, 32, 34);
+                } else if (randomMonster2 === 3) {
+                    context.drawImage(monster.orange, center.x-10,center.y-18, 32, 34);
+                } else if (randomMonster3 === 3) {
+                    context.drawImage(monster.green,center.x-10, center.y-18, 32, 34);
+                } else if (randomMonster4 === 3) {
+                    context.drawImage(monster.red, center.x-10,center.y-18, 32, 34);
+                }
             }
         }
     }
@@ -294,36 +359,30 @@ function UpdatePosition() {
 }
 
 
-function showColors() {
-    document.getElementById("fivePointsCook").style.background = document.getElementById("fiveCookie").value;
-    document.getElementById("fivePointsChip").style.background = document.getElementById("fiveChip").value;
-
-    document.getElementById("fifthPointsCook").style.background = document.getElementById("fifthCookie").value;
-    document.getElementById("fifthPointsChip").style.background = document.getElementById("fifthChip").value;
-
-    document.getElementById("twentyPointsCook").style.background = document.getElementById("twentyCookie").value;
-    document.getElementById("twentyPointsChip").style.background = document.getElementById("twentyChip").value;
-
-}
-
 //stop scrolling
-window.addEventListener("keydown", function(e) {
+window.addEventListener("keydown", function (e) {
     // arrow keys
-    if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+    if ([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
         e.preventDefault();
     }
 }, false);
 
 
-function upPress(event){
-    keyUp=parseInt(event.keyCode);
+function upPress(event) {
+    keyUp = parseInt(event.keyCode);
 }
-function rightPress(event){
-    keyRight=parseInt(event.keyCode);
+
+function rightPress(event) {
+    keyRight = parseInt(event.keyCode);
 }
-function downPress(event){
-    keyDown=parseInt(event.keyCode);
+
+function downPress(event) {
+    keyDown = parseInt(event.keyCode);
 }
-function leftPress(event){
-    keyLeft=parseInt(event.keyCode);
+
+function leftPress(event) {
+    keyLeft = parseInt(event.keyCode);
 }
+
+
+

@@ -5,7 +5,10 @@
     <script type="text/javascript" src="./app.js"></script>
     <script src="Welcome.js" type="text/javascript"></script>
     <script src="About.js" type="text/javascript"></script>
+    <script src="Settings.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="Style.css"/>
+    <link rel="icon" href="face.png" type="image/icon type">
+    <title>Pac&#127850Monster</title>
 </head>
 
 <body>
@@ -149,7 +152,6 @@
     </table>
 </dialog>
 
-
 <div id="settings" class="div" style="display:none">
     <center>
         <div class="formSettings">
@@ -200,7 +202,7 @@
                         <label for="twentyChip">Chocolate chips</label>
                     </div>
                     <br><br>
-
+                </td><td>
                     <strong>Choose Monsters:</strong><br>
                     choose at least one<br>
                     <input type="checkbox" id="monster1" name="monster1">
@@ -230,8 +232,8 @@
             <button type="submit" id="randomFill" onclick="fillFormRandom()">Random fill</button>
             <button type="submit" onclick="fillChoice()">Favorite Choice</button>
             <br><br>
-            <a href="#game" onclick="return show('game','settings');">
-                <button type="submit" id="startGameSettings" onclick="showColors()">
+            <a href="#game" >
+                <button type="submit" id="startGameSettings" onclick="playFunction()">
                     Play
                 </button>
             </a>
@@ -281,36 +283,14 @@
                 <button type="submit" id="reloadNew">
                     <a href="#settings" onclick="startNewGame()">Start new Game</a>
                 </button>
-                <button type="submit">
-                    <a href="#welcome" onclick="exitGame()">Back</a>
-                </button>
+<!--                <button type="submit">-->
+<!--                    <a href="#welcome" onclick="exitGame()">Back</a>-->
+<!--                </button>-->
             </td>
             <td class="gameTableTd">
                 <br>
-                <canvas id="canvas" height="455" width="700"></canvas>
+                <canvas id="canvas" height="460" width="700"></canvas>
             </td>
-            <!--            <td class="gameTableTd">-->
-            <!--                <div>-->
-            <!--                    <strong>5 points Cookies:</strong><br>-->
-            <!--                    <label for="fivePointsCook">Cookie:</label>-->
-            <!--                    <div class="square" id="fivePointsCook"></div>-->
-            <!--                    <label for="fivePointsChip">Chocolate chips:</label>-->
-            <!--                    <div class="square" id="fivePointsChip"></div>-->
-            <!--                    <br>-->
-            <!--                    <strong>15 points Cookies:</strong><br>-->
-            <!--                    <label for="fifthPointsCook">Cookie: </label>-->
-            <!--                    <div class="square" id="fifthPointsCook"></div>-->
-            <!--                    <label for="fifthPointsChip">Chocolate chips: </label>-->
-            <!--                    <div class="square" id="fifthPointsChip"></div>-->
-            <!--                    <br>-->
-            <!--                    <strong>25 points Cookies:</strong><br>-->
-            <!--                    <label for="twentyPointsCook">Cookie: </label>-->
-            <!--                    <div class="square" id="twentyPointsCook"></div>-->
-            <!--                    <label for="twentyPointsChip">Chocolate chips: </label>-->
-            <!--                    <div class="square" id="twentyPointsChip"></div>-->
-            <!--                    <br>-->
-            <!--                </div>-->
-            <!--            </td>-->
         </table>
 
 
