@@ -1,8 +1,7 @@
-
 var listOfPlayers;
-var player = {userName:"p",password:"p",fullName:"ppp ppp",email:"pp@gmail.com",birthDate:"12-04-2020"};
+var player = {userName: "p", password: "p", fullName: "ppp ppp", email: "pp@gmail.com", birthDate: "12-04-2020"};
 
-listOfPlayers=[player];
+listOfPlayers = [player];
 
 
 function validationLogIn() {
@@ -14,15 +13,15 @@ function validationLogIn() {
 
 
     for (var playerToPush in listOfPlayers) {
-        let details=listOfPlayers[playerToPush];
+        let details = listOfPlayers[playerToPush];
         keyUserName = Object.keys(details)[0];
         valueUserName = details[keyUserName];
         keyPassword = Object.keys(details)[1];//password
         valuePassword = details[keyPassword];
 
-        if(valueUserName===$('#userNameLogIn').val() & valuePassword===$('#passwordLogIn').val()){
+        if (valueUserName === $('#userNameLogIn').val() & valuePassword === $('#passwordLogIn').val()) {
             // alert("yes");
-            return show('settings','login');
+            return show('settings', 'login');
         }
     }
 
@@ -34,21 +33,43 @@ function validationLogIn() {
 function validation() {
 
     if (required() & checkpassword() & checkFullName() & checkEmail() & checkDate()) {
-        //adding new player to system
-        let newPlayer={};
-        newPlayer.userName=$('#userNameReg').val();
-        newPlayer.password=$('#passwordReg').val();
-        newPlayer.fullName=$('#fullNameReg').val();
-        newPlayer.email=$('#emailReg').val();
-        newPlayer.birthDate=$('#birthDate').val();
-        listOfPlayers.push(newPlayer);
-        alert("Your register complete successfully");
-        return show('welcome','register');
+
+        var exist = false;
+        for (var playerToPush in listOfPlayers) {
+            let details = listOfPlayers[playerToPush];
+            keyUserName = Object.keys(details)[0];
+            valueUserName = details[keyUserName];
+            keyPassword = Object.keys(details)[1];//password
+            valuePassword = details[keyPassword];
+
+            if (!exist && valueUserName === $('#userNameReg').val()) {
+                alert("This user name already exist");
+                exist = true;
+            }
+
+        }
+        if (!exist) {
+            //adding new player to system
+            let newPlayer = {};
+            newPlayer.userName = $('#userNameReg').val();
+            newPlayer.password = $('#passwordReg').val();
+            newPlayer.fullName = $('#fullNameReg').val();
+            newPlayer.email = $('#emailReg').val();
+            newPlayer.birthDate = $('#birthDate').val();
+            listOfPlayers.push(newPlayer);
+            alert("Your register complete successfully");
+            //  $('#submitReg').reset();
+
+
+            return show('welcome', 'register');
+        }
+
     } else {
         return false;
 
     }
 }
+
 //check password
 function checkpassword() {
     let number = /([0-9])/;
@@ -112,8 +133,16 @@ function checkDate() {
 }
 
 function show(shown, hidden) {
+    // $('#form-popUp').reset();
+
     document.getElementById(shown).style.display = 'block';
     document.getElementById(hidden).style.display = 'none';
+
+    if (!shown.toString().anchor('game')) {
+        document.getElementById("formReg").reset();
+        document.getElementById("formLogIn").reset();
+    }
+
 }
 
 function showMenu(shown) {
@@ -153,14 +182,46 @@ function mouseoutPassReg() {
     obj.type = "password";
 }
 
-function exitGame(){
-    if(confirm("Do you sure you want to quit the game?")){
-        return show('welcome','game');
+function exitGame() {
+    if (confirm("Do you sure you want to quit the game?")) {
+        return show('welcome', 'game');
     }
 }
 
-function startNewGame(){
-    if(confirm("Do you sure you want to start new game?")) {
+function startNewGame() {
+    if (confirm("Do you sure you want to start new game?")) {
         return show('settings', 'game');
     }
+}
+
+function fillFormRandom() {
+
+    document.getElementById('numberCookies').value = Math.round(Math.random() * 40 + 50);
+    document.getElementById('fiveCookie').value = getRandomColor();
+    document.getElementById('fiveChip').value = getRandomColor();
+    document.getElementById('fifthCookie').value = getRandomColor();
+    document.getElementById('fifthChip').value = getRandomColor();
+    document.getElementById('twentyCookie').value = getRandomColor();
+    document.getElementById('twentyChip').value = getRandomColor();
+
+
+}
+
+function fillChoice() {
+    document.getElementById('numberCookies').value = Math.round(Math.random() * 40 + 50);
+    document.getElementById('fiveCookie').value = "#b37700";
+    document.getElementById('fiveChip').value = "#664400";
+    document.getElementById('fifthCookie').value = "#ffcc99";
+    document.getElementById('fifthChip').value = "#fff2e6";
+    document.getElementById('twentyCookie').value = "#331a00";
+    document.getElementById('twentyChip').value = "#ffffff";
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }

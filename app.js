@@ -6,6 +6,26 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+var center;
+
+//keyboards arguments
+var keyUp;
+var keyRight;
+var keyDown;
+var keyLeft;
+
+var pacman=new Object();
+pacman.img=new Image();
+pacman.img.src = "right.png";
+pacman.imgDown = new Image();
+pacman.imgDown.src = "down.png";
+pacman.imgUp = new Image();
+pacman.imgUp.src = "up.png";
+pacman.imgLeft = new Image();
+pacman.imgLeft.src = "left.png";
+pacman.imgRight = new Image();
+pacman.imgRight.src = "right.png";
+
 
 $(document).ready(function () {
     $("#startGameSettings").click(function () {
@@ -13,9 +33,8 @@ $(document).ready(function () {
         Start();
 
         var paragraph = document.getElementById("userNameShow");
-        var textFromUser = "User Name: "+document.getElementById("userNameLogIn").value;
-
-        paragraph.innerText=textFromUser;
+        var text="User Name: "+document.getElementById("userNameLogIn").value;
+        paragraph.innerText=text;
 
     });
 });
@@ -116,17 +135,20 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-
-    if (keysDown[38]) {//up
+    if (keysDown[38] || keysDown[keyUp]) {//up
+        pacman.img = pacman.imgUp;
         return 1;
     }
-    if (keysDown[40]) {//down
+    if (keysDown[40] || keysDown[keyDown]) {//down
+        pacman.img = pacman.imgDown;
         return 2;
     }
-    if (keysDown[37]) {//left
+    if (keysDown[37] || keysDown[keyLeft]) {//left
+        pacman.img = pacman.imgLeft;
         return 3;
     }
-    if (keysDown[39]) {//right
+    if (keysDown[39] || keysDown[keyRight]) {//right
+        pacman.img = pacman.imgRight;
         return 4;
     }
 }
@@ -137,31 +159,32 @@ function Draw() {
     lblTime.value = time_elapsed;
     for (var i = 0; i < 14; i++) {
         for (var j = 0; j < 9; j++) {
-            var center = new Object();
+            center = new Object();
             center.x = i * 50 + 15;
             center.y = j * 50 + 15;
             if (board[i][j] === 2) {
-                context.beginPath();
-                context.arc(center.x, center.y, 15, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
-                context.lineTo(center.x, center.y);
-                context.fillStyle = "#406CB2"; //color
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 5, center.y - 11, 4, 0, 2 * Math.PI); // circle
-                context.fillStyle = "white"; //color //eye
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 5, center.y - 12, 2, 0, 2 * Math.PI); // circle
-                context.fillStyle = "black"; //color //eye
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 12, center.y - 15, 4, 0, 2 * Math.PI); // circle
-                context.fillStyle = "white"; //color //eye
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 10, center.y - 16, 2, 0, 2 * Math.PI); // circle
-                context.fillStyle = "black"; //color //eye
-                context.fill();
+                context.drawImage(pacman.img, center.x-18, center.y-18, 40, 40);
+                // context.beginPath();
+                // context.arc(center.x, center.y, 15, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+                // context.lineTo(center.x, center.y);
+                // context.fillStyle = "#406CB2"; //color
+                // context.fill();
+                // context.beginPath();
+                // context.arc(center.x + 5, center.y - 11, 4, 0, 2 * Math.PI); // circle
+                // context.fillStyle = "white"; //color //eye
+                // context.fill();
+                // context.beginPath();
+                // context.arc(center.x + 5, center.y - 12, 2, 0, 2 * Math.PI); // circle
+                // context.fillStyle = "black"; //color //eye
+                // context.fill();
+                // context.beginPath();
+                // context.arc(center.x + 12, center.y - 15, 4, 0, 2 * Math.PI); // circle
+                // context.fillStyle = "white"; //color //eye
+                // context.fill();
+                // context.beginPath();
+                // context.arc(center.x + 10, center.y - 16, 2, 0, 2 * Math.PI); // circle
+                // context.fillStyle = "black"; //color //eye
+                // context.fill();
             } else if (board[i][j] === 1) {
                 context.beginPath();
                 context.arc(center.x, center.y, 8, 0, 2 * Math.PI); // circle
@@ -271,8 +294,7 @@ function UpdatePosition() {
 }
 
 
-function doSometing() {
-    alert($("keyUpInput").charCode.val());
+function showColors() {
     document.getElementById("fivePointsCook").style.background = document.getElementById("fiveCookie").value;
     document.getElementById("fivePointsChip").style.background = document.getElementById("fiveChip").value;
 
@@ -284,6 +306,7 @@ function doSometing() {
 
 }
 
+//stop scrolling
 window.addEventListener("keydown", function(e) {
     // arrow keys
     if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
@@ -291,3 +314,16 @@ window.addEventListener("keydown", function(e) {
     }
 }, false);
 
+
+function upPress(event){
+    keyUp=parseInt(event.keyCode);
+}
+function rightPress(event){
+    keyRight=parseInt(event.keyCode);
+}
+function downPress(event){
+    keyDown=parseInt(event.keyCode);
+}
+function leftPress(event){
+    keyLeft=parseInt(event.keyCode);
+}

@@ -52,48 +52,50 @@
 
 <div id="register" class="div" style="display:none">
     <center>
-        <div class="form-popUp" id="formReg">
-            <table>
-                <tr>
-                    <td><strong>User Name</strong></td>
-                    <td><input name="User Name" type="text" id="userNameReg" placeholder="User Name" autocomplete="on">
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>Password</strong></td>
-                    <td><input name="Password" type="password" id="passwordReg" placeholder="Password" autocomplete="on"
-                               title="At least 6 characters include a number and and a letter">
-                        <img src="eye.png" width="20" height="20" onmouseover="mouseoverPassReg();"
-                             onmouseout="mouseoutPassReg();"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>Full Name</strong></td>
-                    <td><input name="Full Name" type="text" id="fullNameReg" placeholder="Full Name" autocomplete="on">
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>Email</strong></td>
-                    <td><input name="Email" type="email" id="emailReg" placeholder="name@domain.com" autocomplete="on">
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>Birth Date</strong></td>
-                    <td><input name="Birth Date" type="date" id="birthDateReg" placeholder="Birth Date"
-                               autocomplete="on" value="2000-01-01"></td>
-                </tr>
-            </table>
-            <p>
-                <a href="#welcome">
-                    <button class="subClassReg" type="button" id="submitReg" onclick=" return validation();">
-                        Sign Up
-                    </button>
-                </a>
+        <div class="form-popUp" >
+            <form id="formReg">
+                <table>
+                    <tr>
+                        <td><strong>User Name</strong></td>
+                        <td><input name="User Name" type="text" id="userNameReg" placeholder="User Name" autocomplete="on">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Password</strong></td>
+                        <td><input name="Password" type="password" id="passwordReg" placeholder="Password" autocomplete="on"
+                                   title="At least 6 characters include a number and and a letter">
+                            <img src="eye.png" width="20" height="20" onmouseover="mouseoverPassReg();"
+                                 onmouseout="mouseoutPassReg();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Full Name</strong></td>
+                        <td><input name="Full Name" type="text" id="fullNameReg" placeholder="Full Name" autocomplete="on">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email</strong></td>
+                        <td><input name="Email" type="email" id="emailReg" placeholder="name@domain.com" autocomplete="on">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Birth Date</strong></td>
+                        <td><input name="Birth Date" type="date" id="birthDateReg" placeholder="Birth Date"
+                                   autocomplete="on" value="2000-01-01"></td>
+                    </tr>
+                </table>
+                <p>
+                    <a href="#welcome">
+                        <button class="subClassReg" type="button" id="submitReg" onclick=" return validation();">
+                            Sign Up
+                        </button>
+                    </a>
 
-<!--                <a href="#welcome" onclick="return show('welcome','register')">-->
-<!--                    <button type="submit">Back</button>-->
-<!--                </a>-->
-            </p>
+                    <!--                <a href="#welcome" onclick="return show('welcome','register')">-->
+                    <!--                    <button type="submit">Back</button>-->
+                    <!--                </a>-->
+                </p>
+            </form>
         </div>
     </center>
 </div>
@@ -101,32 +103,33 @@
 <div id="login" class="div" style="display:none">
     <center>
         <div class="form-popUp">
-            <table>
-                <tr>
-                    <td><strong>User Name</strong></td>
-                    <td><input name="User Name" type="text" id="userNameLogIn" placeholder="User Name"
-                               autocomplete="on"></td>
-                </tr>
-                <tr>
-                    <td><strong>Password</strong></td>
-                    <td>
-                        <input name="Password" type="password" id="passwordLogIn" placeholder="Password"
-                               autocomplete="on">
-                        <img src="eye.png" width="20" height="20" onmouseover="mouseoverPassLogIn();"
-                             onmouseout="mouseoutPassLogIn();"/>
-                    </td>
-                </tr>
-            </table>
-            <p>
-                <a href="#settings">
-                    <button type="button" id="submitLogIn" onclick="return validationLogIn()">Play</button>
-                </a>
-                <a href="#welcome" onclick="return show('welcome','login')">
-                    <button type="submit">Back</button>
-                </a>
+            <form id="formLogIn">
+                <table>
+                    <tr>
+                        <td><strong>User Name</strong></td>
+                        <td><input name="User Name" type="text" id="userNameLogIn" placeholder="User Name"
+                                   autocomplete="on"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Password</strong></td>
+                        <td>
+                            <input name="Password" type="password" id="passwordLogIn" placeholder="Password"
+                                   autocomplete="on">
+                            <img src="eye.png" width="20" height="20" onmouseover="mouseoverPassLogIn();"
+                                 onmouseout="mouseoutPassLogIn();"/>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    <a href="#settings">
+                        <button type="button" id="submitLogIn" onclick="return validationLogIn()">Play</button>
+                    </a>
+                    <a href="#welcome" onclick="return show('welcome','login')">
+                        <button type="submit">Back</button>
+                    </a>
 
-            </p>
-
+                </p>
+            </form>
         </div>
     </center>
 </div>
@@ -150,6 +153,7 @@
 <div id="settings" class="div" style="display:none">
     <center>
         <div class="formSettings">
+            <br><br><br><br><br><br><br>
             <p>Choose keyboard to game: </p>
             <table class="settingsTable">
                 <td>
@@ -212,20 +216,22 @@
 
                     <strong>Choose keyboard: </strong><br>
                     Key up:
-                    <input type="text" id="keyUpInput" maxlength="1"><br>
+                    <input type="text" id="keyUpInput" maxlength="1" onkeypress="upPress(event)"><br>
                     Key right:
-                    <input type="text" id="keyRightInput" maxlength="1"><br>
+                    <input type="text" id="keyRightInput" maxlength="1" onkeypress="rightPress(event)"><br>
                     Key down:
-                    <input type="text" id="keyDownInput" maxlength="1"><br>
+                    <input type="text" id="keyDownInput" maxlength="1" onkeypress="downPress(event)"><br>
                     Key left:
-                    <input type="text" id="keyLeftInput" maxlength="1"><br>
-
-<!--                    add button to random!-->
+                    <input type="text" id="keyLeftInput" maxlength="1" onkeypress="leftPress(event)"><br>
 
                 </td>
             </table>
+
+            <button type="submit" id="randomFill" onclick="fillFormRandom()">Random fill</button>
+            <button type="submit" onclick="fillChoice()">Favorite Choice</button>
+            <br><br>
             <a href="#game" onclick="return show('game','settings');">
-                <button type="submit" id="startGameSettings" onclick="doSometing()">
+                <button type="submit" id="startGameSettings" onclick="showColors()">
                     Play
                 </button>
             </a>
