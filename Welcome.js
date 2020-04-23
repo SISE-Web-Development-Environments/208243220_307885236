@@ -39,11 +39,16 @@ function validation() {
             let details = listOfPlayers[playerToPush];
             keyUserName = Object.keys(details)[0];
             valueUserName = details[keyUserName];
-            keyPassword = Object.keys(details)[1];//password
-            valuePassword = details[keyPassword];
+            keyMail = Object.keys(details)[3];
+            valueMail = details[keyMail];
 
-            if (!exist && valueUserName === $('#userNameReg').val()) {
+
+            if (!exist & (valueUserName === $('#userNameReg').val())) {
                 alert("This user name already exist");
+                exist = true;
+            }
+            if (!exist & valueMail === $('#emailReg').val() ) {
+                alert("This mail already exist");
                 exist = true;
             }
 
