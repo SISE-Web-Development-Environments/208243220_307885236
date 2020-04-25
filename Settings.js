@@ -12,6 +12,7 @@ var randomMonster4=5;
 function playFunction(){
     showColorsChosenForCookies();
     if(isMonsterChecked() & isNumCookiesValid() & isTimeLegal()){
+        musicController();
         return show('game','settings');
     }else{
        // alert("You did not fill all the settings!");
