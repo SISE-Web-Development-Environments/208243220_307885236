@@ -129,11 +129,11 @@ function required() {
 
 //check birthdate
 function checkDate() {
-    // if ($('#birthDate').val().length === 0) {
-    //     alert("birthNo");
+    // if ($('#birthDate').getFullYear()>2020 || $('#birthDate').getDate()<1920 ) {
+    //     alert("Your year of birthday is not valid");
     //     return false;
     // }
-    // // alert("birthYes");
+    // alert("birthYes");
     return true;
 }
 
@@ -155,15 +155,24 @@ function showMenu(shown) {
 }
 
 function showMenus(shown, hidden1, hidden2, hidden3) {
-    showMenu(shown);
-    document.getElementById(hidden1).style.display = 'none';
-    document.getElementById(hidden2).style.display = 'none';
-    document.getElementById(hidden3).style.display = 'none';
-    document.getElementById("settings").style.display = 'none';
+    if(document.getElementById("game").style.display === 'block'){
+        if(confirm("Do you sure you want to quit?")){
+            document.getElementById("game").style.display = 'none';
+            document.getElementById(shown).style.display = 'block';
+        }
+    }else{
+        showMenu(shown);
+        document.getElementById(hidden1).style.display = 'none';
+        document.getElementById(hidden2).style.display = 'none';
+        document.getElementById(hidden3).style.display = 'none';
+        document.getElementById("settings").style.display = 'none';
 
-    if (shown.toString().anchor('primary')) {
-        document.getElementById('primary').style.display = 'none';
+        if (shown.toString().anchor('primary')) {
+            document.getElementById('primary').style.display = 'none';
+        }
     }
+
+
 }
 
 

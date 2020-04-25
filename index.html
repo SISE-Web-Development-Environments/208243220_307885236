@@ -39,7 +39,7 @@
 <br>
 <br>
 <br>
-<div id="welcome" class="div" style="display:none">
+<div id="welcome" class="alert" style="display:none">
     <br><br>
     <center>
         <a href="#register" onclick="return show('register','welcome');">
@@ -55,17 +55,19 @@
 
 <div id="register" class="div" style="display:none">
     <center>
-        <div class="form-popUp" >
+        <div class="form-popUp">
             <form id="formReg">
                 <table>
                     <tr>
                         <td><strong>User Name</strong></td>
-                        <td><input name="User Name" type="text" id="userNameReg" placeholder="User Name" autocomplete="on">
+                        <td><input name="User Name" type="text" id="userNameReg" placeholder="User Name"
+                                   autocomplete="on">
                         </td>
                     </tr>
                     <tr>
                         <td><strong>Password</strong></td>
-                        <td><input name="Password" type="password" id="passwordReg" placeholder="Password" autocomplete="on"
+                        <td><input name="Password" type="password" id="passwordReg" placeholder="Password"
+                                   autocomplete="on"
                                    title="At least 6 characters include a number and and a letter">
                             <img src="eye.png" width="20" height="20" onmouseover="mouseoverPassReg();"
                                  onmouseout="mouseoutPassReg();"/>
@@ -73,12 +75,14 @@
                     </tr>
                     <tr>
                         <td><strong>Full Name</strong></td>
-                        <td><input name="Full Name" type="text" id="fullNameReg" placeholder="Full Name" autocomplete="on">
+                        <td><input name="Full Name" type="text" id="fullNameReg" placeholder="Full Name"
+                                   autocomplete="on">
                         </td>
                     </tr>
                     <tr>
                         <td><strong>Email</strong></td>
-                        <td><input name="Email" type="email" id="emailReg" placeholder="name@domain.com" autocomplete="on">
+                        <td><input name="Email" type="email" id="emailReg" placeholder="name@domain.com"
+                                   autocomplete="on">
                         </td>
                     </tr>
                     <tr>
@@ -155,84 +159,87 @@
 <div id="settings" class="div" style="display:none">
     <center>
         <div class="formSettings">
-            <br><br><br><br><br><br><br>
-            <p>Choose keyboard to game: </p>
+            <br><br><br><br><br>
             <table class="settingsTable">
-                <td>
-                    <strong>Number of Cookies</strong><br>
-                    choose number between 50 to 90<br>
-                    <input name="numberCookies" type="number" id="numberCookies" min="50" max="90">
-                    <br><br>
-                    <strong>Choose 5 points Cookies:</strong><br>
-                    <div>
-                        <input type="color" id="fiveCookie" name="Cookie"
-                               value="#b37700">
-                        <label for="fiveCookie">Cookie</label>
-                    </div>
+                <tr>
+                    <td><strong>Number of Cookies</strong><br>
+                        choose number between 50 to 90<br>
+                        <input name="numberCookies" type="number" id="numberCookies" min="50" max="90" size="2"></td>
+                    <td>
+                        <strong>Choose Monsters:</strong><br>
+                        choose at least one<br>
+                        <input type="checkbox" id="monster1" name="monster1">
+                        <label for="monster1"> <img src="blue.png" width="40" height="40"></label>
+                        <input type="checkbox" id="monster2" name="monster1">
+                        <label for="monster2"> <img src="orange.png" width="40" height="40"></label>
+                        <br>
+                        <input type="checkbox" id="monster3" name="monster1">
+                        <label for="monster3"> <img src="green.png" width="40" height="40"></label>
+                        <input type="checkbox" id="monster4" name="monster1">
+                        <label for="monster4"> <img src="red.png" width="40" height="40"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Choose 5 points Cookies:</strong><br>
+                        <div>
+                            <input type="color" id="fiveCookie" name="Cookie" value="#b37700">
+                            <label for="fiveCookie">Cookie</label>
+                        </div>
 
-                    <div>
-                        <input type="color" id="fiveChip" name="ChocolateChips"
-                               value="#664400">
-                        <label for="fiveChip">Chocolate chips</label>
-                    </div>
+                        <div>
+                            <input type="color" id="fiveChip" name="ChocolateChips" value="#664400">
+                            <label for="fiveChip">Chocolate chips</label>
+                        </div>
 
-                    <strong>Choose 15 points Cookies:</strong><br>
-                    <div>
-                        <input type="color" id="fifthCookie" name="Base"
-                               value="#ffcc99">
-                        <label for="fifthCookie">Cookie</label>
-                    </div>
+                        <strong>Choose 15 points Cookies:</strong><br>
+                        <div>
+                            <input type="color" id="fifthCookie" name="Base" value="#ffcc99">
+                            <label for="fifthCookie">Cookie</label>
+                        </div>
+                        <div>
+                            <input type="color" id="fifthChip" name="ChocolateChips" value="#fff2e6">
+                            <label for="fifthChip">Chocolate chips</label>
+                        </div>
 
-                    <div>
-                        <input type="color" id="fifthChip" name="ChocolateChips"
-                               value="#fff2e6">
-                        <label for="fifthChip">Chocolate chips</label>
-                    </div>
+                        <strong>Choose 25 points Cookies:</strong><br>
+                        <div>
+                            <input type="color" id="twentyCookie" name="Base" value="#331a00">
+                            <label for="twentyCookie">Cookie</label>
+                        </div>
 
-                    <strong>Choose 25 points Cookies:</strong><br>
-                    <div>
-                        <input type="color" id="twentyCookie" name="Base"
-                               value="#331a00">
-                        <label for="twentyCookie">Cookie</label>
-                    </div>
+                        <div>
+                            <input type="color" id="twentyChip" name="ChocolateChips" value="#ffffff">
+                            <label for="twentyChip">Chocolate chips</label>
+                        </div>
+                    </td>
+                    <td>
+                        <strong>Choose keyboard: </strong><br>
+                        Key up:&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" id="keyUpInput" maxlength="1" onkeypress="upPress(event)" size="1"><br>
+                        Key right:
+                        <input type="text" id="keyRightInput" maxlength="1" onkeypress="rightPress(event)" size="1"><br>
+                        Key down:
+                        <input type="text" id="keyDownInput" maxlength="1" onkeypress="downPress(event)" size="1"><br>
+                        Key left:&nbsp;&nbsp;
+                        <input type="text" id="keyLeftInput" maxlength="1" onkeypress="leftPress(event)" size="1"><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
 
-                    <div>
-                        <input type="color" id="twentyChip" name="ChocolateChips"
-                               value="#ffffff">
-                        <label for="twentyChip">Chocolate chips</label>
-                    </div>
-                    <br><br>
-                </td><td>
-                    <strong>Choose Monsters:</strong><br>
-                    choose at least one<br>
-                    <input type="checkbox" id="monster1" name="monster1">
-                    <label for="monster1"> <img src="blue.png" width="40" height="40"></label>
-                    <input type="checkbox" id="monster2" name="monster1">
-                    <label for="monster2"> <img src="orange.png" width="40" height="40"></label>
-                    <br>
-                    <input type="checkbox" id="monster3" name="monster1">
-                    <label for="monster3"> <img src="green.png" width="40" height="40"></label>
-                    <input type="checkbox" id="monster4" name="monster1">
-                    <label for="monster4"> <img src="red.png" width="40" height="40"></label>
-                    <br>
-
-                    <strong>Choose keyboard: </strong><br>
-                    Key up:
-                    <input type="text" id="keyUpInput" maxlength="1" onkeypress="upPress(event)"><br>
-                    Key right:
-                    <input type="text" id="keyRightInput" maxlength="1" onkeypress="rightPress(event)"><br>
-                    Key down:
-                    <input type="text" id="keyDownInput" maxlength="1" onkeypress="downPress(event)"><br>
-                    Key left:
-                    <input type="text" id="keyLeftInput" maxlength="1" onkeypress="leftPress(event)"><br>
-
-                </td>
+                    </td>
+                    <td>
+                        <strong>Choose Time in Seconds: </strong><br>
+                        <input type="number" id="gameTime" min="60" required><br>
+                    </td>
+                </tr>
             </table>
-
+            <br>
             <button type="submit" id="randomFill" onclick="fillFormRandom()">Random fill</button>
             <button type="submit" onclick="fillChoice()">Favorite Choice</button>
             <br><br>
-            <a href="#game" >
+            <a href="#game">
                 <button type="submit" id="startGameSettings" onclick="playFunction()">
                     Play
                 </button>
@@ -248,7 +255,7 @@
     <center>
         <table>
             <td class="gameTableTd">
-                <p id="userNameShow"> </p>
+                <p id="userNameShow"></p>
                 <br><br>
                 <div id="score">
                     <label for="lblScore">SCORE:</label>
@@ -283,18 +290,19 @@
                 <button type="submit" id="reloadNew">
                     <a href="#settings" onclick="startNewGame()">Start new Game</a>
                 </button>
-<!--                <button type="submit">-->
-<!--                    <a href="#welcome" onclick="exitGame()">Back</a>-->
-<!--                </button>-->
+                <!--                <button type="submit">-->
+                <!--                    <a href="#welcome" onclick="exitGame()">Back</a>-->
+                <!--                </button>-->
             </td>
             <td class="gameTableTd">
                 <br>
-                <canvas id="canvas" height="460" width="700"></canvas>
+                <canvas id="canvas" height="445" width="700"></canvas>
             </td>
         </table>
 
 
     </center>
 </div>
+
 </body>
 </html>

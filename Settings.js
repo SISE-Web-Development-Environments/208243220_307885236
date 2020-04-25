@@ -1,3 +1,8 @@
+var randomMonster1=5;
+var randomMonster2=5;
+var randomMonster3=5;
+var randomMonster4=5;
+
 // function exitGame() {
 //     if (confirm("Do you sure you want to quit the game?")) {
 //         return show('welcome', 'game');
@@ -6,17 +11,27 @@
 
 function playFunction(){
     showColorsChosenForCookies();
-    if(isMonsterChecked() & isNumCookiesValid()){
+    if(isMonsterChecked() & isNumCookiesValid() & isTimeLegal()){
         return show('game','settings');
     }else{
-        alert("You did not fill all the settings!");
+       // alert("You did not fill all the settings!");
         //  alert("sad");
     }
 
 }
 
+function isTimeLegal(){
+    let valid=true;
+    var gameT=document.getElementById("gameTime").value;
+    if(gameT<60){
+        alert("The min time in seconds is 60 seconds to game");
+        valid=false;
+    }
+    return valid;
+
+}
 function isNumCookiesValid(){
-    var valid=true;
+    let valid=true;
     var food=document.getElementById("numberCookies").value;
     if (food < 50 ) {
         alert("Num of cookies is less than 50");
@@ -48,6 +63,8 @@ function fillFormRandom() {
         randomCheckBox();
     }
 
+    document.getElementById('gameTime').value = Math.round(Math.random() * 120 + 60);
+
 
 }
 
@@ -65,6 +82,8 @@ function fillChoice() {
     document.getElementById("monster1").checked = true;
     document.getElementById("monster3").checked = true;
     document.getElementById("monster4").checked = true;
+
+    document.getElementById('gameTime').value = 120;
 
 }
 
@@ -105,6 +124,7 @@ function getRandomColor() {
     return color;
 }
 
+
 function showColorsChosenForCookies() {
     document.getElementById("fivePointsCook").style.background = document.getElementById("fiveCookie").value;
     document.getElementById("fivePointsChip").style.background = document.getElementById("fiveChip").value;
@@ -123,13 +143,9 @@ function isMonsterChecked() {
             return true;
         }
     }
+   // alert("You need to choose at least one monster");
     return false;
 }
-
-var randomMonster1=5;
-var randomMonster2=5;
-var randomMonster3=5;
-var randomMonster4=5;
 
 function createMonsterPositions(){
     let monster1 = document.getElementById('monster1');

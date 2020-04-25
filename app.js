@@ -51,7 +51,9 @@ $(document).ready(function () {
     });
 });
 
-function Start() {
+var totalTimeOfGame;
+
+    function Start() {
     createMonsterPositions();
     board = new Array();
     score = 0;
@@ -60,6 +62,10 @@ function Start() {
     var food_remain = document.getElementById("numberCookies").value;
     var pacman_remain = 1;
     start_time = new Date();
+    totalTimeOfGame=new Date(start_time);
+    totalTimeOfGame.setTime(start_time.valueOf()+document.getElementById('gameTime').value);
+  //  alert(start_time.getTime()+" "+totalTimeOfGame.valueOf() +" seconds "+totalTimeOfGame.value-start_time.value);
+
     for (var i = 0; i < 14; i++) {
         board[i] = new Array();
         //put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
@@ -175,8 +181,8 @@ function Draw() {
     for (var i = 0; i < 14; i++) {
         for (var j = 0; j < 9; j++) {
             center = new Object();
-            center.x = i * 50 + 15;
-            center.y = j * 50 + 15;
+            center.x = i * 50 + 17;
+            center.y = j * 50 + 17;
             if (board[i][j] === 2) {
                 context.drawImage(pacman.img, center.x - 18, center.y - 18, 40, 40);
                 // context.beginPath();
@@ -311,6 +317,8 @@ function Draw() {
     }
 }
 
+
+
 function UpdatePosition() {
     board[shape.i][shape.j] = 0;
     var x = GetKeyPressed();
@@ -346,13 +354,25 @@ function UpdatePosition() {
     board[shape.i][shape.j] = 2;
     var currentTime = new Date();
     time_elapsed = (currentTime - start_time) / 1000;
-    if (score >= 20 && time_elapsed <= 10) {
-        pac_color = "green";
-    }
+
+    // var curdate = new Date(null);
+    // curdate.setTime(1205209821*1000);
+    // //alert(curdate.toLocaleString());
+    //
+    // var tryTEmp=(totalTimeOfGame-time_elapsed)/1000;
+    // //
+    // if (score >= 15) {
+    //     window.alert(curdate.toLocaleString()+" ,,,,,, "+curdate.toLocaleString()-time_elapsed);
+    // }
     //todo!
-    if (score === 100) {
+    if (totalTimeOfGame.getSeconds()-time_elapsed>0) {
         window.clearInterval(interval);
-        window.alert("Game completed");
+        if(score<100){
+            window.alert("You are better than "+score+" points");
+        }else{
+            window.alert("Winner!!!");
+        }
+
     } else {
         Draw();
     }
