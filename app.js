@@ -7,6 +7,7 @@ var start_time;
 var time_elapsed;
 var interval;
 var center;
+var food_remain;
 
 //keyboards arguments
 var keyUp;
@@ -72,7 +73,7 @@ function Start() {
     score = 0;
     pac_color = "yellow";
     var cnt = 116;
-    var food_remain = document.getElementById("numberCookies").value;
+    food_remain = document.getElementById("numberCookies").value;
     var pacman_remain = 1;
     var goodpotion_remain=1;
     var badpotion_remain=1;
@@ -337,7 +338,8 @@ function UpdatePosition() {
         if (shape.j > 0 && board[shape.i][shape.j - 1] !== 4) {
             shape.j--;
         }
-    }
+
+        }
     if (x === 2) {
         if (shape.j < 8 && board[shape.i][shape.j + 1] !== 4) {
             shape.j++;
@@ -352,6 +354,14 @@ function UpdatePosition() {
         if (shape.i < 13 && board[shape.i + 1][shape.j] !== 4) {
             shape.i++;
         }
+    }
+    if (board[shape.i][shape.j] === 6 || board[shape.i][shape.j] === 7 || board[shape.i][shape.j] === 8 || board[shape.i][shape.j] === 9) {
+        if (score < 10) {
+            score = 0;
+        } else {
+            score -= 10;
+        }
+        pacmanLife--;
     }
     if (board[shape.i][shape.j] === 1) {
         score += 5;
@@ -387,6 +397,13 @@ function UpdatePosition() {
             window.alert("Winner!!!");
         }
 
+    } else if (pacmanLife === 0) {
+        window.alert("Loser!");
+        if (confirm("do you want to start new game?")) {
+            showMenu('settings');
+        } else {
+            showMenu('welcome');
+        }
     } else {
         Draw();
     }
@@ -421,15 +438,20 @@ function leftPress(event) {
 var audio=new Audio("music.mp3");
 var img1 = "mute.png";
 var img2 = "unmute.png";
+var musicOn = false;
 
 function musicController(){
     var imgElement = document.getElementById('imageMusic');
 
-    imgElement.src = (imgElement.src === img1)? img2 : img1;
-    if(audio.play()){
+    //imgElement.src = (imgElement.src === img1)? img2 : img1;
+    if(musicOn){
+        imgElement.src = img1;
         audio.pause();
+        musicOn = false;
     }else{
+        imgElement.src = img2;
         audio.play();
+        musicOn = true;
     }
 }
 
