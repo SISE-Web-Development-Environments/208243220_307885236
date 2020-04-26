@@ -3,6 +3,11 @@ var randomMonster2=5;
 var randomMonster3=5;
 var randomMonster4=5;
 
+var keyUp;
+var keyRight;
+var keyDown;
+var keyLeft;
+
 // function exitGame() {
 //     if (confirm("Do you sure you want to quit the game?")) {
 //         return show('welcome', 'game');
@@ -209,9 +214,9 @@ function createMonsterPositions(){
         }
     }
 }
-var keyUp;
+
 function upPress(event) {
-    keyUp = event.keyCode;
+    keyUp=event.keyCode;
 }
 
 function rightPress(event) {

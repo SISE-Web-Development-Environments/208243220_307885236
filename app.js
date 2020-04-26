@@ -11,9 +11,9 @@ var food_remain;
 
 //keyboards arguments
 //var keyUp;
-var keyRight;
-var keyDown;
-var keyLeft;
+// var keyRight;
+// var keyDown;
+// var keyLeft;
 
 var pacman = new Object();
 pacman.img = new Image();
@@ -51,9 +51,9 @@ clock.img = new Image();
 clock.img.src = "clock.png";
 
 var totalTimeOfGame;
-var pacmanLife=5;
+var pacmanLife = 5;
 
-var audio=new Audio("music.mp3");
+var audio = new Audio("music.mp3");
 var img1 = "mute.png";
 var img2 = "unmute.png";
 var musicOn;
@@ -79,9 +79,9 @@ function Start() {
     var cnt = 116;
     food_remain = document.getElementById("numberCookies").value;
     var pacman_remain = 1;
-    var goodpotion_remain=1;
-    var badpotion_remain=1;
-    var clockLife_remain=1;
+    var goodpotion_remain = 1;
+    var badpotion_remain = 1;
+    var clockLife_remain = 1;
     start_time = new Date();
     totalTimeOfGame = document.getElementById('gameTime').value;
 
@@ -116,9 +116,9 @@ function Start() {
                 board[i][j] = 9;
             } else {
                 var randomNum = Math.random();
-                var randomPotion=Math.random();
-                var randomPotion1=Math.random();
-                var randomClock=Math.random();
+                var randomPotion = Math.random();
+                var randomPotion1 = Math.random();
+                var randomClock = Math.random();
                 if (randomNum <= (1.0 * food_remain) / cnt) {
                     food_remain--;
                     var randomNum2 = Math.random();
@@ -135,16 +135,16 @@ function Start() {
                     shape.j = j;
                     pacman_remain--;
                     board[i][j] = 2;
-                } else if (goodpotion_remain===1 && randomPotion < 0.1){
+                } else if (goodpotion_remain === 1 && randomPotion < 0.1) {
                     goodpotion_remain--;
                     board[i][j] = 10;
-                } else if ( badpotion_remain===1 && randomPotion1 < 0.1){
+                } else if (badpotion_remain === 1 && randomPotion1 < 0.1) {
                     badpotion_remain--;
                     board[i][j] = 11;
-                } else if ( clockLife_remain===1 && randomClock < 0.1){
+                } else if (clockLife_remain === 1 && randomClock < 0.1) {
                     clockLife_remain--;
                     board[i][j] = 12;
-                }else{
+                } else {
                     board[i][j] = 0;
                 }
                 cnt--;
@@ -187,7 +187,7 @@ function findRandomEmptyCell(board) {
 
 function GetKeyPressed() {
     if (keysDown[38] || keysDown[keyUp]) {//up
-       // alert(keyUp);
+        // alert(keyUp);
         pacman.img = pacman.imgUp;
         return 1;
     }
@@ -205,14 +205,13 @@ function GetKeyPressed() {
     }
 }
 
-
 function Draw() {
     canvas.width = canvas.width; //clean board
 
 
     lblScore.value = score;
     lblTime.value = time_elapsed;
-    lblLive.value= pacmanLife;
+    lblLive.value = pacmanLife;
 
     for (var i = 0; i < 14; i++) {
         for (var j = 0; j < 9; j++) {
@@ -327,28 +326,47 @@ function Draw() {
                 } else if (randomMonster4 === 3) {
                     context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
                 }
-            }else if(board[i][j]===10){
+            } else if (board[i][j] === 10) {
                 context.drawImage(potionGood.good, center.x - 18, center.y - 18, 40, 40);
-            }else if(board[i][j]===11){
+            } else if (board[i][j] === 11) {
                 context.drawImage(potionBad.bad, center.x - 18, center.y - 18, 40, 40);
-            }else if(board[i][j]===12){
+            } else if (board[i][j] === 12) {
                 context.drawImage(clock.img, center.x - 18, center.y - 18, 35, 35);
             }
         }
     }
 }
 
-var tmpTime=0;
+var tmpTime = 0;
 
 function UpdatePosition() {
     board[shape.i][shape.j] = 0;
     var x = GetKeyPressed();
     if (x === 1) {//up
-        if (shape.j > 0 && board[shape.i][shape.j - 1] !== 4) {
-            shape.j--;
+        if (shape.j > 0) {
+            if (board[shape.i][shape.j - 1] === 6) {
+                board[shape.i][shape.j - 1]=0;
+                resetBoard();
+                //alert("caught ");
+                //    Draw();
+            } else if (board[shape.i][shape.j - 1] === 7) {
+                //  shape.j--;
+                //alert("caught ");
+                // Draw();
+            } else if (board[shape.i][shape.j - 1] === 8) {
+                // shape.j--;
+                // alert("caught ");
+                // Draw();
+            } else if (board[shape.i][shape.j - 1] === 9) {
+                // alert("caught ");
+                // shape.j--;
+                // Draw();
+            } else if (board[shape.i][shape.j - 1] !== 4) {
+                shape.j--;
+            }
         }
 
-        }
+    }
     if (x === 2) {
         if (shape.j < 8 && board[shape.i][shape.j + 1] !== 4) {
             shape.j++;
@@ -389,16 +407,16 @@ function UpdatePosition() {
     }
 
     if (board[shape.i][shape.j] === 12) {
-       tmpTime=20;
-      // alert(parseInt(totalTimeOfGame)+parseInt(tmpTime));
-       // totalTimeOfGame=totalTimeOfGame+tmpTime;
+        tmpTime = 20;
+        // alert(parseInt(totalTimeOfGame)+parseInt(tmpTime));
+        // totalTimeOfGame=totalTimeOfGame+tmpTime;
     }
     board[shape.i][shape.j] = 2;
     var currentTime = new Date();
     time_elapsed = (currentTime - start_time) / 1000;
 
     //todo!
-    if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame)+parseInt(tmpTime)) {
+    if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
         window.clearInterval(interval);
         if (score < 100) {
             window.alert("You are better than " + score + " points");
@@ -409,9 +427,9 @@ function UpdatePosition() {
     } else if (pacmanLife === 0) {
         window.alert("Loser!");
         if (confirm("do you want to start new game?")) {
-           // showMenu('settings');
+            // showMenu('settings');
         } else {
-           // showMenu('welcome');
+            // showMenu('welcome');
         }
     } else {
         Draw();
@@ -428,23 +446,72 @@ window.addEventListener("keydown", function (e) {
 }, false);
 
 
-
-
-
-
-function musicController(){
+function musicController() {
     var imgElement = document.getElementById('imageMusic');
 
     //imgElement.src = (imgElement.src === img1)? img2 : img1;
-    if(musicOn){
+    if (musicOn) {
         imgElement.src = img1;
         audio.pause();
         musicOn = false;
-    }else{
+    } else {
         imgElement.src = img2;
         audio.play();
         musicOn = true;
     }
 }
 
+
+function resetBoard() {
+    var pacman_remain1 = 1;
+    for (var i = 0; i < 14; i++) {
+        board[i] = new Array();
+        for (var j = 0; j < 9; j++) {
+            if (
+                (i == 3 && j == 3) ||
+                (i == 3 && j == 4) ||
+                (i == 3 && j == 5) ||
+                (i == 6 && j == 1) ||
+                (i == 6 && j == 2) ||
+                (i == 8 && j == 7) ||
+                (i == 8 && j == 8) ||
+                (i == 1 && j == 7) ||
+                (i == 2 && j == 7) ||
+                (i == 3 && j == 7) ||
+                (i == 9 && j == 4) ||
+                (i == 10 && j == 4) ||
+                (i == 11 && j == 4) ||
+                (i == 10) && (j == 2)
+            ) {
+                board[i][j] = 4;
+            } else if ((i == 0 && j == 0)) {
+                board[i][j] = 6;
+            } else if ((i == 0 && j == 8)) {
+                board[i][j] = 7;
+            } else if ((i == 13 && j == 0)) {
+                board[i][j] = 8;
+            } else if ((i == 13 && j == 8)) {
+                board[i][j] = 9;
+            } else {
+                // var randomNum = Math.random();
+                // var randomPotion = Math.random();
+                // var randomPotion1 = Math.random();
+                // var randomClock = Math.random();
+                if (board[i][j] === 1 || board[i][j] === 3 || board[i][j] === 5 || board[i][j] === 10 || board[i][j] === 11 || board[i][j] === 12) {
+
+                } else {
+                    var randomNum = Math.random();
+                    if (randomNum < (1.0 * (pacman_remain1 + food_remain)) / cnt) {
+                        shape.i = i;
+                        shape.j = j;
+                        pacman_remain1--;
+                        board[i][j] = 2;
+                    }
+
+                }
+                cnt--;
+            }
+        }
+    }
+}
 

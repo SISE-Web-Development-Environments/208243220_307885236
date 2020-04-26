@@ -45,7 +45,7 @@
         </a>
         <br><br>
         <a href="#login" onclick="showMenuLogin()">
-            <button class="welcome" type="submit">Log In</button>
+            <button class="welcome" type="submit">Login</button>
         </a>
 
     </center>
@@ -214,13 +214,13 @@
                     <td>
                         <strong>Choose keyboard: </strong><br>
                         Key up:&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" id="keyUpInput" maxlength="1" onkeypress="upPress(event)" size="1"><br>
+                        <input type="text" id="keyUpInput" onkeypress="upPress(event)" ><br>
                         Key right:
-                        <input type="text" id="keyRightInput" maxlength="1" onkeypress="rightPress(event)" size="1"><br>
+                        <input type="text" id="keyRightInput" onkeypress="rightPress(event)" ><br>
                         Key down:
-                        <input type="text" id="keyDownInput" maxlength="1" onkeypress="downPress(event)" size="1"><br>
+                        <input type="text" id="keyDownInput" onkeypress="downPress(event)" ><br>
                         Key left:&nbsp;&nbsp;
-                        <input type="text" id="keyLeftInput" maxlength="1" onkeypress="leftPress(event)" size="1"><br>
+                        <input type="text" id="keyLeftInput" onkeypress="leftPress(event)" ><br>
                     </td>
                 </tr>
                 <tr>
@@ -254,6 +254,7 @@
         <table>
             <td class="gameTableTd">
                 <p id="userNameShow"></p>
+                <img id="imageMusic" width="30" height="30" onclick="musicController()">
                 <br><br>
                 <div id="score">
                     <label for="lblScore">SCORE:</label>
@@ -288,14 +289,6 @@
                 <button type="submit" id="reloadNew">
                     <a href="#settings" onclick="startNewGame()">Start new Game</a>
                 </button> &nbsp;&nbsp;
-<!--                <button id="forMusic" type="button">-->
-                    <img id="imageMusic" width="30" height="30" onclick="musicController()">
-<!--                </button>-->
-
-
-                <!--                <button type="submit">-->
-                <!--                    <a href="#welcome" onclick="exitGame()">Back</a>-->
-                <!--                </button>-->
             </td>
             <td class="gameTableTd">
                 <br>
