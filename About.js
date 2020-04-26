@@ -17,12 +17,12 @@ function closeModal(){
 
 
 
-function aboutFunction(shown){
+function aboutFunction(){
     showModal();
-    showMenu(shown);
+    showMenuAbout();
 }
 
 function closeAbout(){
     closeModal();
-    show('primary','aboutSection');
+    showMenuWelcome();
 }

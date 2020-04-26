@@ -3,7 +3,7 @@ var player = {userName: "p", password: "p", fullName: "ppp ppp", email: "pp@gmai
 
 listOfPlayers = [player];
 
-
+/****************************************validation*********************************************/
 function validationLogIn() {
     //userNameLogIn, passwordLogIn
     let keyUserName;//userName
@@ -21,7 +21,7 @@ function validationLogIn() {
 
         if (valueUserName === $('#userNameLogIn').val() & valuePassword === $('#passwordLogIn').val()) {
             // alert("yes");
-            return show('settings', 'login');
+            return showMenuSettings();
         }
     }
 
@@ -47,7 +47,7 @@ function validation() {
                 alert("This user name already exist");
                 exist = true;
             }
-            if (!exist & valueMail === $('#emailReg').val() ) {
+            if (!exist & valueMail === $('#emailReg').val()) {
                 alert("This mail already exist");
                 exist = true;
             }
@@ -66,7 +66,7 @@ function validation() {
             //  $('#submitReg').reset();
 
 
-            return show('welcome', 'register');
+            return showMenuWelcome();
         }
 
     } else {
@@ -137,45 +137,99 @@ function checkDate() {
     return true;
 }
 
-function show(shown, hidden) {
-    // $('#form-popUp').reset();
-
-    document.getElementById(shown).style.display = 'block';
-    document.getElementById(hidden).style.display = 'none';
-
-    if (!shown.toString().anchor('game')) {
+/****************************************ShowAllMenus*********************************************/
+function showMenuWelcome() {
+    if (document.getElementById("game").style.display === 'block') {
+        if (confirm("Do you sure you want to quit?")) {
+            document.getElementById("game").style.display = 'none';
+            document.getElementById('welcome').style.display = 'block';
+        }
+    } else {
+        document.getElementById('welcome').style.display = 'block';
+        hide('settings','register','login','aboutSection');
         document.getElementById("formReg").reset();
         document.getElementById("formLogIn").reset();
     }
 
 }
 
-function showMenu(shown) {
-    document.getElementById(shown).style.display = 'block';
+function showMenuRegister() {
+    if (document.getElementById("game").style.display === 'block') {
+        if (confirm("Do you sure you want to quit?")) {
+            document.getElementById("game").style.display = 'none';
+            document.getElementById('register').style.display = 'block';
+        }
+    } else {
+        document.getElementById('register').style.display = 'block';
+        hide('welcome','settings','login','aboutSection');
+        document.getElementById("formReg").reset();
+        document.getElementById("formLogIn").reset();
+    }
 }
 
-function showMenus(shown, hidden1, hidden2, hidden3) {
-    if(document.getElementById("game").style.display === 'block'){
-        if(confirm("Do you sure you want to quit?")){
+function showMenuLogin() {
+    if (document.getElementById("game").style.display === 'block') {
+        if (confirm("Do you sure you want to quit?")) {
             document.getElementById("game").style.display = 'none';
-            document.getElementById(shown).style.display = 'block';
+            document.getElementById('login').style.display = 'block';
         }
-    }else{
-        showMenu(shown);
-        document.getElementById(hidden1).style.display = 'none';
-        document.getElementById(hidden2).style.display = 'none';
-        document.getElementById(hidden3).style.display = 'none';
-        document.getElementById("settings").style.display = 'none';
+    } else {
+        document.getElementById('login').style.display = 'block';
+        hide('welcome','register','settings','aboutSection');
+        document.getElementById("formReg").reset();
+        document.getElementById("formLogIn").reset();
+    }
+}
 
-        if (shown.toString().anchor('primary')) {
-            document.getElementById('primary').style.display = 'none';
+function showMenuAbout() {
+    if (document.getElementById("game").style.display === 'block') {
+        if (confirm("Do you sure you want to quit?")) {
+            document.getElementById("game").style.display = 'none';
+            document.getElementById('aboutSection').style.display = 'block';
         }
+    } else {
+        document.getElementById('aboutSection').style.display = 'block';
+        hide('welcome','register','settings','login');
+        document.getElementById("formReg").reset();
+        document.getElementById("formLogIn").reset();
+    }
+}
+
+function showMenuSettings() {
+    if (document.getElementById("game").style.display === 'block') {
+        if (confirm("Do you sure you want to quit?")) {
+            document.getElementById("game").style.display = 'none';
+            document.getElementById('settings').style.display = 'block';
+        }
+    } else {
+        document.getElementById('settings').style.display = 'block';
+        hide('welcome','register','login','aboutSection');
+    }
+}
+
+function showGame() {
+    if (document.getElementById("game").style.display === 'block') {
+        if (confirm("Do you sure you want to start over?")) {
+            document.getElementById("game").style.display = 'none';
+            document.getElementById('settings').style.display = 'block';
+
+        }
+    } else {
+        document.getElementById('game').style.display = 'block';
+        hide('welcome','register','login','aboutSection');
+        document.getElementById('settings').style.display = 'none';
     }
 
-
 }
 
+function hide(hidden1,hidden2,hidden3,hidden4){
+    document.getElementById(hidden1).style.display = 'none';
+    document.getElementById(hidden2).style.display = 'none';
+    document.getElementById(hidden3).style.display = 'none';
+    document.getElementById(hidden4).style.display = 'none';
+}
 
+/****************************************PasswordHelp********************************************/
 function mouseoverPassLogIn() {
     var obj = document.getElementById('passwordLogIn');
     obj.type = "text";

@@ -10,7 +10,7 @@ var center;
 var food_remain;
 
 //keyboards arguments
-var keyUp;
+//var keyUp;
 var keyRight;
 var keyDown;
 var keyLeft;
@@ -53,11 +53,15 @@ clock.img.src = "clock.png";
 var totalTimeOfGame;
 var pacmanLife=5;
 
+var audio=new Audio("music.mp3");
+var img1 = "mute.png";
+var img2 = "unmute.png";
+var musicOn;
+
 $(document).ready(function () {
     $("#startGameSettings").click(function () {
         context = canvas.getContext("2d");
         Start();
-
         var paragraph = document.getElementById("userNameShow");
         var text = "User Name: " + document.getElementById("userNameLogIn").value;
         paragraph.innerText = text;
@@ -66,8 +70,8 @@ $(document).ready(function () {
 });
 
 
-//var tmpTimeHilla;
 function Start() {
+
     createMonsterPositions();
     board = new Array();
     score = 0;
@@ -153,6 +157,7 @@ function Start() {
         food_remain--;
     }
     keysDown = {};
+
     addEventListener(
         "keydown",
         function (e) {
@@ -182,6 +187,7 @@ function findRandomEmptyCell(board) {
 
 function GetKeyPressed() {
     if (keysDown[38] || keysDown[keyUp]) {//up
+       // alert(keyUp);
         pacman.img = pacman.imgUp;
         return 1;
     }
@@ -202,9 +208,12 @@ function GetKeyPressed() {
 
 function Draw() {
     canvas.width = canvas.width; //clean board
+
+
     lblScore.value = score;
     lblTime.value = time_elapsed;
     lblLive.value= pacmanLife;
+
     for (var i = 0; i < 14; i++) {
         for (var j = 0; j < 9; j++) {
             center = new Object();
@@ -400,9 +409,9 @@ function UpdatePosition() {
     } else if (pacmanLife === 0) {
         window.alert("Loser!");
         if (confirm("do you want to start new game?")) {
-            showMenu('settings');
+           // showMenu('settings');
         } else {
-            showMenu('welcome');
+           // showMenu('welcome');
         }
     } else {
         Draw();
@@ -419,26 +428,9 @@ window.addEventListener("keydown", function (e) {
 }, false);
 
 
-function upPress(event) {
-    keyUp = parseInt(event.keyCode);
-}
 
-function rightPress(event) {
-    keyRight = parseInt(event.keyCode);
-}
 
-function downPress(event) {
-    keyDown = parseInt(event.keyCode);
-}
 
-function leftPress(event) {
-    keyLeft = parseInt(event.keyCode);
-}
-
-var audio=new Audio("music.mp3");
-var img1 = "mute.png";
-var img2 = "unmute.png";
-var musicOn = false;
 
 function musicController(){
     var imgElement = document.getElementById('imageMusic');

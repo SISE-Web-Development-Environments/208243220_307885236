@@ -13,7 +13,7 @@ function playFunction(){
     showColorsChosenForCookies();
     if(isMonsterChecked() & isNumCookiesValid() & isTimeLegal()){
         musicController();
-        return show('game','settings');
+        return showGame();
     }else{
        // alert("You did not fill all the settings!");
         //  alert("sad");
@@ -44,9 +44,7 @@ function isNumCookiesValid(){
     return valid;
 }
 function startNewGame() {
-    if (confirm("Do you sure you want to start new game?")) {
-        return show('settings', 'game');
-    }
+    showGame();
 }
 
 function fillFormRandom() {
@@ -114,8 +112,6 @@ function randomCheckBox(){
     }
 }
 
-
-
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -124,7 +120,6 @@ function getRandomColor() {
     }
     return color;
 }
-
 
 function showColorsChosenForCookies() {
     document.getElementById("fivePointsCook").style.background = document.getElementById("fiveCookie").value;
@@ -213,4 +208,20 @@ function createMonsterPositions(){
             }
         }
     }
+}
+var keyUp;
+function upPress(event) {
+    keyUp = event.keyCode;
+}
+
+function rightPress(event) {
+    keyRight = event.keyCode;
+}
+
+function downPress(event) {
+    keyDown = event.keyCode;
+}
+
+function leftPress(event) {
+    keyLeft =event.keyCode;
 }

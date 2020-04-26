@@ -21,32 +21,30 @@
     </p>
     <ul>
         <li><a class="menuList" href="#welcome"
-               onclick="return showMenus('welcome','register','login','aboutSection');">Welcome</a></li>
+               onclick="showMenuWelcome()">Welcome</a></li>
         <li><a class="menuList" href="#register"
-               onclick="return showMenus('register','welcome','login','aboutSection');">Register</a></li>
-        <li><a class="menuList" href="#login" onclick="return showMenus('login','register','welcome','aboutSection');">Login</a>
+               onclick="showMenuRegister()">Register</a></li>
+        <li><a class="menuList" href="#login" onclick="showMenuLogin()">Login</a>
         </li>
         <li><a class="menuList" id="aboutMenu" href="#aboutSection"
-               onclick="return showMenus('aboutSection','register','login','welcome');">About</a></li>
+               onclick="showMenuAbout()">About</a></li>
     </ul>
 </div>
 <br>
-<div id="primary" class="div">
-</div>
 <br>
 <br>
 <br>
 <br>
 <br>
 <br>
-<div id="welcome" class="alert" style="display:none">
+<div id="welcome" class="alert" >
     <br><br>
     <center>
-        <a href="#register" onclick="return show('register','welcome');">
+        <a href="#register" onclick="showMenuRegister()">
             <button class="welcome" type="button">Register</button>
         </a>
         <br><br>
-        <a href="#login" onclick="return show('login','welcome');">
+        <a href="#login" onclick="showMenuLogin()">
             <button class="welcome" type="submit">Log In</button>
         </a>
 
@@ -131,7 +129,7 @@
                     <a href="#settings">
                         <button type="button" id="submitLogIn" onclick="return validationLogIn()">Play</button>
                     </a>
-                    <a href="#welcome" onclick="return show('welcome','login')">
+                    <a href="#welcome" onclick="showMenuWelcome()">
                         <button type="submit">Back</button>
                     </a>
 
@@ -244,7 +242,7 @@
                     Play
                 </button>
             </a>
-            <a href="#welcome" onclick="return show('welcome','settings')">
+            <a href="#welcome" onclick="showMenuWelcome()">
                 <button type="submit">Back</button>
             </a>
         </div>
