@@ -8,12 +8,8 @@ var time_elapsed;
 var interval;
 var center;
 var food_remain;
-
-//keyboards arguments
-//var keyUp;
-// var keyRight;
-// var keyDown;
-// var keyLeft;
+var tmpTime = 0;
+var collision = false;
 
 var pacman = new Object();
 pacman.img = new Image();
@@ -71,7 +67,6 @@ $(document).ready(function () {
 
 
 function Start() {
-
     createMonsterPositions();
     board = new Array();
     score = 0;
@@ -173,21 +168,22 @@ function Start() {
         false
     );
     interval = setInterval(UpdatePosition, 250);
+    //interval2 = setInterval(UpdatePacManPosition, 250);
+
 }
 
 function findRandomEmptyCell(board) {
-    var i = Math.floor(Math.random() * 9 + 1);
-    var j = Math.floor(Math.random() * 9 + 1);
+    var i = Math.floor(Math.random() * 13 + 1);
+    var j = Math.floor(Math.random() * 8 + 1);
     while (board[i][j] != 0) {
-        i = Math.floor(Math.random() * 9 + 1);
-        j = Math.floor(Math.random() * 9 + 1);
+        i = Math.floor(Math.random() * 13 + 1);
+        j = Math.floor(Math.random() * 8 + 1);
     }
     return [i, j];
 }
 
 function GetKeyPressed() {
     if (keysDown[38] || keysDown[keyUp]) {//up
-        // alert(keyUp);
         pacman.img = pacman.imgUp;
         return 1;
     }
@@ -207,11 +203,8 @@ function GetKeyPressed() {
 
 function Draw() {
     canvas.width = canvas.width; //clean board
-
-
     lblScore.value = score;
     lblTime.value = time_elapsed;
-    lblLive.value = pacmanLife;
 
     for (var i = 0; i < 14; i++) {
         for (var j = 0; j < 9; j++) {
@@ -219,148 +212,180 @@ function Draw() {
             center.x = i * 50 + 17;
             center.y = j * 50 + 17;
             if (board[i][j] === 2) {
-                context.drawImage(pacman.img, center.x - 18, center.y - 18, 40, 40);
-            } else if (board[i][j] === 1) {
-                context.beginPath();
-                context.arc(center.x, center.y, 8, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("fiveCookie").value; //color //dots-food
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 3, center.y - 3, 2, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("fiveChip").value; //color
-                context.fill();
-                context.beginPath();
-                context.arc(center.x - 4, center.y + 1, 2, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("fiveChip").value; //color
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 3, center.y + 4, 2, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("fiveChip").value; //color
-                context.fill();
+                DrawPacman(i, j);
+            } else if (board[i][j] === 1 || board[i][j] === 3 || board[i][j] === 5) {
+                DrawCookies(i, j);
             } else if (board[i][j] === 4) {//walls
-
-//                 var grd = context.createRadialGradient(center.x - 25, center.y - 25,5,90,60,100);
-//                 context.addColorStop(0,"#406CB2");
-//                 context.addColorStop(1,"white");
-//
-// // Fill with gradient
-//                 context.fillStyle = grd;
-//                 context.fillRect(10,10,150,80);
-//
-
-                context.beginPath();
-                context.rect(center.x - 25, center.y - 25, 50, 50);
-                context.fillStyle = "white"; //color
-                context.fill();
-            } else if (board[i][j] === 3) {
-                context.beginPath();
-                context.arc(center.x, center.y, 12, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("fifthCookie").value; //color //dots-food
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 4, center.y - 5, 3, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("fifthChip").value; //color
-                context.fill();
-                context.beginPath();
-                context.arc(center.x - 6, center.y + 2, 3, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("fifthChip").value; //color
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 5, center.y + 6, 3, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("fifthChip").value; //color
-                context.fill();
-            } else if (board[i][j] === 5) {
-                context.beginPath();
-                context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("twentyCookie").value; //color //dots-food
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 4, center.y - 8, 4, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("twentyChip").value; //color
-                context.fill();
-                context.beginPath();
-                context.arc(center.x - 6, center.y + 2, 4, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("twentyChip").value; //color
-                context.fill();
-                context.beginPath();
-                context.arc(center.x + 7, center.y + 6, 4, 0, 2 * Math.PI); // circle
-                context.fillStyle = document.getElementById("twentyChip").value; //color
-                context.fill();
+                DrawWalls();
             } else if (board[i][j] === 6) {
-                if (randomMonster1 === 0) {
-                    context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster2 === 0) {
-                    context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster3 === 0) {
-                    context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster4 === 0) {
-                    context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
-                }
+                DrawMonsters(6);
             } else if (board[i][j] === 7) {
-                if (randomMonster1 === 1) {
-                    context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster2 === 1) {
-                    context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster3 === 1) {
-                    context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster4 === 1) {
-                    context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
-                }
+                DrawMonsters(7);
             } else if (board[i][j] === 8) {
-                if (randomMonster1 === 2) {
-                    context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster2 === 2) {
-                    context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster3 === 2) {
-                    context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster4 === 2) {
-                    context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
-                }
+                DrawMonsters(8);
             } else if (board[i][j] === 9) {
-                if (randomMonster1 === 3) {
-                    context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster2 === 3) {
-                    context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster3 === 3) {
-                    context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
-                } else if (randomMonster4 === 3) {
-                    context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
-                }
+                DrawMonsters(9);
             } else if (board[i][j] === 10) {
-                context.drawImage(potionGood.good, center.x - 18, center.y - 18, 40, 40);
+                DrawGoodPotion();
             } else if (board[i][j] === 11) {
-                context.drawImage(potionBad.bad, center.x - 18, center.y - 18, 40, 40);
+                DrawBadPotion();
             } else if (board[i][j] === 12) {
-                context.drawImage(clock.img, center.x - 18, center.y - 18, 35, 35);
+                DrawClock();
             }
         }
     }
 }
 
-var tmpTime = 0;
+function DrawPacman(i, j) {
+    center.x = i * 50 + 17;
+    center.y = j * 50 + 17;
+    context.drawImage(pacman.img, center.x - 18, center.y - 18, 40, 40);
+}
+
+function DrawCookies(i, j) {
+    center.x = i * 50 + 17;
+    center.y = j * 50 + 17;
+    if (board[i][j] === 1) {
+        context.beginPath();
+        context.arc(center.x, center.y, 8, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("fiveCookie").value; //color //dots-food
+        context.fill();
+        context.beginPath();
+        context.arc(center.x + 3, center.y - 3, 2, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("fiveChip").value; //color
+        context.fill();
+        context.beginPath();
+        context.arc(center.x - 4, center.y + 1, 2, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("fiveChip").value; //color
+        context.fill();
+        context.beginPath();
+        context.arc(center.x + 3, center.y + 4, 2, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("fiveChip").value; //color
+        context.fill();
+    } else if (board[i][j] === 3) {
+        context.beginPath();
+        context.arc(center.x, center.y, 12, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("fifthCookie").value; //color //dots-food
+        context.fill();
+        context.beginPath();
+        context.arc(center.x + 4, center.y - 5, 3, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("fifthChip").value; //color
+        context.fill();
+        context.beginPath();
+        context.arc(center.x - 6, center.y + 2, 3, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("fifthChip").value; //color
+        context.fill();
+        context.beginPath();
+        context.arc(center.x + 5, center.y + 6, 3, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("fifthChip").value; //color
+        context.fill();
+    } else if (board[i][j] === 5) {
+        context.beginPath();
+        context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("twentyCookie").value; //color //dots-food
+        context.fill();
+        context.beginPath();
+        context.arc(center.x + 4, center.y - 8, 4, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("twentyChip").value; //color
+        context.fill();
+        context.beginPath();
+        context.arc(center.x - 6, center.y + 2, 4, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("twentyChip").value; //color
+        context.fill();
+        context.beginPath();
+        context.arc(center.x + 7, center.y + 6, 4, 0, 2 * Math.PI); // circle
+        context.fillStyle = document.getElementById("twentyChip").value; //color
+        context.fill();
+    }
+}
+
+function DrawWalls() {
+    context.beginPath();
+    context.rect(center.x - 25, center.y - 25, 50, 50);
+    context.fillStyle = "white"; //color
+    context.fill();
+}
+
+function DrawMonsters(choose) {
+    if (choose === 6) {
+        if (randomMonster1 === 0) {
+            monsterBlue = true;
+            context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster2 === 0) {
+            monsterOrange = true;
+            context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster3 === 0) {
+            monsterGreen = true;
+            context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster4 === 0) {
+            monsterRed = true;
+            context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
+        }
+    } else if (choose === 7) {
+        if (randomMonster1 === 1) {
+            monsterBlue = true;
+            context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster2 === 1) {
+            monsterOrange = true;
+            context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster3 === 1) {
+            monsterGreen = true;
+            context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster4 === 1) {
+            monsterRed = true;
+            context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
+        }
+    } else if (choose === 8) {
+        if (randomMonster1 === 2) {
+            monsterBlue = true;
+            context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster2 === 2) {
+            monsterOrange = true;
+            context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster3 === 2) {
+            monsterGreen = true;
+            context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster4 === 2) {
+            monsterRed = true;
+            context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
+        }
+    } else if (choose === 9) {
+        if (randomMonster1 === 3) {
+            monsterBlue = true;
+            context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster2 === 3) {
+            monsterOrange = true;
+            context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster3 === 3) {
+            monsterGreen = true;
+            context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
+        } else if (randomMonster4 === 3) {
+            monsterRed = true;
+            context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
+        }
+    }
+}
+
+function DrawGoodPotion() {
+    context.drawImage(potionGood.good, center.x - 18, center.y - 18, 40, 40);
+}
+
+function DrawBadPotion() {
+    context.drawImage(potionBad.bad, center.x - 18, center.y - 18, 40, 40);
+}
+
+function DrawClock() {
+    context.drawImage(clock.img, center.x - 18, center.y - 18, 35, 35);
+}
 
 function UpdatePosition() {
     board[shape.i][shape.j] = 0;
     var x = GetKeyPressed();
     if (x === 1) {//up
         if (shape.j > 0) {
-            if (board[shape.i][shape.j - 1] === 6) {
-                board[shape.i][shape.j - 1]=0;
-                resetBoard();
-                //alert("caught ");
-                //    Draw();
-            } else if (board[shape.i][shape.j - 1] === 7) {
-                //  shape.j--;
-                //alert("caught ");
-                // Draw();
-            } else if (board[shape.i][shape.j - 1] === 8) {
-                // shape.j--;
-                // alert("caught ");
-                // Draw();
-            } else if (board[shape.i][shape.j - 1] === 9) {
-                // alert("caught ");
-                // shape.j--;
-                // Draw();
+            if (board[shape.i][shape.j - 1] === 6 || board[shape.i][shape.j - 1] === 7 || board[shape.i][shape.j - 1] === 8 || board[shape.i][shape.j - 1] === 9) {
+                collision = true;
+                updateScoreAfterCollision();
             } else if (board[shape.i][shape.j - 1] !== 4) {
                 shape.j--;
             }
@@ -368,27 +393,35 @@ function UpdatePosition() {
 
     }
     if (x === 2) {
-        if (shape.j < 8 && board[shape.i][shape.j + 1] !== 4) {
-            shape.j++;
+        if (shape.j < 8) {
+            if (board[shape.i][shape.j + 1] === 6 || board[shape.i][shape.j + 1] === 7 || board[shape.i][shape.j + 1] === 8 || board[shape.i][shape.j + 1] === 9) {
+                collision = true;
+                updateScoreAfterCollision();
+            } else if (board[shape.i][shape.j + 1] !== 4) {
+                shape.j++;
+            }
         }
     }
     if (x === 3) { //left
-        if (shape.i > 0 && board[shape.i - 1][shape.j] !== 4) {
-            shape.i--;
+        if (shape.i > 0) {
+            if (board[shape.i - 1][shape.j] === 6 || board[shape.i - 1][shape.j] === 7 || board[shape.i - 1][shape.j] === 8 || board[shape.i - 1][shape.j] === 9) {
+                collision = true;
+                updateScoreAfterCollision();
+            } else if (board[shape.i - 1][shape.j] !== 4) {
+                shape.i--;
+            }
         }
     }
     if (x === 4) {
-        if (shape.i < 13 && board[shape.i + 1][shape.j] !== 4) {
-            shape.i++;
+        if (shape.i < 13) {
+            if (board[shape.i + 1][shape.j] === 6 || board[shape.i + 1][shape.j] === 7 || board[shape.i + 1][shape.j] === 8 || board[shape.i + 1][shape.j] === 9) {
+                collision = true;
+                updateScoreAfterCollision();
+            } else if (board[shape.i + 1][shape.j] !== 4) {
+                shape.i++;
+            }
         }
-    }
-    if (board[shape.i][shape.j] === 6 || board[shape.i][shape.j] === 7 || board[shape.i][shape.j] === 8 || board[shape.i][shape.j] === 9) {
-        if (score < 10) {
-            score = 0;
-        } else {
-            score -= 10;
-        }
-        pacmanLife--;
+
     }
     if (board[shape.i][shape.j] === 1) {
         score += 5;
@@ -400,22 +433,50 @@ function UpdatePosition() {
         score += 25;
     }
     if (board[shape.i][shape.j] === 10) {
-        pacmanLife += 1;
+        //pacmanLife += 1;
+        updateLife();
     }
     if (board[shape.i][shape.j] === 11) {
-        pacmanLife -= 1;
+        // pacmanLife -= 1;
+        looseLife();
     }
 
     if (board[shape.i][shape.j] === 12) {
         tmpTime = 20;
-        // alert(parseInt(totalTimeOfGame)+parseInt(tmpTime));
-        // totalTimeOfGame=totalTimeOfGame+tmpTime;
     }
     board[shape.i][shape.j] = 2;
     var currentTime = new Date();
     time_elapsed = (currentTime - start_time) / 1000;
 
-    //todo!
+
+    if (collision) {
+        //todo!
+        if (pacmanLife === 0) {
+            musicOn=true;
+            musicController();
+            window.alert("Loser!");
+            showMenuSettings();
+        } else {
+            pacman.img = null;
+            var randomI = Math.floor(Math.random() * 13);
+            var randomJ = Math.floor(Math.random() * 8);
+            while (board[randomI][randomJ] !== 0) {
+                randomI = Math.floor(Math.random() * 13);
+                randomJ = Math.floor(Math.random() * 8);
+            }
+            board[shape.i][shape.j] = null;
+            shape.i = randomI;
+            shape.j = randomJ;
+
+            pacman.img = pacman.imgRight;
+            DrawPacman(randomI, randomJ);
+
+            createMonsterPositions();
+            DrawMonsters(6);
+
+            collision = false;
+        }
+    }
     if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
         window.clearInterval(interval);
         if (score < 100) {
@@ -426,16 +487,22 @@ function UpdatePosition() {
 
     } else if (pacmanLife === 0) {
         window.alert("Loser!");
-        if (confirm("do you want to start new game?")) {
-            // showMenu('settings');
-        } else {
-            // showMenu('welcome');
-        }
+        showMenuSettings();
     } else {
         Draw();
     }
+
 }
 
+function updateScoreAfterCollision() {
+    if (score < 10) {
+        score = 0;
+    } else {
+        score -= 10;
+    }
+
+    looseLife();
+}
 
 //stop scrolling
 window.addEventListener("keydown", function (e) {
@@ -445,11 +512,9 @@ window.addEventListener("keydown", function (e) {
     }
 }, false);
 
-
 function musicController() {
     var imgElement = document.getElementById('imageMusic');
 
-    //imgElement.src = (imgElement.src === img1)? img2 : img1;
     if (musicOn) {
         imgElement.src = img1;
         audio.pause();
@@ -461,57 +526,69 @@ function musicController() {
     }
 }
 
-
-function resetBoard() {
-    var pacman_remain1 = 1;
-    for (var i = 0; i < 14; i++) {
-        board[i] = new Array();
-        for (var j = 0; j < 9; j++) {
-            if (
-                (i == 3 && j == 3) ||
-                (i == 3 && j == 4) ||
-                (i == 3 && j == 5) ||
-                (i == 6 && j == 1) ||
-                (i == 6 && j == 2) ||
-                (i == 8 && j == 7) ||
-                (i == 8 && j == 8) ||
-                (i == 1 && j == 7) ||
-                (i == 2 && j == 7) ||
-                (i == 3 && j == 7) ||
-                (i == 9 && j == 4) ||
-                (i == 10 && j == 4) ||
-                (i == 11 && j == 4) ||
-                (i == 10) && (j == 2)
-            ) {
-                board[i][j] = 4;
-            } else if ((i == 0 && j == 0)) {
-                board[i][j] = 6;
-            } else if ((i == 0 && j == 8)) {
-                board[i][j] = 7;
-            } else if ((i == 13 && j == 0)) {
-                board[i][j] = 8;
-            } else if ((i == 13 && j == 8)) {
-                board[i][j] = 9;
-            } else {
-                // var randomNum = Math.random();
-                // var randomPotion = Math.random();
-                // var randomPotion1 = Math.random();
-                // var randomClock = Math.random();
-                if (board[i][j] === 1 || board[i][j] === 3 || board[i][j] === 5 || board[i][j] === 10 || board[i][j] === 11 || board[i][j] === 12) {
-
-                } else {
-                    var randomNum = Math.random();
-                    if (randomNum < (1.0 * (pacman_remain1 + food_remain)) / cnt) {
-                        shape.i = i;
-                        shape.j = j;
-                        pacman_remain1--;
-                        board[i][j] = 2;
-                    }
-
-                }
-                cnt--;
-            }
-        }
+function updateLife() {
+    if (pacmanLife == 4) {
+        pacmanLife++;
+        document.getElementById("lblLive").style.visibility = "visible";
+        document.getElementById("lblLive1").style.visibility = "visible";
+        document.getElementById("lblLive2").style.visibility = "visible";
+        document.getElementById("lblLive3").style.visibility = "visible";
+        document.getElementById("lblLive4").style.visibility = "visible";
+    } else if (pacmanLife == 3) {
+        pacmanLife++;
+        document.getElementById("lblLive").style.visibility = "visible";
+        document.getElementById("lblLive1").style.visibility = "visible";
+        document.getElementById("lblLive2").style.visibility = "visible";
+        document.getElementById("lblLive3").style.visibility = "visible";
+        document.getElementById("lblLive4").style.visibility = "hidden";
+    } else if (pacmanLife == 2) {
+        pacmanLife++;
+        document.getElementById("lblLive").style.visibility = "visible";
+        document.getElementById("lblLive1").style.visibility = "visible";
+        document.getElementById("lblLive2").style.visibility = "visible";
+        document.getElementById("lblLive3").style.visibility = "hidden";
+        document.getElementById("lblLive4").style.visibility = "hidden";
+    } else if (pacmanLife == 1) {
+        pacmanLife++;
+        document.getElementById("lblLive").style.visibility = "visible";
+        document.getElementById("lblLive1").style.visibility = "visible";
+        document.getElementById("lblLive2").style.visibility = "hidden";
+        document.getElementById("lblLive3").style.visibility = "hidden";
+        document.getElementById("lblLive4").style.visibility = "hidden";
     }
 }
 
+function looseLife() {
+    if (pacmanLife == 5) {
+        document.getElementById("lblLive").style.visibility = "visible";
+        document.getElementById("lblLive1").style.visibility = "visible";
+        document.getElementById("lblLive2").style.visibility = "visible";
+        document.getElementById("lblLive3").style.visibility = "visible";
+        document.getElementById("lblLive4").style.visibility = "hidden";
+    } else if (pacmanLife == 4) {
+        document.getElementById("lblLive").style.visibility = "visible";
+        document.getElementById("lblLive1").style.visibility = "visible";
+        document.getElementById("lblLive2").style.visibility = "visible";
+        document.getElementById("lblLive3").style.visibility = "hidden";
+        document.getElementById("lblLive4").style.visibility = "hidden";
+    } else if (pacmanLife == 3) {
+        document.getElementById("lblLive").style.visibility = "visible";
+        document.getElementById("lblLive1").style.visibility = "visible";
+        document.getElementById("lblLive2").style.visibility = "hidden";
+        document.getElementById("lblLive3").style.visibility = "hidden";
+        document.getElementById("lblLive4").style.visibility = "hidden";
+    } else if (pacmanLife == 2) {
+        document.getElementById("lblLive").style.visibility = "visible";
+        document.getElementById("lblLive1").style.visibility = "hidden";
+        document.getElementById("lblLive2").style.visibility = "hidden";
+        document.getElementById("lblLive3").style.visibility = "hidden";
+        document.getElementById("lblLive4").style.visibility = "hidden";
+    } else if (pacmanLife == 1) {
+        document.getElementById("lblLive").style.visibility = "hidden";
+        document.getElementById("lblLive1").style.visibility = "hidden";
+        document.getElementById("lblLive2").style.visibility = "hidden";
+        document.getElementById("lblLive3").style.visibility = "hidden";
+        document.getElementById("lblLive4").style.visibility = "hidden";
+    }
+    pacmanLife--;
+}

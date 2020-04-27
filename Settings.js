@@ -36,6 +36,7 @@ function isTimeLegal(){
     return valid;
 
 }
+
 function isNumCookiesValid(){
     let valid=true;
     var food=document.getElementById("numberCookies").value;
@@ -48,6 +49,7 @@ function isNumCookiesValid(){
     }
     return valid;
 }
+
 function startNewGame() {
     showGame();
 }
@@ -155,7 +157,6 @@ function createMonsterPositions(){
     let monster4 = document.getElementById('monster4');
     if(monster1.checked){
         randomMonster1= Math.round(Math.random()*3);
-
     }
     if(monster2.checked){
         randomMonster2= Math.round(Math.random()*3);

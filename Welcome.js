@@ -197,7 +197,7 @@ function showMenuAbout() {
 
 function showMenuSettings() {
     if (document.getElementById("game").style.display === 'block') {
-        if (confirm("Do you sure you want to quit?")) {
+        if (confirm("Do you sure you want to start new game?")) {
             document.getElementById("game").style.display = 'none';
             document.getElementById('settings').style.display = 'block';
         }
@@ -212,7 +212,6 @@ function showGame() {
         if (confirm("Do you sure you want to start over?")) {
             document.getElementById("game").style.display = 'none';
             document.getElementById('settings').style.display = 'block';
-
         }
     } else {
         document.getElementById('game').style.display = 'block';
