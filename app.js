@@ -6,6 +6,7 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+var intervalMonsters;
 var center;
 var food_remain;
 var tmpTime = 0;
@@ -54,6 +55,21 @@ var img1 = "mute.png";
 var img2 = "unmute.png";
 var musicOn;
 
+var monster0;
+var monster1;
+var monster2;
+var monster3;
+
+var monsterBlueX = -1;
+var monsterBlueY = -1;
+var monsterRedX = -1;
+var monsterRedY = -1;
+var monsterGreenX = -1;
+var monsterGreenY = -1;
+var monsterOrangeX = -1;
+var monsterOrangeY = -1;
+
+
 $(document).ready(function () {
     $("#startGameSettings").click(function () {
         context = canvas.getContext("2d");
@@ -65,11 +81,12 @@ $(document).ready(function () {
     });
 });
 
-
 function Start() {
     pacmanLife = 4;
     updateLife();
     createMonsterPositions();
+    setMonstersStartPoint();
+
     board = new Array();
     score = 0;
     pac_color = "yellow";
@@ -170,11 +187,9 @@ function Start() {
         false
     );
     interval = setInterval(UpdatePosition, 250);
-    //interval2 = setInterval(UpdatePacManPosition, 250);
+    intervalMonsters = setInterval(UpdatePositionMonsters, 650);
 
 }
-
-
 
 function findRandomEmptyCell(board) {
     var i = Math.floor(Math.random() * 13 + 1);
@@ -310,11 +325,6 @@ function DrawWalls() {
     context.fill();
 }
 
-var monster0;
-var monster1;
-var monster2;
-var monster3;
-
 function DrawMonsters(choose) {
     if (choose === 6) {
         if (randomMonster1 === 0) {
@@ -395,7 +405,6 @@ function DrawClock() {
     context.drawImage(clock.img, center.x - 18, center.y - 18, 35, 35);
 }
 
-
 function UpdatePosition() {
     board[shape.i][shape.j] = 0;
     var x = GetKeyPressed();
@@ -406,7 +415,7 @@ function UpdatePosition() {
                 (board[shape.i][shape.j - 1] === 8 && monster2) ||
                 (board[shape.i][shape.j - 1] === 9 && monster3)) {
                 collision = true;
-                updateScoreAfterCollision(shape.i,shape.j - 1);
+                updateScoreAfterCollision(shape.i, shape.j - 1);
             } else if (board[shape.i][shape.j - 1] !== 4) {
                 shape.j--;
             }
@@ -420,7 +429,7 @@ function UpdatePosition() {
                 (board[shape.i][shape.j + 1] === 8 && monster2) ||
                 (board[shape.i][shape.j + 1] === 9 && monster3)) {
                 collision = true;
-                updateScoreAfterCollision(shape.i,shape.j + 1);
+                updateScoreAfterCollision(shape.i, shape.j + 1);
             } else if (board[shape.i][shape.j + 1] !== 4) {
                 shape.j++;
             }
@@ -428,12 +437,12 @@ function UpdatePosition() {
     }
     if (x === 3) { //left
         if (shape.i > 0) {
-            if ((board[shape.i-1][shape.j] === 6 && monster0) ||
-                (board[shape.i-1][shape.j] === 7 && monster1) ||
-                (board[shape.i-1][shape.j] === 8 && monster2) ||
-                (board[shape.i-1][shape.j] === 9 && monster3)) {
+            if ((board[shape.i - 1][shape.j] === 6 && monster0) ||
+                (board[shape.i - 1][shape.j] === 7 && monster1) ||
+                (board[shape.i - 1][shape.j] === 8 && monster2) ||
+                (board[shape.i - 1][shape.j] === 9 && monster3)) {
                 collision = true;
-                updateScoreAfterCollision(shape.i-1,shape.j);
+                updateScoreAfterCollision(shape.i - 1, shape.j);
             } else if (board[shape.i - 1][shape.j] !== 4) {
                 shape.i--;
             }
@@ -441,12 +450,12 @@ function UpdatePosition() {
     }
     if (x === 4) {
         if (shape.i < 13) {
-            if ((board[shape.i+1][shape.j] === 6 && monster0) ||
-                (board[shape.i+1][shape.j] === 7 && monster1) ||
-                (board[shape.i+1][shape.j] === 8 && monster2) ||
-                (board[shape.i+1][shape.j] === 9 && monster3)) {
+            if ((board[shape.i + 1][shape.j] === 6 && monster0) ||
+                (board[shape.i + 1][shape.j] === 7 && monster1) ||
+                (board[shape.i + 1][shape.j] === 8 && monster2) ||
+                (board[shape.i + 1][shape.j] === 9 && monster3)) {
                 collision = true;
-                updateScoreAfterCollision(shape.i+1,shape.j);
+                updateScoreAfterCollision(shape.i + 1, shape.j);
             } else if (board[shape.i + 1][shape.j] !== 4) {
                 shape.i++;
             }
@@ -480,7 +489,7 @@ function UpdatePosition() {
     if (collision) {
         //todo!
         if (pacmanLife === 0) {
-            musicOn=true;
+            musicOn = true;
             musicController();
             window.alert("Loser!");
 
@@ -501,10 +510,10 @@ function UpdatePosition() {
             DrawPacman(randomI, randomJ);
 
             createMonsterPositions();
-            for(let tmpColor in listMonsters){
-                let argument= listMonsters[tmpColor];
+            for (let tmpColor in listMonsters) {
+                let argument = listMonsters[tmpColor];
                 let tmpKeyColor = Object.keys(argument)[1];
-                tmpKeyColor+=6;
+                tmpKeyColor += 6;
                 DrawMonsters(tmpKeyColor);
             }
 
@@ -528,7 +537,210 @@ function UpdatePosition() {
 
 }
 
-function updateScoreAfterCollision(tmpX,tmpY) {
+function setMonstersStartPoint() {
+    for (let monsterColor in listMonsters) {
+        let monsterChosen = listMonsters[monsterColor];
+        let tmpKeyColor = Object.keys(monsterChosen)[0];
+        let monColor = monsterChosen[tmpKeyColor];
+        let tmpKeyPos = Object.keys(monsterChosen)[1];
+        let monPlace = monsterChosen[tmpKeyPos];
+        monPlace += 6;
+
+        if (monPlace === 6) {
+            if (monColor === "blue") {
+                monsterBlueX = 0;
+                monsterBlueY = 0;
+            } else if (monColor === "orange") {
+                monsterOrangeX = 0;
+                monsterOrangeY = 0;
+            } else if (monColor === "green") {
+                monsterGreenX = 0;
+                monsterGreenY = 0;
+            } else if (monColor === "red") {
+                monsterRedX = 0;
+                monsterRedY = 0;
+            }
+        } else if (monPlace === 7) {
+            if (monColor === "blue") {
+                monsterBlueX = 0;
+                monsterBlueY = 8;
+            } else if (monColor === "orange") {
+                monsterOrangeX = 0;
+                monsterOrangeY = 8;
+            } else if (monColor === "green") {
+                monsterGreenX = 0;
+                monsterGreenY = 8;
+            } else if (monColor === "red") {
+                monsterRedX = 0;
+                monsterRedY = 8;
+            }
+        } else if (monPlace === 8) {
+            if (monColor === "blue") {
+                monsterBlueX = 13;
+                monsterBlueY = 8;
+            } else if (monColor === "orange") {
+                monsterOrangeX = 13;
+                monsterOrangeY = 8;
+            } else if (monColor === "green") {
+                monsterGreenX = 13;
+                monsterGreenY = 8;
+            } else if (monColor === "red") {
+                monsterRedX = 13;
+                monsterRedY = 8;
+            }
+        } else if (monPlace === 9) {
+            if (monColor === "blue") {
+                monsterBlueX = 13;
+                monsterBlueY = 0;
+            } else if (monColor === "orange") {
+                monsterOrangeX = 13;
+                monsterOrangeY = 0;
+            } else if (monColor === "green") {
+                monsterGreenX = 13;
+                monsterGreenY = 0;
+            } else if (monColor === "red") {
+                monsterRedX = 13;
+                monsterRedY = 0;
+            }
+        }
+    }
+}
+
+
+function upBlue() {
+    if (monsterBlueX > 0 && board[monsterBlueX - 1][monsterBlueY] !== 4) {
+        monster.img = null;
+        tmpArgument = board[monsterBlueX - 1][monsterBlueY];
+        monsterBlueX--;
+        board[monsterBlueX][monsterBlueY] = tmpArgument;
+        monster.img = monster.blue;
+        DrawMonsters(monPlaceUpdatePosition);
+    } else if (board[monsterBlueX - 1][monsterBlueY] === 4) {
+        if (monsterBlueY > 0 && board[monsterBlueX][monsterBlueY - 1] !== 4) {
+            monster.img = null;
+            board[monsterBlueX][monsterBlueY] = tmpArgument;
+            tmpArgument = board[monsterBlueX][monsterBlueY - 1];
+            monsterBlueY--;
+            monster.img = monster.blue;
+            Draw();
+        } else if (monsterBlueY < 8 && board[monsterBlueX][monsterBlueY + 1] !== 4) {
+            monster.img = null;
+            board[monsterBlueX][monsterBlueY] = tmpArgument;
+            tmpArgument = board[monsterBlueX][monsterBlueY + 1];
+            monsterBlueY++;
+            monster.img = monster.blue;
+            Draw();
+        } else if (monsterBlueX < 13 && board[monsterBlueX + 1][monsterBlueY] !== 4) {
+            monster.img = null;
+            board[monsterBlueX][monsterBlueY] = tmpArgument;
+            tmpArgument = board[monsterBlueX + 1][monsterBlueY];
+            monsterBlueX++;
+            monster.img = monster.blue;
+            Draw();
+        }
+    }
+}
+
+function downBlue() {
+    if (monsterBlueX < 13 && board[monsterBlueX + 1][monsterBlueY] !== 4) {
+        tmpArgument=board[monsterBlueX + 1][monsterBlueY];
+        monsterBlueX++;
+    } else if (board[monsterBlueX - 1][monsterBlueY] === 4) {
+        if (monsterBlueY < 8 && board[monsterBlueX][monsterBlueY + 1] !== 4) {
+            tmpArgument=board[monsterBlueX][monsterBlueY+1];
+            monsterBlueY++;
+        } else if (monsterBlueY > 0 && board[monsterBlueX][monsterBlueY - 1] !== 4) {
+            tmpArgument=board[monsterBlueX][monsterBlueY-1];
+            monsterBlueY--;
+        } else if (monsterBlueX > 0 && board[monsterBlueX - 1][monsterBlueY] !== 4) {
+            tmpArgument=board[monsterBlueX - 1][monsterBlueY];
+            monsterBlueX--;
+        }
+    }
+}
+
+function leftBlue() {
+    if (monsterBlueY > 0 && board[monsterBlueX][monsterBlueY - 1] !== 4) {
+        tmpArgument=board[monsterBlueX][monsterBlueY-1];
+        monsterBlueY--;
+    } else if (board[monsterBlueX - 1][monsterBlueY] === 4) {
+        if (monsterBlueX > 0 && board[monsterBlueX - 1][monsterBlueY] !== 4) {
+            tmpArgument=board[monsterBlueX-1][monsterBlueY];
+            monsterBlueX--;
+        } else if (monsterBlueX < 13 && board[monsterBlueX + 1][monsterBlueY] !== 4) {
+            tmpArgument=board[monsterBlueX+1][monsterBlueY];
+            monsterBlueX++;
+        } else if (monsterBlueY < 8 && board[monsterBlueX][monsterBlueY + 1] !== 4) {
+            tmpArgument=board[monsterBlueX][monsterBlueY+1];
+            monsterBlueY++;
+        }
+    }
+}
+
+function rightBlue() {
+    if (monsterBlueY < 8 && board[monsterBlueX][monsterBlueY + 1] !== 4) {
+        tmpArgument=board[monsterBlueX][monsterBlueY+1];
+        monsterBlueY++;
+    } else if (board[monsterBlueX - 1][monsterBlueY] === 4) {
+        if (monsterBlueX < 13 && board[monsterBlueX + 1][monsterBlueY] !== 4) {
+            tmpArgument=board[monsterBlueX+1][monsterBlueY];
+            monsterBlueX++;
+        } else if (monsterBlueX > 0 && board[monsterBlueX - 1][monsterBlueY] !== 4) {
+            tmpArgument=board[monsterBlueX-1][monsterBlueY];
+            monsterBlueX--;
+        } else if (monsterBlueY > 0 && board[monsterBlueX][monsterBlueY - 1] !== 4) {
+            tmpArgument=board[monsterBlueX][monsterBlueY-1];
+            monsterBlueY--;
+        }
+    }
+}
+
+var tmpArgument = -1;
+var monPlaceUpdatePosition=-1;
+function UpdatePositionMonsters() {
+    for (let monsterColor in listMonsters) {
+        let monsterChosen = listMonsters[monsterColor];
+        let tmpKeyColor = Object.keys(monsterChosen)[0];
+        let monColor = monsterChosen[tmpKeyColor];
+        let tmpKeyPos = Object.keys(monsterChosen)[1];
+        monPlaceUpdatePosition = monsterChosen[tmpKeyPos];
+        monPlaceUpdatePosition += 6;
+
+        if (monColor === "blue") {
+            let disX = monsterBlueX - shape.i;
+            let disY = monsterBlueY - shape.j;
+
+
+            board[monsterBlueX][monsterBlueY] = 0;
+
+            if (Math.abs(disX) < Math.abs(disY)) {
+                if (disX > 0) {//up
+                    upBlue();
+                } else if (disX < 0) {//down
+                    downBlue();
+                } else if (disY > 0) {//left
+                    leftBlue();
+                } else {//right
+                    rightBlue();
+                }
+            } else if (Math.abs(disX) > Math.abs(disY)) {
+                if (disY > 0) {//left
+                    leftBlue();
+                } else if (disY < 0) {//right
+                    rightBlue();
+                } else if (disX > 0) {//up
+                    upBlue();
+                } else {//down
+                    downBlue();
+                }
+            }
+
+
+        }
+    }
+}
+
+function updateScoreAfterCollision(tmpX, tmpY) {
     let points = 0;
     for (let monsterColor in listMonsters) {
         let monsterChosen = listMonsters[monsterColor];
