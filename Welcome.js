@@ -11,7 +11,6 @@ function validationLogIn() {
     let keyPassword;//password
     let valuePassword;
 
-
     for (var playerToPush in listOfPlayers) {
         let details = listOfPlayers[playerToPush];
         keyUserName = Object.keys(details)[0];
@@ -19,16 +18,19 @@ function validationLogIn() {
         keyPassword = Object.keys(details)[1];//password
         valuePassword = details[keyPassword];
 
-        if (valueUserName === $('#userNameLogIn').val() & valuePassword === $('#passwordLogIn').val()) {
-            // alert("yes");
-            return showMenuSettings();
+            if (valueUserName === $('#userNameLogIn').val() & valuePassword === $('#passwordLogIn').val()) {
+                // alert("yes");
+
+                return showMenuSettings();
+            }
         }
-    }
 
     alert("Wrong user name or password, try again!");
     return false;
 
 }
+
+
 
 function validation() {
 

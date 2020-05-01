@@ -3,6 +3,11 @@ var randomMonster2=5;
 var randomMonster3=5;
 var randomMonster4=5;
 
+var monster1;
+var monster2;
+var monster3;
+var monster4;
+
 var keyUp;
 var keyRight;
 var keyDown;
@@ -146,17 +151,24 @@ function isMonsterChecked() {
             return true;
         }
     }
-   // alert("You need to choose at least one monster");
     return false;
 }
 
+var listMonsters;
+
 function createMonsterPositions(){
-    let monster1 = document.getElementById('monster1');
-    let monster2 = document.getElementById('monster2');
-    let monster3 = document.getElementById('monster3');
-    let monster4 = document.getElementById('monster4');
+    listMonsters=[];
+    monster1 = document.getElementById('monster1');
+    monster2 = document.getElementById('monster2');
+    monster3 = document.getElementById('monster3');
+    monster4 = document.getElementById('monster4');
     if(monster1.checked){
         randomMonster1= Math.round(Math.random()*3);
+        let newMonsterBlue = {};
+        newMonsterBlue.color = "blue";
+        newMonsterBlue.pos = randomMonster1;
+        listMonsters.push(newMonsterBlue);
+
     }
     if(monster2.checked){
         randomMonster2= Math.round(Math.random()*3);
@@ -164,6 +176,10 @@ function createMonsterPositions(){
             while(randomMonster2===randomMonster1){
                 randomMonster2= Math.round(Math.random()*3);
             }
+            let newMonsterOrange = {};
+            newMonsterOrange.color = "orange";
+            newMonsterOrange.pos = randomMonster2;
+            listMonsters.push(newMonsterOrange);
         }
     }
     if(monster3.checked){
@@ -181,6 +197,10 @@ function createMonsterPositions(){
                 randomMonster3= Math.round(Math.random()*3);
             }
         }
+        let newMonsterGreen = {};
+        newMonsterGreen.color = "green";
+        newMonsterGreen.pos = randomMonster3;
+        listMonsters.push(newMonsterGreen);
     }
     if(monster4.checked){
         randomMonster4= Math.round(Math.random()*3);
@@ -213,6 +233,10 @@ function createMonsterPositions(){
                 randomMonster4= Math.round(Math.random()*3);
             }
         }
+        let newMonsterRed = {};
+        newMonsterRed.color ="red";
+        newMonsterRed.pos = randomMonster4;
+        listMonsters.push(newMonsterRed);
     }
 }
 

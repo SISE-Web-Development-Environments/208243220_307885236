@@ -47,7 +47,7 @@ clock.img = new Image();
 clock.img.src = "clock.png";
 
 var totalTimeOfGame;
-var pacmanLife = 5;
+var pacmanLife;
 
 var audio = new Audio("music.mp3");
 var img1 = "mute.png";
@@ -67,6 +67,8 @@ $(document).ready(function () {
 
 
 function Start() {
+    pacmanLife = 4;
+    updateLife();
     createMonsterPositions();
     board = new Array();
     score = 0;
@@ -171,6 +173,8 @@ function Start() {
     //interval2 = setInterval(UpdatePacManPosition, 250);
 
 }
+
+
 
 function findRandomEmptyCell(board) {
     var i = Math.floor(Math.random() * 13 + 1);
@@ -306,62 +310,75 @@ function DrawWalls() {
     context.fill();
 }
 
+var monster0;
+var monster1;
+var monster2;
+var monster3;
+
 function DrawMonsters(choose) {
     if (choose === 6) {
         if (randomMonster1 === 0) {
-            monsterBlue = true;
+            monster0 = true;
             context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster2 === 0) {
-            monsterOrange = true;
+            monster0 = true;
             context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster3 === 0) {
-            monsterGreen = true;
+            monster0 = true;
             context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster4 === 0) {
-            monsterRed = true;
+            monster0 = true;
             context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
+        } else {
+            monster0 = false;
         }
     } else if (choose === 7) {
         if (randomMonster1 === 1) {
-            monsterBlue = true;
+            monster1 = true;
             context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster2 === 1) {
-            monsterOrange = true;
+            monster1 = true;
             context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster3 === 1) {
-            monsterGreen = true;
+            monster1 = true;
             context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster4 === 1) {
-            monsterRed = true;
+            monster1 = true;
             context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
+        } else {
+            monster1 = false;
         }
     } else if (choose === 8) {
         if (randomMonster1 === 2) {
-            monsterBlue = true;
+            monster2 = true;
             context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster2 === 2) {
-            monsterOrange = true;
+            monster2 = true;
             context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster3 === 2) {
-            monsterGreen = true;
+            monster2 = true;
             context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster4 === 2) {
-            monsterRed = true;
+            monster2 = true;
             context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
+        } else {
+            monster2 = false;
         }
     } else if (choose === 9) {
         if (randomMonster1 === 3) {
-            monsterBlue = true;
+            monster3 = true;
             context.drawImage(monster.blue, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster2 === 3) {
-            monsterOrange = true;
+            monster3 = true;
             context.drawImage(monster.orange, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster3 === 3) {
-            monsterGreen = true;
+            monster3 = true;
             context.drawImage(monster.green, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster4 === 3) {
-            monsterRed = true;
+            monster3 = true;
             context.drawImage(monster.red, center.x - 10, center.y - 18, 32, 34);
+        } else {
+            monster3 = false;
         }
     }
 }
@@ -378,14 +395,18 @@ function DrawClock() {
     context.drawImage(clock.img, center.x - 18, center.y - 18, 35, 35);
 }
 
+
 function UpdatePosition() {
     board[shape.i][shape.j] = 0;
     var x = GetKeyPressed();
     if (x === 1) {//up
         if (shape.j > 0) {
-            if (board[shape.i][shape.j - 1] === 6 || board[shape.i][shape.j - 1] === 7 || board[shape.i][shape.j - 1] === 8 || board[shape.i][shape.j - 1] === 9) {
+            if ((board[shape.i][shape.j - 1] === 6 && monster0) ||
+                (board[shape.i][shape.j - 1] === 7 && monster1) ||
+                (board[shape.i][shape.j - 1] === 8 && monster2) ||
+                (board[shape.i][shape.j - 1] === 9 && monster3)) {
                 collision = true;
-                updateScoreAfterCollision();
+                updateScoreAfterCollision(shape.i,shape.j - 1);
             } else if (board[shape.i][shape.j - 1] !== 4) {
                 shape.j--;
             }
@@ -394,9 +415,12 @@ function UpdatePosition() {
     }
     if (x === 2) {
         if (shape.j < 8) {
-            if (board[shape.i][shape.j + 1] === 6 || board[shape.i][shape.j + 1] === 7 || board[shape.i][shape.j + 1] === 8 || board[shape.i][shape.j + 1] === 9) {
+            if ((board[shape.i][shape.j + 1] === 6 && monster0) ||
+                (board[shape.i][shape.j + 1] === 7 && monster1) ||
+                (board[shape.i][shape.j + 1] === 8 && monster2) ||
+                (board[shape.i][shape.j + 1] === 9 && monster3)) {
                 collision = true;
-                updateScoreAfterCollision();
+                updateScoreAfterCollision(shape.i,shape.j + 1);
             } else if (board[shape.i][shape.j + 1] !== 4) {
                 shape.j++;
             }
@@ -404,9 +428,12 @@ function UpdatePosition() {
     }
     if (x === 3) { //left
         if (shape.i > 0) {
-            if (board[shape.i - 1][shape.j] === 6 || board[shape.i - 1][shape.j] === 7 || board[shape.i - 1][shape.j] === 8 || board[shape.i - 1][shape.j] === 9) {
+            if ((board[shape.i-1][shape.j] === 6 && monster0) ||
+                (board[shape.i-1][shape.j] === 7 && monster1) ||
+                (board[shape.i-1][shape.j] === 8 && monster2) ||
+                (board[shape.i-1][shape.j] === 9 && monster3)) {
                 collision = true;
-                updateScoreAfterCollision();
+                updateScoreAfterCollision(shape.i-1,shape.j);
             } else if (board[shape.i - 1][shape.j] !== 4) {
                 shape.i--;
             }
@@ -414,9 +441,12 @@ function UpdatePosition() {
     }
     if (x === 4) {
         if (shape.i < 13) {
-            if (board[shape.i + 1][shape.j] === 6 || board[shape.i + 1][shape.j] === 7 || board[shape.i + 1][shape.j] === 8 || board[shape.i + 1][shape.j] === 9) {
+            if ((board[shape.i+1][shape.j] === 6 && monster0) ||
+                (board[shape.i+1][shape.j] === 7 && monster1) ||
+                (board[shape.i+1][shape.j] === 8 && monster2) ||
+                (board[shape.i+1][shape.j] === 9 && monster3)) {
                 collision = true;
-                updateScoreAfterCollision();
+                updateScoreAfterCollision(shape.i+1,shape.j);
             } else if (board[shape.i + 1][shape.j] !== 4) {
                 shape.i++;
             }
@@ -433,11 +463,9 @@ function UpdatePosition() {
         score += 25;
     }
     if (board[shape.i][shape.j] === 10) {
-        //pacmanLife += 1;
         updateLife();
     }
     if (board[shape.i][shape.j] === 11) {
-        // pacmanLife -= 1;
         looseLife();
     }
 
@@ -455,6 +483,7 @@ function UpdatePosition() {
             musicOn=true;
             musicController();
             window.alert("Loser!");
+
             showMenuSettings();
         } else {
             pacman.img = null;
@@ -472,7 +501,12 @@ function UpdatePosition() {
             DrawPacman(randomI, randomJ);
 
             createMonsterPositions();
-            DrawMonsters(6);
+            for(let tmpColor in listMonsters){
+                let argument= listMonsters[tmpColor];
+                let tmpKeyColor = Object.keys(argument)[1];
+                tmpKeyColor+=6;
+                DrawMonsters(tmpKeyColor);
+            }
 
             collision = false;
         }
@@ -494,11 +528,30 @@ function UpdatePosition() {
 
 }
 
-function updateScoreAfterCollision() {
-    if (score < 10) {
+function updateScoreAfterCollision(tmpX,tmpY) {
+    let points = 0;
+    for (let monsterColor in listMonsters) {
+        let monsterChosen = listMonsters[monsterColor];
+        let tmpKeyColor = Object.keys(monsterChosen)[0];
+        let monColor = monsterChosen[tmpKeyColor];
+        let tmpKeyPos = Object.keys(monsterChosen)[1];
+        let monPlace = monsterChosen[tmpKeyPos];
+        monPlace += 6;
+        if (monColor === "blue" && board[tmpX][tmpY] === monPlace) {
+            points = 10;
+        } else if (monColor === "orange" && board[tmpX][tmpY] === monPlace) {
+            points = 15;
+        } else if (monColor === "green" && board[tmpX][tmpY] === monPlace) {
+            points = 5;
+        } else if (monColor === "red" && board[tmpX][tmpY] === monPlace) {
+            points = 20;
+        }
+
+    }
+    if (score < points) {
         score = 0;
     } else {
-        score -= 10;
+        score -= points;
     }
 
     looseLife();
@@ -514,7 +567,6 @@ window.addEventListener("keydown", function (e) {
 
 function musicController() {
     var imgElement = document.getElementById('imageMusic');
-
     if (musicOn) {
         imgElement.src = img1;
         audio.pause();
@@ -522,6 +574,7 @@ function musicController() {
     } else {
         imgElement.src = img2;
         audio.play();
+        //audio.loop=true;
         musicOn = true;
     }
 }
