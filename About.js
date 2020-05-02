@@ -6,37 +6,32 @@ var btn = document.getElementById("aboutMenu");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal
 btn.onclick = function() {
-    document.getElementById('aboutSection').style.display='block';
-  //  showPrimary();
+    modal.style.display='block';
 }
 
-// When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    document.getElementById('aboutSection').style.display='none';
+    modal.style.display='none';
 }
 
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        alert("s");
-        document.getElementById('aboutSection').style.display='none';
+    if (event.target === modal) {
+        modal.style.display = "none";
     }
 }
 
 window.onkeydown = function( event ){
     // ESCAPE key pressed
-    if ( event.keyCode == 27) {
-        document.getElementById('aboutSection').style.display='none';
+    if ( event.keyCode === 27) {
+        modal.style.display='none';
     }
 };
 
 function showModal(){
     if (!$('#aboutSection').is(':visible')) {
-        document.getElementById('aboutSection').style.display='none';
+        modal.style.display='none';
     }else{
-        document.getElementById('aboutSection').style.display='block';
+        modal.style.display='block';
     }
 
 }

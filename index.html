@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
 <Header>
     <div id="menu" align="center">
         <p class="logo">
@@ -28,9 +27,13 @@
         </ul>
     </div>
 </Menu>
-
-
 <Content>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <dialog id="aboutSection" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -47,12 +50,14 @@
         </div>
     </dialog>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <dialog id="dialogWinner" title="Winner" class="winner">
+        <span class="closeWin"><strong>&times;</strong></span>
+        <center>
+            <img src="Resources/happy.gif" title="Winner!"/>
+            <div class="centered"><p><strong>Winner!</strong></p></div>
+        </center>
+    </dialog>
+
     <div id="welcome" class="alert">
         <br><br>
         <center>
@@ -360,11 +365,6 @@
         </center>
     </div>
 
-    <dialog id="dialogWinner" title="Winner" class="modal">
-        <p>Winner:</p>
-        <img src="Resources/happy.gif"/>
-        <button id="closeButtonWinning" onclick="document.getElementById('dialogWinner').close();">X</button>
-    </dialog>
 </Content>
 <footer>
     <center><p class="footerC"><strong>This is Pac&#127850Monster game in html5</strong> <br>
@@ -372,6 +372,7 @@
 
 </footer>
 </body>
+<!--Scripts-->
 <script src="./jquery-3.4.1.slim.min.js"></script>
 <script src="app.js"></script>
 <script src="Welcome.js"></script>

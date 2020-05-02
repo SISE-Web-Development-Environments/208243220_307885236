@@ -129,8 +129,25 @@ dialog.modal{
     height: 300px;
 }
 
-.close {
+dialog.winner{
+    background-color: white;
+    width: 550px;
+    height: 300px;
+}
+
+.container {
+    position: relative;
+    text-align: center;
     color: white;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.close {
+    color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;

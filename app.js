@@ -55,11 +55,6 @@ var img1 = "Resources/mute.png";
 var img2 = "Resources/unmute.png";
 var musicOn;
 
-var monster0;
-var monster1;
-var monster2;
-var monster3;
-
 var monsterBlueX;
 var monsterBlueY;
 var monsterRedX;
@@ -71,6 +66,9 @@ var monsterOrangeY;
 
 var prev;
 var curr;
+
+
+
 $(document).ready(function () {
     $("#startGameSettings").click(function () {
         context = canvas.getContext("2d");
@@ -480,10 +478,11 @@ function UpdatePosition() {
     time_elapsed = (currentTime - start_time) / 1000;
 
     checkCollision();
-    //
-    // if(score>=5){
-    //     win();
-    // }
+
+    if(score>=15){
+        window.clearInterval(interval);
+        win();
+    }else
     if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
         window.clearInterval(interval);
         if (score < 100) {
@@ -1406,7 +1405,13 @@ function updateScoreAfterCollision() {
 // clock.img.src = "Resources/happy.gif";
 
 function win(){
-    document.getElementById("dialogWinner").showModal();
+    document.getElementById('dialogWinner').style.display='block';
+
+    document.getElementsByClassName("closeWin")[0].onclick = function() {
+        document.getElementById('dialogWinner').style.display='none';
+        document.getElementById('dialogWinner').close();
+        showMenuSettings();
+    }
 }
 
 /************************************************Others**********************************************/

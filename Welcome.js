@@ -199,10 +199,15 @@ function showMenuAbout() {
 }
 
 function showMenuSettings() {
+    document.getElementsByClassName("closeWin")[0].onclick = function() {
+        document.getElementById('dialogWinner').style.display='none';
+        document.getElementById('dialogWinner').close();
+    }
     if (document.getElementById("game").style.display === 'block') {
         if (confirm("Do you sure you want to start new game?")) {
             document.getElementById("game").style.display = 'none';
             document.getElementById('settings').style.display = 'block';
+            document.getElementById('dialogWinner').style.display='none';
         }
     } else {
         document.getElementById('settings').style.display = 'block';
