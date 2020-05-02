@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="./jquery-3.4.1.slim.min.js"></script>
-    <script type="text/javascript" src="./app.js"></script>
-    <script src="Welcome.js" type="text/javascript"></script>
-    <script src="About.js" type="text/javascript"></script>
-    <script src="Settings.js" type="text/javascript"></script>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="Style.css"/>
     <link rel="icon" href="Resources/face.png" type="image/icon type">
     <title>Pac&#127850Monster</title>
@@ -13,378 +9,373 @@
 
 <body>
 
-<div id="menu" align="center">
-    <p class="logo">
-        <img src="Resources/face.png" width="40" height="40">
-        Pac<img src="Resources/header.png" width="40" height="40">Monster
-        <img src="Resources/face.png" width="40" height="40">
-    </p>
-    <ul>
-        <li><a class="menuList" href="#welcome" onclick="showMenuWelcome()">Welcome</a></li>
-        <li><a class="menuList" href="#register" onclick="showMenuRegister()">Register</a></li>
-        <li><a class="menuList" href="#login" onclick="showMenuLogin()">Login</a></li>
-        <li><a class="menuList" id="aboutMenu" href="#aboutSection" onclick="showMenuAbout()">About</a></li>
-    </ul>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div id="welcome" class="alert">
-    <br><br>
-    <center>
-        <a href="#register" onclick="showMenuRegister()">
-            <button class="welcome" type="button">Register</button>
-        </a>
-        <br><br>
-        <a href="#login" onclick="showMenuLogin()">
-            <button class="welcome" type="submit">Login</button>
-        </a>
+<Header>
+    <div id="menu" align="center">
+        <p class="logo">
+            <img src="Resources/face.png" width="40" height="40">
+            Pac<img src="Resources/header.png" width="40" height="40">Monster
+            <img src="Resources/face.png" width="40" height="40">
+        </p>
+    </div>
+</Header>
+<Menu>
+    <div id="menu1" align="center">
+        <ul>
+            <li><a class="menuList" href="#welcome" onclick="showMenuWelcome()">Welcome</a></li>
+            <li><a class="menuList" href="#register" onclick="showMenuRegister()">Register</a></li>
+            <li><a class="menuList" href="#login" onclick="showMenuLogin()">Login</a></li>
+            <li><a class="menuList" id="aboutMenu" href="#aboutSection" onclick="showMenuAbout()">About</a></li>
+        </ul>
+    </div>
+</Menu>
 
-    </center>
-</div>
 
-<div id="register" class="div" style="display:none">
-    <center>
-        <div class="form-popUp">
-            <form id="formReg">
-                <table>
-                    <tr>
-                        <td><strong>User Name</strong></td>
-                        <td><input name="User Name" type="text" id="userNameReg" placeholder="User Name"
-                                   autocomplete="on">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Password</strong></td>
-                        <td><input name="Password" type="password" id="passwordReg" placeholder="Password"
-                                   autocomplete="on"
-                                   title="At least 6 characters include a number and and a letter">
-                            <img src="Resources/eye.png" width="20" height="20" onmouseover="mouseoverPassReg();"
-                                 onmouseout="mouseoutPassReg();"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Full Name</strong></td>
-                        <td><input name="Full Name" type="text" id="fullNameReg" placeholder="Full Name"
-                                   autocomplete="on">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Email</strong></td>
-                        <td><input name="Email" type="email" id="emailReg" placeholder="name@domain.com"
-                                   autocomplete="on">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Birth Date</strong></td>
-                        <td><input name="Birth Date" type="date" id="birthDateReg" placeholder="Birth Date"
-                                   autocomplete="on" value="2000-01-01"></td>
-                    </tr>
-                </table>
-                <p>
-                    <a href="#welcome">
-                        <button class="subClassReg" type="button" id="submitReg" onclick=" return validation();">
-                            Sign Up
-                        </button>
-                    </a>
-
-                    <!--                <a href="#welcome" onclick="return show('welcome','register')">-->
-                    <!--                    <button type="submit">Back</button>-->
-                    <!--                </a>-->
-                </p>
-            </form>
-        </div>
-    </center>
-</div>
-
-<div id="login" class="div" style="display:none">
-    <center>
-        <div class="form-popUp">
-            <form id="formLogIn">
-                <table>
-                    <tr>
-                        <td><strong>User Name</strong></td>
-                        <td><input name="User Name" type="text" id="userNameLogIn" placeholder="User Name"
-                                   autocomplete="on"></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Password</strong></td>
-                        <td>
-                            <input name="Password" type="password" id="passwordLogIn" placeholder="Password"
-                                   autocomplete="on">
-                            <img src="Resources/eye.png" width="20" height="20" onmouseover="mouseoverPassLogIn();"
-                                 onmouseout="mouseoutPassLogIn();"/>
-                        </td>
-                    </tr>
-                </table>
-                <p>
-                    <a href="#settings">
-                        <button type="button" id="submitLogIn" onclick="return validationLogIn()">Play</button>
-                    </a>
-                    <a href="#welcome" onclick="showMenuWelcome()">
-                        <button type="submit">Back</button>
-                    </a>
-
-                </p>
-            </form>
-        </div>
-    </center>
-</div>
-
-<dialog id="aboutSection" class="modal">
-    <!-- Modal content -->
-<!--    <span class="close" onclick="closeAbout();"><h1>&times;</h1></span>-->
-<!--        <table class="tableC">-->
-<!--            <tr>-->
-<!--                <td colspan="2" align="center"><strong>About</strong></td>-->
-
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td align="center"><strong>Names:</strong>Shahar Ben Shaya, Hilla Peterfreund</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td align="center">In this site we used jQuery at the validation of log in and register methods.</td>-->
-<!--            </tr>-->
-<!--        </table>-->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
+<Content>
+    <dialog id="aboutSection" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeAbout();"><h1>&times;</h1></span>
-            <p>Some text in the Modal..</p>
+            <span class="close">&times;</span>
+            <p>
+            <h1 align="center"><strong>About</strong></h1></p><br>
+            <p align="center">
+                <strong>Names: </strong>Shahar Ben Shaya, Hilla Peterfreund<br/><br/>
+                In this site we used jQuery at the validation of login and register methods. <br/>
+                The difficult was to try to understand the logic of how we want to implement the game.<br/>
+                <br>
+            </p>
         </div>
+    </dialog>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="welcome" class="alert">
+        <br><br>
+        <center>
+            <a href="#register" onclick="showMenuRegister()">
+                <button class="welcome" type="button">Register</button>
+            </a>
+            <br><br>
+            <a href="#login" onclick="showMenuLogin()">
+                <button class="welcome" type="submit">Login</button>
+            </a>
+
+        </center>
     </div>
 
-</dialog>
-
-<div id="settings" class="div" style="display:none">
-    <center>
-        <div class="formSettings">
-            <br><br><br><br><br>
-            <table class="settingsTable">
-                <tr>
-                    <td align="center"><strong>Number of Cookies</strong><br>
-                        choose number between 50 to 90<br>
-                        <input name="numberCookies" type="number" id="numberCookies" min="50" max="90" size="2"></td>
-                    <td align="center">
-                        <strong>Choose Monsters</strong><br>
-                        choose at least one<br>
-                        <input type="checkbox" id="monster1" name="monster1">
-                        <label for="monster1"> <img src="Resources/blue.png" width="40" height="40"></label>
-                        <input type="checkbox" id="monster2" name="monster1">
-                        <label for="monster2"> <img src="Resources/orange.png" width="40" height="40"></label>
-                        <br>
-                        <input type="checkbox" id="monster3" name="monster1">
-                        <label for="monster3"> <img src="Resources/green.png" width="40" height="40"></label>
-                        <input type="checkbox" id="monster4" name="monster1">
-                        <label for="monster4"> <img src="Resources/red.png" width="40" height="40"></label>
-                        <br>
-                    </td>
-                    <td rowspan="2" align="center" width="200px">
-                        <p><strong>Properties</strong></p>
-                        <p><img id="goodPo" src="Resources/goodp.png" width="30" height="30"/> +1 life</p>
-                        <p><img id="badPo" src="Resources/badp.png" width="30" height="30"/> -1 life</p>
-                        <p><img id="clo" src="Resources/clock.png" width="25" height="25"/> +20 sec</p>
-                        <p><img id="bM" src="Resources/blue.png" width="25" height="25"/> -10 points</p>
-                        <p><img id="oM" src="Resources/orange.png" width="25" height="25"/> -15 points</p>
-                        <p><img id="gM" src="Resources/green.png" width="25" height="25"/> -5 points</p>
-                        <p><img id="rM" src="Resources/red.png" width="25" height="25"/> -20 points</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <strong>Choose 5 points Cookies</strong><br>
-                        <div align="left">
-                            <input type="color" id="fiveCookie" name="Cookie" value="#b37700">
-                            <label for="fiveCookie">Cookie</label>
-                        </div>
-
-                        <div align="left">
-                            <input type="color" id="fiveChip" name="ChocolateChips" value="#664400">
-                            <label for="fiveChip">Chocolate chips</label>
-                        </div>
-
-                        <strong>Choose 15 points Cookies</strong><br>
-                        <div align="left">
-                            <input type="color" id="fifthCookie" name="Base" value="#ffcc99">
-                            <label for="fifthCookie">Cookie</label>
-                        </div>
-                        <div align="left">
-                            <input type="color" id="fifthChip" name="ChocolateChips" value="#fff2e6">
-                            <label for="fifthChip">Chocolate chips</label>
-                        </div>
-
-                        <strong>Choose 25 points Cookies</strong><br>
-                        <div align="left">
-                            <input type="color" id="twentyCookie" name="Base" value="#331a00">
-                            <label for="twentyCookie">Cookie</label>
-                        </div>
-
-                        <div align="left">
-                            <input type="color" id="twentyChip" name="ChocolateChips" value="#ffffff">
-                            <label for="twentyChip">Chocolate chips</label>
-                        </div>
-
-                    </td>
-                    <td align="center">
-                        <br>
-                        <strong>Choose keyboard </strong><br>
-                        Key up&nbsp;
-                        <input type="text" id="keyUpInput" onkeypress="upPress(event)"><br>
-                        Key right
-                        <input type="text" id="keyRightInput" onkeypress="rightPress(event)"><br>
-                        Key down
-                        <input type="text" id="keyDownInput" onkeypress="downPress(event)"><br>
-                        Key left
-                        <input type="text" id="keyLeftInput" onkeypress="leftPress(event)"><br>
-                        <br>
-                        <strong>Choose Time in Seconds </strong><br>
-                        <input type="number" id="gameTime" min="60" required><br>
-
-                    </td>
-                </tr>
-                <tr>
-                    <!--                    <td rowspan="2" align="center">-->
-                    <!--                        <strong>Choose Time in Seconds </strong><br>-->
-                    <!--                        <input type="number" id="gameTime" min="60" required><br>-->
-                    <!--                    </td>-->
-                </tr>
-            </table>
-
-            <br>
-            <button type="submit" id="randomFill" onclick="fillFormRandom()">Random fill</button>
-            <button type="submit" onclick="fillChoice()">Favorite Choice</button>
-            <br><br>
-            <a href="#game">
-                <button type="submit" id="startGameSettings" onclick="playFunction()">
-                    Play
-                </button>
-            </a>
-            <a href="#welcome" onclick="showMenuWelcome()">
-                <button type="submit">Back</button>
-            </a>
-        </div>
-    </center>
-</div>
-
-<div class="divGame" id="game" style="display:none">
-    <center>
-        <table class="tableGame">
-            <td height="450">
-                <table>
-                    <tr>
-                        <td colspan="2" align="center">
-                            <strong><p class="userLogo" id="userNameShow"></p></strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <center><label for="lblLive"><strong>LIVE: </strong></label></center>
-                        </td>
-                        <td>
-                            <p>
-                                <img id="lblLive" src="Resources/face.png" width="25" height="25"/>
-                                <img id="lblLive1" src="Resources/face.png" width="25" height="25"/>
-                                <img id="lblLive2" src="Resources/face.png" width="25" height="25"/>
-                                <img id="lblLive3" src="Resources/face.png" width="25" height="25"/>
-                                <img id="lblLive4" src="Resources/face.png" width="25" height="25"/>
-                            </p>
-                        </td>
-                        <!--                            <td><input id="lblLive" type="text" size="16"> </td>-->
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <center><label for="lblScore"><strong>SCORE:</strong></label></center>
-                        </td>
-                        <td><input id="lblScore" type="text" size="16"/></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <center><label for="lblTime"><strong>TIME:&nbsp;</strong></label></center>
-                        </td>
-                        <td><input id="lblTime" type="text" size="16"/></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <center><strong>5 points Cookies:</strong></center>
-                        </td>
-                        <td>
-                            <label for="fivePointsCook">Cookie:</label>
-                            <div class="square" id="fivePointsCook"></div>
-                            <label for="fivePointsChip">Chocolate chips:</label>
-                            <div class="square" id="fivePointsChip"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <center><strong>15 points Cookies:</strong></center>
-                        </td>
-                        <td>
-                            <label for="fifthPointsCook">Cookie: </label>
-                            <div class="square" id="fifthPointsCook"></div>
-                            <label for="fifthPointsChip">Chocolate chips: </label>
-                            <div class="square" id="fifthPointsChip"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <center><strong>25 points Cookies:</strong></center>
-                        </td>
-                        <td>
-                            <label for="twentyPointsCook">Cookie: </label>
-                            <div class="square" id="twentyPointsCook"></div>
-                            <label for="twentyPointsChip">Chocolate chips: </label>
-                            <div class="square" id="twentyPointsChip"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center">
-                            <button type="submit" id="reloadNew">
-                                <a href="#settings" onclick="startNewGame()">Start new Game</a>
+    <div id="register" class="div" style="display:none">
+        <center>
+            <div class="form-popUp">
+                <form id="formReg">
+                    <table>
+                        <tr>
+                            <td><strong>User Name</strong></td>
+                            <td><input name="User Name" type="text" id="userNameReg" placeholder="User Name"
+                                       autocomplete="on">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Password</strong></td>
+                            <td><input name="Password" type="password" id="passwordReg" placeholder="Password"
+                                       autocomplete="on"
+                                       title="At least 6 characters include a number and and a letter">
+                                <img src="Resources/eye.png" width="20" height="20" onmouseover="mouseoverPassReg();"
+                                     onmouseout="mouseoutPassReg();"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Full Name</strong></td>
+                            <td><input name="Full Name" type="text" id="fullNameReg" placeholder="Full Name"
+                                       autocomplete="on">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email</strong></td>
+                            <td><input name="Email" type="email" id="emailReg" placeholder="name@domain.com"
+                                       autocomplete="on">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Birth Date</strong></td>
+                            <td><input name="Birth Date" type="date" id="birthDateReg" placeholder="Birth Date"
+                                       autocomplete="on" value="2000-01-01"></td>
+                        </tr>
+                    </table>
+                    <p>
+                        <a href="#welcome">
+                            <button class="subClassReg" type="button" id="submitReg" onclick=" return validation();">
+                                Sign Up
                             </button>
+                        </a>
+
+                        <!--                <a href="#welcome" onclick="return show('welcome','register')">-->
+                        <!--                    <button type="submit">Back</button>-->
+                        <!--                </a>-->
+                    </p>
+                </form>
+            </div>
+        </center>
+    </div>
+
+    <div id="login" class="div" style="display:none">
+        <center>
+            <div class="form-popUp">
+                <form id="formLogIn">
+                    <table>
+                        <tr>
+                            <td><strong>User Name</strong></td>
+                            <td><input name="User Name" type="text" id="userNameLogIn" placeholder="User Name"
+                                       autocomplete="on"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Password</strong></td>
+                            <td>
+                                <input name="Password" type="password" id="passwordLogIn" placeholder="Password"
+                                       autocomplete="on">
+                                <img src="Resources/eye.png" width="20" height="20" onmouseover="mouseoverPassLogIn();"
+                                     onmouseout="mouseoutPassLogIn();"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <p>
+                        <a href="#settings">
+                            <button type="button" id="submitLogIn" onclick="return validationLogIn()">Play</button>
+                        </a>
+                        <a href="#welcome" onclick="showMenuWelcome()">
+                            <button type="submit">Back</button>
+                        </a>
+
+                    </p>
+                </form>
+            </div>
+        </center>
+    </div>
+
+    <div id="settings" class="div" style="display:none">
+        <center>
+            <div class="formSettings">
+                <br><br><br><br><br>
+                <table class="settingsTable">
+                    <tr>
+                        <td align="center"><strong>Number of Cookies</strong><br>
+                            choose number between 50 to 90<br>
+                            <input name="numberCookies" type="number" id="numberCookies" min="50" max="90" size="2">
+                        </td>
+                        <td align="center">
+                            <strong>Choose Monsters</strong><br>
+                            choose at least one<br>
+                            <input type="checkbox" id="monster1" name="monster1">
+                            <label for="monster1"> <img src="Resources/blue.png" width="40" height="40"></label>
+                            <input type="checkbox" id="monster2" name="monster1">
+                            <label for="monster2"> <img src="Resources/orange.png" width="40" height="40"></label>
+                            <br>
+                            <input type="checkbox" id="monster3" name="monster1">
+                            <label for="monster3"> <img src="Resources/green.png" width="40" height="40"></label>
+                            <input type="checkbox" id="monster4" name="monster1">
+                            <label for="monster4"> <img src="Resources/red.png" width="40" height="40"></label>
+                            <br>
+                        </td>
+                        <td rowspan="2" align="center" width="200px">
+                            <p><strong>Properties</strong></p>
+                            <p><img id="goodPo" src="Resources/goodp.png" width="30" height="30"/> +1 life</p>
+                            <p><img id="badPo" src="Resources/badp.png" width="30" height="30"/> -1 life</p>
+                            <p><img id="clo" src="Resources/clock.png" width="25" height="25"/> +20 sec</p>
+                            <p><img id="bM" src="Resources/blue.png" width="25" height="25"/> -10 points</p>
+                            <p><img id="oM" src="Resources/orange.png" width="25" height="25"/> -15 points</p>
+                            <p><img id="gM" src="Resources/green.png" width="25" height="25"/> -5 points</p>
+                            <p><img id="rM" src="Resources/red.png" width="25" height="25"/> -20 points</p>
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td colspan="2" align="center"><img id="imageMusic" width="30" height="30"
-                                                            onclick="musicController()"></td>
+                        <td align="center">
+                            <strong>Choose 5 points Cookies</strong><br>
+                            <div align="left">
+                                <input type="color" id="fiveCookie" name="Cookie" value="#b37700">
+                                <label for="fiveCookie">Cookie</label>
+                            </div>
+
+                            <div align="left">
+                                <input type="color" id="fiveChip" name="ChocolateChips" value="#664400">
+                                <label for="fiveChip">Chocolate chips</label>
+                            </div>
+
+                            <strong>Choose 15 points Cookies</strong><br>
+                            <div align="left">
+                                <input type="color" id="fifthCookie" name="Base" value="#ffcc99">
+                                <label for="fifthCookie">Cookie</label>
+                            </div>
+                            <div align="left">
+                                <input type="color" id="fifthChip" name="ChocolateChips" value="#fff2e6">
+                                <label for="fifthChip">Chocolate chips</label>
+                            </div>
+
+                            <strong>Choose 25 points Cookies</strong><br>
+                            <div align="left">
+                                <input type="color" id="twentyCookie" name="Base" value="#331a00">
+                                <label for="twentyCookie">Cookie</label>
+                            </div>
+
+                            <div align="left">
+                                <input type="color" id="twentyChip" name="ChocolateChips" value="#ffffff">
+                                <label for="twentyChip">Chocolate chips</label>
+                            </div>
+
+                        </td>
+                        <td align="center">
+                            <br>
+                            <strong>Choose keyboard </strong><br>
+                            Key up&nbsp;
+                            <input type="text" id="keyUpInput" onkeypress="upPress(event)"><br>
+                            Key right
+                            <input type="text" id="keyRightInput" onkeypress="rightPress(event)"><br>
+                            Key down
+                            <input type="text" id="keyDownInput" onkeypress="downPress(event)"><br>
+                            Key left
+                            <input type="text" id="keyLeftInput" onkeypress="leftPress(event)"><br>
+                            <br>
+                            <strong>Choose Time in Seconds </strong><br>
+                            <input type="number" id="gameTime" min="60" required><br>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--                    <td rowspan="2" align="center">-->
+                        <!--                        <strong>Choose Time in Seconds </strong><br>-->
+                        <!--                        <input type="number" id="gameTime" min="60" required><br>-->
+                        <!--                    </td>-->
                     </tr>
                 </table>
-            </td>
-            <td height="450">
-                <canvas id="canvas" height="445" width="700"></canvas>
-            </td>
-        </table>
+
+                <br>
+                <button type="submit" id="randomFill" onclick="fillFormRandom()">Random fill</button>
+                <button type="submit" onclick="fillChoice()">Favorite Choice</button>
+                <br><br>
+                <a href="#game">
+                    <button type="submit" id="startGameSettings" onclick="playFunction()">
+                        Play
+                    </button>
+                </a>
+                <a href="#welcome" onclick="showMenuWelcome()">
+                    <button type="submit">Back</button>
+                </a>
+            </div>
+        </center>
+    </div>
+
+    <div class="divGame" id="game" style="display:none">
+        <center>
+            <table class="tableGame">
+                <td height="450">
+                    <table>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <strong><p class="userLogo" id="userNameShow"></p></strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><label for="lblLive"><strong>LIVE: </strong></label></center>
+                            </td>
+                            <td>
+                                <p>
+                                    <img id="lblLive" src="Resources/face.png" width="25" height="25"/>
+                                    <img id="lblLive1" src="Resources/face.png" width="25" height="25"/>
+                                    <img id="lblLive2" src="Resources/face.png" width="25" height="25"/>
+                                    <img id="lblLive3" src="Resources/face.png" width="25" height="25"/>
+                                    <img id="lblLive4" src="Resources/face.png" width="25" height="25"/>
+                                </p>
+                            </td>
+                            <!--                            <td><input id="lblLive" type="text" size="16"> </td>-->
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><label for="lblScore"><strong>SCORE:</strong></label></center>
+                            </td>
+                            <td><input id="lblScore" type="text" size="16"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><label for="lblTime"><strong>TIME:&nbsp;</strong></label></center>
+                            </td>
+                            <td><input id="lblTime" type="text" size="16"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><strong>5 points Cookies:</strong></center>
+                            </td>
+                            <td>
+                                <label for="fivePointsCook">Cookie:</label>
+                                <div class="square" id="fivePointsCook"></div>
+                                <label for="fivePointsChip">Chocolate chips:</label>
+                                <div class="square" id="fivePointsChip"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><strong>15 points Cookies:</strong></center>
+                            </td>
+                            <td>
+                                <label for="fifthPointsCook">Cookie: </label>
+                                <div class="square" id="fifthPointsCook"></div>
+                                <label for="fifthPointsChip">Chocolate chips: </label>
+                                <div class="square" id="fifthPointsChip"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><strong>25 points Cookies:</strong></center>
+                            </td>
+                            <td>
+                                <label for="twentyPointsCook">Cookie: </label>
+                                <div class="square" id="twentyPointsCook"></div>
+                                <label for="twentyPointsChip">Chocolate chips: </label>
+                                <div class="square" id="twentyPointsChip"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <button type="submit" id="reloadNew">
+                                    <a href="#settings" onclick="startNewGame()">Start new Game</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colspan="2" align="center"><img id="imageMusic" width="30" height="30"
+                                                                onclick="musicController()"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td height="450">
+                    <canvas id="canvas" height="445" width="700"></canvas>
+                </td>
+            </table>
 
 
-    </center>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+        </center>
+    </div>
 
+    <div id="primary" class="div"></div>
 
-
-<dialog id="dialogWinner" title="Winner" class="modal">
-    <p>Winner:</p>
-    <img src="Resources/happy.gif"/>
-    <button id="closeButtonWinning" onclick="document.getElementById('dialogWinner').close();">X</button>
-</dialog>
-
-</body>
+    <dialog id="dialogWinner" title="Winner" class="modal">
+        <p>Winner:</p>
+        <img src="Resources/happy.gif"/>
+        <button id="closeButtonWinning" onclick="document.getElementById('dialogWinner').close();">X</button>
+    </dialog>
+</Content>
 <footer>
     <center><p class="footerC"><strong>This is Pac&#127850Monster game in html5</strong> <br>
         <strong>Email: </strong>hillapet@post.bgu.ac.il | benshays@post.bgu.ac.il </p></center>
 
 </footer>
+</body>
+<script src="./jquery-3.4.1.slim.min.js"></script>
+<script src="app.js"></script>
+<script src="Welcome.js"></script>
+<script src="About.js"></script>
+<script src="Settings.js"></script>
+
 </html>
