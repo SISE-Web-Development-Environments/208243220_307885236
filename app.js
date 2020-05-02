@@ -189,8 +189,8 @@ function Start() {
         },
         false
     );
-    interval = setInterval(UpdatePosition, 300);
-    intervalMonsters = setInterval(UpdatePositionMonsters, 200);
+    interval = setInterval(UpdatePosition, 400);
+    intervalMonsters = setInterval(UpdatePositionMonsters, 350);
 
 }
 
@@ -222,6 +222,8 @@ function GetKeyPressed() {
         return 4;
     }
 }
+
+/************************************************Draw***********************************************/
 
 function Draw() {
     canvas.width = canvas.width; //clean board
@@ -408,6 +410,8 @@ function DrawClock() {
     context.drawImage(clock.img, center.x - 18, center.y - 18, 35, 35);
 }
 
+/************************************************UpdatePosition***********************************************/
+
 function UpdatePosition() {
     board[shape.i][shape.j] = 0;
     var x = GetKeyPressed();
@@ -488,7 +492,26 @@ function UpdatePosition() {
     var currentTime = new Date();
     time_elapsed = (currentTime - start_time) / 1000;
 
+    checkCollision();
 
+    if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
+        window.clearInterval(interval);
+        if (score < 100) {
+            window.alert("You are better than " + score + " points");
+        } else {
+            window.alert("Winner!!!");
+        }
+
+    } else if (pacmanLife === 0) {
+        window.alert("Loser!");
+        showMenuSettings();
+    } else {
+        Draw();
+    }
+
+}
+
+function checkCollision() {
     if (collision) {
         //todo!
         if (pacmanLife === 0) {
@@ -518,26 +541,12 @@ function UpdatePosition() {
                 let tmpKeyColor = Object.keys(argument)[1];
                 tmpKeyColor += 6;
                 DrawMonsters(tmpKeyColor);
+                //Draw();
             }
 
             collision = false;
         }
     }
-    if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
-        window.clearInterval(interval);
-        if (score < 100) {
-            window.alert("You are better than " + score + " points");
-        } else {
-            window.alert("Winner!!!");
-        }
-
-    } else if (pacmanLife === 0) {
-        window.alert("Loser!");
-        showMenuSettings();
-    } else {
-        Draw();
-    }
-
 }
 
 function setMonstersStartPoint() {
@@ -609,33 +618,37 @@ function setMonstersStartPoint() {
     }
 }
 
+/************************************************BlueMonster***********************************************/
 function upBlue() {
     if (monsterBlueX > 0 & board[monsterBlueX - 1][monsterBlueY] !== 4) {
- 
-        curr = board[monsterBlueX-1][monsterBlueY];
-        board[monsterBlueX-1][monsterBlueY]=prev;
-        prev=curr;
+        board[monsterBlueX][monsterBlueY] = curr;
+        curr = board[monsterBlueX - 1][monsterBlueY];
+        board[monsterBlueX - 1][monsterBlueY] = prev;
+        prev = curr;
+
         monsterBlueX--;
+
     } else if (board[monsterBlueX - 1][monsterBlueY] === 4) {
         if (monsterBlueY > 0 & board[monsterBlueX][monsterBlueY - 1] !== 4) {
-
-            curr = board[monsterBlueX][monsterBlueY-1];
-            board[monsterBlueX][monsterBlueY-1]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY] = curr;
+            curr = board[monsterBlueX][monsterBlueY - 1];
+            board[monsterBlueX][monsterBlueY - 1] = prev;
+            prev = curr;
             monsterBlueY--;
 
         } else if (monsterBlueY < 8 & board[monsterBlueX][monsterBlueY + 1] !== 4) {
-
+            board[monsterBlueX][monsterBlueY] = curr;
             curr = board[monsterBlueX][monsterBlueY + 1];
-            board[monsterBlueX][monsterBlueY + 1]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY + 1] = prev;
+            prev = curr;
             monsterBlueY++;
 
         } else if (monsterBlueX < 13 & board[monsterBlueX + 1][monsterBlueY] !== 4) {
+            board[monsterBlueX][monsterBlueY] = curr;
+            curr = board[monsterBlueX + 1][monsterBlueY];
+            board[monsterBlueX + 1][monsterBlueY] = prev;
+            prev = curr;
 
-            curr = board[monsterBlueX+1][monsterBlueY];
-            board[monsterBlueX+1][monsterBlueY]=prev;
-            prev=curr;
             monsterBlueX++;
         }
     }
@@ -643,32 +656,32 @@ function upBlue() {
 
 function downBlue() {
     if (monsterBlueX < 13 & board[monsterBlueX + 1][monsterBlueY] !== 4) {
-
-        curr = board[monsterBlueX+1][monsterBlueY];
-        board[monsterBlueX+1][monsterBlueY]=prev;
-        prev=curr;
+        board[monsterBlueX][monsterBlueY] = curr;
+        curr = board[monsterBlueX + 1][monsterBlueY];
+        board[monsterBlueX + 1][monsterBlueY] = prev;
+        prev = curr;
         monsterBlueX++;
 
     } else if (board[monsterBlueX - 1][monsterBlueY] === 4) {
         if (monsterBlueY < 8 & board[monsterBlueX][monsterBlueY + 1] !== 4) {
-
+            board[monsterBlueX][monsterBlueY] = curr;
             curr = board[monsterBlueX][monsterBlueY + 1];
-            board[monsterBlueX][monsterBlueY + 1]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY + 1] = prev;
+            prev = curr;
             monsterBlueY++;
 
         } else if (monsterBlueY > 0 & board[monsterBlueX][monsterBlueY - 1] !== 4) {
-
-            curr = board[monsterBlueX][monsterBlueY-1];
-            board[monsterBlueX][monsterBlueY-1]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY] = curr;
+            curr = board[monsterBlueX][monsterBlueY - 1];
+            board[monsterBlueX][monsterBlueY - 1] = prev;
+            prev = curr;
             monsterBlueY--;
 
         } else if (monsterBlueX > 0 & board[monsterBlueX - 1][monsterBlueY] !== 4) {
-
-            curr = board[monsterBlueX-1][monsterBlueY];
-            board[monsterBlueX-1][monsterBlueY]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY] = curr;
+            curr = board[monsterBlueX - 1][monsterBlueY];
+            board[monsterBlueX - 1][monsterBlueY] = prev;
+            prev = curr;
             monsterBlueX--;
 
 
@@ -678,31 +691,31 @@ function downBlue() {
 
 function leftBlue() {
     if (monsterBlueY > 0 & board[monsterBlueX][monsterBlueY - 1] !== 4) {
-
-        curr = board[monsterBlueX][monsterBlueY-1];
-        board[monsterBlueX][monsterBlueY-1]=prev;
-        prev=curr;
+        board[monsterBlueX][monsterBlueY] = curr;
+        curr = board[monsterBlueX][monsterBlueY - 1];
+        board[monsterBlueX][monsterBlueY - 1] = prev;
+        prev = curr;
         monsterBlueY--;
 
     } else if (board[monsterBlueX - 1][monsterBlueY] === 4) {
         if (monsterBlueX > 0 & board[monsterBlueX - 1][monsterBlueY] !== 4) {
-
-            curr = board[monsterBlueX-1][monsterBlueY];
-            board[monsterBlueX-1][monsterBlueY]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY] = curr;
+            curr = board[monsterBlueX - 1][monsterBlueY];
+            board[monsterBlueX - 1][monsterBlueY] = prev;
+            prev = curr;
             monsterBlueX--;
 
         } else if (monsterBlueX < 13 & board[monsterBlueX + 1][monsterBlueY] !== 4) {
-
-            curr = board[monsterBlueX+1][monsterBlueY];
-            board[monsterBlueX+1][monsterBlueY]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY] = curr;
+            curr = board[monsterBlueX + 1][monsterBlueY];
+            board[monsterBlueX + 1][monsterBlueY] = prev;
+            prev = curr;
             monsterBlueX++;
         } else if (monsterBlueY < 8 & board[monsterBlueX][monsterBlueY + 1] !== 4) {
-
+            board[monsterBlueX][monsterBlueY] = curr;
             curr = board[monsterBlueX][monsterBlueY + 1];
-            board[monsterBlueX][monsterBlueY + 1]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY + 1] = prev;
+            prev = curr;
             monsterBlueY++;
 
         }
@@ -711,35 +724,432 @@ function leftBlue() {
 
 function rightBlue() {
     if (monsterBlueY < 8 & board[monsterBlueX][monsterBlueY + 1] !== 4) {
+        board[monsterBlueX][monsterBlueY] = curr;
         curr = board[monsterBlueX][monsterBlueY + 1];
-        board[monsterBlueX][monsterBlueY + 1]=prev;
-        prev=curr;
+        board[monsterBlueX][monsterBlueY + 1] = prev;
+        prev = curr;
         monsterBlueY++;
     } else if (board[monsterBlueX - 1][monsterBlueY] === 4) {
         if (monsterBlueX < 13 & board[monsterBlueX + 1][monsterBlueY] !== 4) {
-
-            curr = board[monsterBlueX+1][monsterBlueY];
-            board[monsterBlueX+1][monsterBlueY]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY] = curr;
+            curr = board[monsterBlueX + 1][monsterBlueY];
+            board[monsterBlueX + 1][monsterBlueY] = prev;
+            prev = curr;
             monsterBlueX++;
         } else if (monsterBlueX > 0 & board[monsterBlueX - 1][monsterBlueY] !== 4) {
-
-            curr = board[monsterBlueX-1][monsterBlueY];
-            board[monsterBlueX-1][monsterBlueY]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY] = curr;
+            curr = board[monsterBlueX - 1][monsterBlueY];
+            board[monsterBlueX - 1][monsterBlueY] = prev;
+            prev = curr;
             monsterBlueX--;
         } else if (monsterBlueY > 0 & board[monsterBlueX][monsterBlueY - 1] !== 4) {
-
-            curr = board[monsterBlueX][monsterBlueY-1];
-            board[monsterBlueX][monsterBlueY-1]=prev;
-            prev=curr;
+            board[monsterBlueX][monsterBlueY] = curr;
+            curr = board[monsterBlueX][monsterBlueY - 1];
+            board[monsterBlueX][monsterBlueY - 1] = prev;
+            prev = curr;
             monsterBlueY--;
         }
     }
 }
 
-var booleanS = false;
+/************************************************OrangeMonster***********************************************/
+function upOrange() {
+    if (monsterOrangeX > 0 & board[monsterOrangeX - 1][monsterOrangeY] !== 4) {
+        board[monsterOrangeX][monsterOrangeY] = curr;
+        curr = board[monsterOrangeX - 1][monsterOrangeY];
+        board[monsterOrangeX - 1][monsterOrangeY] = prev;
+        prev = curr;
 
+        monsterOrangeX--;
+
+    } else if (board[monsterOrangeX - 1][monsterOrangeY] === 4) {
+        if (monsterOrangeY > 0 & board[monsterOrangeX][monsterOrangeY - 1] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX][monsterOrangeY - 1];
+            board[monsterOrangeX][monsterOrangeY - 1] = prev;
+            prev = curr;
+            monsterOrangeY--;
+
+        } else if (monsterOrangeY < 8 & board[monsterOrangeX][monsterOrangeY + 1] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX][monsterOrangeY + 1];
+            board[monsterOrangeX][monsterOrangeY + 1] = prev;
+            prev = curr;
+            monsterOrangeY++;
+
+        } else if (monsterOrangeX < 13 & board[monsterOrangeX + 1][monsterOrangeY] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX + 1][monsterOrangeY];
+            board[monsterOrangeX + 1][monsterOrangeY] = prev;
+            prev = curr;
+
+            monsterOrangeY++;
+        }
+    }
+}
+
+function downOrange() {
+    if (monsterOrangeX < 13 & board[monsterOrangeX + 1][monsterOrangeY] !== 4) {
+        board[monsterOrangeX][monsterOrangeY] = curr;
+        curr = board[monsterOrangeX + 1][monsterOrangeY];
+        board[monsterOrangeX + 1][monsterOrangeY] = prev;
+        prev = curr;
+        monsterOrangeX++;
+
+    } else if (board[monsterOrangeX - 1][monsterOrangeY] === 4) {
+        if (monsterOrangeY < 8 & board[monsterOrangeX][monsterOrangeY + 1] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX][monsterOrangeY + 1];
+            board[monsterOrangeX][monsterOrangeY + 1] = prev;
+            prev = curr;
+            monsterOrangeY++;
+
+        } else if (monsterOrangeY > 0 & board[monsterOrangeX][monsterOrangeY - 1] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX][monsterOrangeY - 1];
+            board[monsterOrangeX][monsterOrangeY - 1] = prev;
+            prev = curr;
+            monsterOrangeY--;
+
+        } else if (monsterOrangeX > 0 & board[monsterOrangeX - 1][monsterOrangeY] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX - 1][monsterOrangeY];
+            board[monsterOrangeX - 1][monsterOrangeY] = prev;
+            prev = curr;
+            monsterOrangeX--;
+        }
+    }
+}
+
+function leftOrange() {
+    if (monsterOrangeY > 0 & board[monsterOrangeX][monsterOrangeY - 1] !== 4) {
+        board[monsterOrangeX][monsterOrangeY] = curr;
+        curr = board[monsterOrangeX][monsterOrangeY - 1];
+        board[monsterOrangeX][monsterOrangeY - 1] = prev;
+        prev = curr;
+        monsterOrangeY--;
+
+    } else if (board[monsterOrangeX - 1][monsterOrangeY] === 4) {
+        if (monsterOrangeX > 0 & board[monsterOrangeX - 1][monsterOrangeY] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX - 1][monsterOrangeY];
+            board[monsterOrangeX - 1][monsterOrangeY] = prev;
+            prev = curr;
+            monsterOrangeX--;
+
+        } else if (monsterOrangeX < 13 & board[monsterOrangeX + 1][monsterOrangeY] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX + 1][monsterOrangeY];
+            board[monsterOrangeX + 1][monsterOrangeY] = prev;
+            prev = curr;
+            monsterOrangeX++;
+        } else if (monsterOrangeY < 8 & board[monsterOrangeX][monsterOrangeY + 1] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX][monsterOrangeY + 1];
+            board[monsterOrangeX][monsterOrangeY + 1] = prev;
+            prev = curr;
+            monsterOrangeY++;
+
+        }
+    }
+}
+
+function rightOrange() {
+    if (monsterOrangeY < 8 & board[monsterOrangeX][monsterOrangeY + 1] !== 4) {
+        board[monsterOrangeX][monsterOrangeY] = curr;
+        curr = board[monsterOrangeX][monsterOrangeY + 1];
+        board[monsterOrangeX][monsterOrangeY + 1] = prev;
+        prev = curr;
+        monsterOrangeY++;
+    } else if (board[monsterOrangeX - 1][monsterOrangeY] === 4) {
+        if (monsterOrangeX < 13 & board[monsterOrangeX + 1][monsterOrangeY] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX + 1][monsterOrangeY];
+            board[monsterOrangeX + 1][monsterOrangeY] = prev;
+            prev = curr;
+            monsterOrangeX++;
+        } else if (monsterOrangeX > 0 & board[monsterOrangeX - 1][monsterOrangeY] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX - 1][monsterOrangeY];
+            board[monsterOrangeX - 1][monsterOrangeY] = prev;
+            prev = curr;
+            monsterOrangeX--;
+        } else if (monsterOrangeY > 0 & board[monsterOrangeX][monsterOrangeY - 1] !== 4) {
+            board[monsterOrangeX][monsterOrangeY] = curr;
+            curr = board[monsterOrangeX][monsterOrangeY - 1];
+            board[monsterOrangeX][monsterOrangeY - 1] = prev;
+            prev = curr;
+            monsterOrangeY--;
+        }
+    }
+}
+
+/************************************************GreenMonster***********************************************/
+function upGreen() {
+    if (monsterGreenX > 0 & board[monsterGreenX - 1][monsterGreenY] !== 4) {
+        board[monsterGreenX][monsterGreenY] = curr;
+        curr = board[monsterGreenX - 1][monsterGreenY];
+        board[monsterGreenX - 1][monsterGreenY] = prev;
+        prev = curr;
+
+        monsterGreenX--;
+
+    } else if (board[monsterGreenX - 1][monsterGreenY] === 4) {
+        if (monsterGreenY > 0 & board[monsterGreenX][monsterGreenY - 1] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX][monsterGreenY - 1];
+            board[monsterGreenX][monsterGreenY - 1] = prev;
+            prev = curr;
+            monsterGreenY--;
+
+        } else if (monsterGreenY < 8 & board[monsterGreenX][monsterGreenY + 1] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX][monsterGreenY + 1];
+            board[monsterGreenX][monsterGreenY + 1] = prev;
+            prev = curr;
+            monsterGreenY++;
+
+        } else if (monsterGreenX < 13 & board[monsterGreenX + 1][monsterGreenY] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX + 1][monsterGreenY];
+            board[monsterGreenX + 1][monsterGreenY] = prev;
+            prev = curr;
+
+            monsterGreenX++;
+        }
+    }
+}
+
+function downGreen() {
+    if (monsterGreenX < 13 & board[monsterGreenX + 1][monsterGreenY] !== 4) {
+        board[monsterGreenX][monsterGreenY] = curr;
+        curr = board[monsterGreenX + 1][monsterGreenY];
+        board[monsterGreenX + 1][monsterGreenY] = prev;
+        prev = curr;
+        monsterGreenX++;
+
+    } else if (board[monsterGreenX - 1][monsterGreenY] === 4) {
+        if (monsterGreenY < 8 & board[monsterGreenX][monsterGreenY + 1] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX][monsterGreenY + 1];
+            board[monsterGreenX][monsterGreenY + 1] = prev;
+            prev = curr;
+            monsterGreenY++;
+
+        } else if (monsterGreenY > 0 & board[monsterGreenX][monsterGreenY - 1] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX][monsterGreenY - 1];
+            board[monsterGreenX][monsterGreenY - 1] = prev;
+            prev = curr;
+            monsterGreenY--;
+
+        } else if (monsterGreenX > 0 & board[monsterGreenX - 1][monsterGreenY] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX - 1][monsterGreenY];
+            board[monsterGreenX - 1][monsterGreenY] = prev;
+            prev = curr;
+            monsterGreenX--;
+        }
+    }
+}
+
+function leftGreen() {
+    if (monsterGreenY > 0 & board[monsterGreenX][monsterGreenY - 1] !== 4) {
+        board[monsterGreenX][monsterGreenY] = curr;
+        curr = board[monsterGreenX][monsterGreenY - 1];
+        board[monsterGreenX][monsterGreenY - 1] = prev;
+        prev = curr;
+        monsterGreenY--;
+
+    } else if (board[monsterGreenX - 1][monsterGreenY] === 4) {
+        if (monsterGreenX > 0 & board[monsterGreenX - 1][monsterGreenY] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX - 1][monsterGreenY];
+            board[monsterGreenX - 1][monsterGreenY] = prev;
+            prev = curr;
+            monsterGreenX--;
+
+        } else if (monsterGreenX < 13 & board[monsterGreenX + 1][monsterGreenY] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX + 1][monsterGreenY];
+            board[monsterGreenX + 1][monsterGreenY] = prev;
+            prev = curr;
+            monsterGreenX++;
+        } else if (monsterGreenY < 8 & board[monsterGreenX][monsterGreenY + 1] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX][monsterGreenY + 1];
+            board[monsterGreenX][monsterGreenY + 1] = prev;
+            prev = curr;
+            monsterGreenY++;
+
+        }
+    }
+}
+
+function rightGreen() {
+    if (monsterGreenY < 8 & board[monsterGreenX][monsterGreenY + 1] !== 4) {
+        board[monsterGreenX][monsterGreenY] = curr;
+        curr = board[monsterGreenX][monsterGreenY + 1];
+        board[monsterGreenX][monsterGreenY + 1] = prev;
+        prev = curr;
+        monsterGreenY++;
+    } else if (board[monsterGreenX - 1][monsterGreenY] === 4) {
+        if (monsterGreenX < 13 & board[monsterGreenX + 1][monsterGreenY] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX + 1][monsterGreenY];
+            board[monsterGreenX + 1][monsterGreenY] = prev;
+            prev = curr;
+            monsterGreenX++;
+        } else if (monsterGreenX > 0 & board[monsterGreenX - 1][monsterGreenY] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX - 1][monsterGreenY];
+            board[monsterGreenX - 1][monsterGreenY] = prev;
+            prev = curr;
+            monsterGreenX--;
+        } else if (monsterGreenY > 0 & board[monsterGreenX][monsterGreenY - 1] !== 4) {
+            board[monsterGreenX][monsterGreenY] = curr;
+            curr = board[monsterGreenX][monsterGreenY - 1];
+            board[monsterGreenX][monsterGreenY - 1] = prev;
+            prev = curr;
+            monsterGreenY--;
+        }
+    }
+}
+
+/************************************************RedMonster***********************************************/
+function upRed() {
+    if (monsterRedX > 0 & board[monsterRedX - 1][monsterRedY] !== 4) {
+        board[monsterRedX][monsterRedY] = curr;
+        curr = board[monsterRedX - 1][monsterRedY];
+        board[monsterRedX - 1][monsterRedY] = prev;
+        prev = curr;
+
+        monsterRedX--;
+
+    } else if (board[monsterRedX - 1][monsterRedY] === 4) {
+        if (monsterRedY > 0 & board[monsterRedX][monsterRedY - 1] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX][monsterRedY - 1];
+            board[monsterRedX][monsterRedY - 1] = prev;
+            prev = curr;
+            monsterRedY--;
+
+        } else if (monsterRedY < 8 & board[monsterRedX][monsterRedY + 1] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX][monsterRedY + 1];
+            board[monsterRedX][monsterRedY + 1] = prev;
+            prev = curr;
+            monsterRedY++;
+
+        } else if (monsterRedX < 13 & board[monsterRedX + 1][monsterRedY] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX + 1][monsterRedY];
+            board[monsterRedX + 1][monsterRedY] = prev;
+            prev = curr;
+
+            monsterRedX++;
+        }
+    }
+}
+
+function downRed() {
+    if (monsterRedX < 13 & board[monsterRedX + 1][monsterRedY] !== 4) {
+        board[monsterRedX][monsterRedY] = curr;
+        curr = board[monsterRedX + 1][monsterRedY];
+        board[monsterRedX + 1][monsterRedY] = prev;
+        prev = curr;
+        monsterRedX++;
+
+    } else if (board[monsterRedX - 1][monsterRedY] === 4) {
+        if (monsterRedY < 8 & board[monsterRedX][monsterRedY + 1] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX][monsterRedY + 1];
+            board[monsterRedX][monsterRedY + 1] = prev;
+            prev = curr;
+            monsterRedY++;
+
+        } else if (monsterRedY > 0 & board[monsterRedX][monsterRedY - 1] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX][monsterRedY - 1];
+            board[monsterRedX][monsterRedY - 1] = prev;
+            prev = curr;
+            monsterRedY--;
+
+        } else if (monsterRedX > 0 & board[monsterRedX - 1][monsterRedY] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX - 1][monsterRedY];
+            board[monsterRedX - 1][monsterRedY] = prev;
+            prev = curr;
+            monsterRedX--;
+        }
+    }
+}
+
+function leftRed() {
+    if (monsterRedY > 0 & board[monsterRedX][monsterRedY - 1] !== 4) {
+        board[monsterRedX][monsterRedY] = curr;
+        curr = board[monsterRedX][monsterRedY - 1];
+        board[monsterRedX][monsterRedY - 1] = prev;
+        prev = curr;
+        monsterRedY--;
+
+    } else if (board[monsterRedX - 1][monsterRedY] === 4) {
+        if (monsterRedX > 0 & board[monsterRedX - 1][monsterRedY] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX - 1][monsterRedY];
+            board[monsterRedX - 1][monsterRedY] = prev;
+            prev = curr;
+            monsterRedX--;
+
+        } else if (monsterRedX < 13 & board[monsterRedX + 1][monsterRedY] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX + 1][monsterRedY];
+            board[monsterRedX + 1][monsterRedY] = prev;
+            prev = curr;
+            monsterRedX++;
+        } else if (monsterRedY < 8 & board[monsterRedX][monsterRedY + 1] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX][monsterRedY + 1];
+            board[monsterRedX][monsterRedY + 1] = prev;
+            prev = curr;
+            monsterRedY++;
+
+        }
+    }
+}
+
+function rightRed() {
+    if (monsterRedY < 8 & board[monsterRedX][monsterRedY + 1] !== 4) {
+        board[monsterRedX][monsterRedY] = curr;
+        curr = board[monsterRedX][monsterRedY + 1];
+        board[monsterRedX][monsterRedY + 1] = prev;
+        prev = curr;
+        monsterRedY++;
+    } else if (board[monsterRedX - 1][monsterRedY] === 4) {
+        if (monsterRedX < 13 & board[monsterRedX + 1][monsterRedY] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX + 1][monsterRedY];
+            board[monsterRedX + 1][monsterRedY] = prev;
+            prev = curr;
+            monsterRedX++;
+        } else if (monsterRedX > 0 & board[monsterRedX - 1][monsterRedY] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX - 1][monsterRedY];
+            board[monsterRedX - 1][monsterRedY] = prev;
+            prev = curr;
+            monsterRedX--;
+        } else if (monsterRedY > 0 & board[monsterRedX][monsterRedY - 1] !== 4) {
+            board[monsterRedX][monsterRedY] = curr;
+            curr = board[monsterRedX][monsterRedY - 1];
+            board[monsterRedX][monsterRedY - 1] = prev;
+            prev = curr;
+            monsterRedY--;
+        }
+    }
+}
+
+
+/************************************************updatePositions**********************************************/
 function UpdatePositionMonsters() {
 
     for (let monsterColor in listMonsters) {
@@ -750,16 +1160,13 @@ function UpdatePositionMonsters() {
         let monPlaceUpdatePosition = monsterChosen[tmpKeyPos];
         monPlaceUpdatePosition += 6;
 
-        if (monColor === "blue") {
+        prev = monPlaceUpdatePosition;
 
-            if (!booleanS) {
-                prev = monPlaceUpdatePosition;
-                booleanS = true;
-            }
-
-            let disX = monsterBlueX - shape.i;
-            let disY = monsterBlueY - shape.j;
-
+        let disX = monsterBlueX - shape.i;
+        let disY = monsterBlueY - shape.j;
+        if ((Math.abs(disX) === 1 && Math.abs(disY) === 0) || (Math.abs(disX) === 0 && Math.abs(disY) === 1)) {
+            collision = true;
+        } else if (monColor === "blue") {
             if (Math.abs(disX) < Math.abs(disY)) {
                 if (disX > 0) {//up
                     upBlue();
@@ -770,7 +1177,7 @@ function UpdatePositionMonsters() {
                 } else {//right
                     rightBlue();
                 }
-                Draw();
+
             } else if (Math.abs(disX) > Math.abs(disY)) {
                 if (disY > 0) {//left
                     leftBlue();
@@ -781,12 +1188,78 @@ function UpdatePositionMonsters() {
                 } else {//down
                     downBlue();
                 }
-                Draw();
+            }
+        } else if (monColor === "orange") {
+            if (Math.abs(disX) < Math.abs(disY)) {
+                if (disX > 0) {//up
+                    upOrange();
+                } else if (disX < 0) {//down
+                    downOrange();
+                } else if (disY > 0) {//left
+                    leftOrange();
+                } else {//right
+                    rightOrange();
+                }
+            } else if (Math.abs(disX) > Math.abs(disY)) {
+                if (disY > 0) {//left
+                    leftOrange();
+                } else if (disY < 0) {//right
+                    rightOrange();
+                } else if (disX > 0) {//up
+                    upOrange();
+                } else {//down
+                    downOrange();
+                }
+            }
+        } else if (monColor === "green") {
+            if (Math.abs(disX) < Math.abs(disY)) {
+                if (disX > 0) {//up
+                    upGreen();
+                } else if (disX < 0) {//down
+                    downGreen();
+                } else if (disY > 0) {//left
+                    leftGreen();
+                } else {//right
+                    rightGreen();
+                }
+            } else if (Math.abs(disX) > Math.abs(disY)) {
+                if (disY > 0) {//left
+                    leftGreen();
+                } else if (disY < 0) {//right
+                    rightGreen();
+                } else if (disX > 0) {//up
+                    upGreen();
+                } else {//down
+                    downGreen();
+                }
+            }
+        } else if (monColor === "red") {
+            if (Math.abs(disX) < Math.abs(disY)) {
+                if (disX > 0) {//up
+                    upRed();
+                } else if (disX < 0) {//down
+                    downRed();
+                } else if (disY > 0) {//left
+                    leftRed();
+                } else {//right
+                    rightRed();
+                }
+
+            } else if (Math.abs(disX) > Math.abs(disY)) {
+                if (disY > 0) {//left
+                    leftRed();
+                } else if (disY < 0) {//right
+                    rightRed();
+                } else if (disX > 0) {//up
+                    upRed();
+                } else {//down
+                    downRed();
+                }
             }
 
-
         }
-
+        checkCollision();
+        Draw();
     }
 }
 
@@ -819,28 +1292,7 @@ function updateScoreAfterCollision(tmpX, tmpY) {
     looseLife();
 }
 
-//stop scrolling
-window.addEventListener("keydown", function (e) {
-    // arrow keys
-    if ([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-        e.preventDefault();
-    }
-}, false);
-
-function musicController() {
-    var imgElement = document.getElementById('imageMusic');
-    if (musicOn) {
-        imgElement.src = img1;
-        audio.pause();
-        musicOn = false;
-    } else {
-        imgElement.src = img2;
-        audio.play();
-        //audio.loop=true;
-        musicOn = true;
-    }
-}
-
+/************************************************updateLife**********************************************/
 function updateLife() {
     if (pacmanLife == 4) {
         pacmanLife++;
@@ -906,4 +1358,27 @@ function looseLife() {
         document.getElementById("lblLive4").style.visibility = "hidden";
     }
     pacmanLife--;
+}
+
+/************************************************Others**********************************************/
+//stop scrolling
+window.addEventListener("keydown", function (e) {
+    // arrow keys
+    if ([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
+
+function musicController() {
+    var imgElement = document.getElementById('imageMusic');
+    if (musicOn) {
+        imgElement.src = img1;
+        audio.pause();
+        musicOn = false;
+    } else {
+        imgElement.src = img2;
+        audio.play();
+        //audio.loop=true;
+        musicOn = true;
+    }
 }
