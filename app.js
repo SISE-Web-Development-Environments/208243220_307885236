@@ -662,10 +662,10 @@ function UpdatePositionMonsters() {
                 } else if (disY < 0) {//right
                     rightBlue();
                 }
-                else if (disX > 0) {//up
-                    upBlue();
-                } else {//down
+                else if (disX < 0) {//down
                     downBlue();
+                } else {//up
+                    upBlue();
                 }
             }
         } else if (monColor === "orange"&& monsterOrangeX!==-1 && monsterOrangeY!==-1) {
@@ -694,10 +694,10 @@ function UpdatePositionMonsters() {
                     leftOrange();
                 } else if (disY < 0) {//right
                     rightOrange();}
-                else if (disX > 0) {//up
-                    upOrange();
-                } else {//down
+                else if (disX > 0) {//down
                     downOrange();
+                } else {//up
+                    upOrange();
                 }
             }
         } else if (monColor === "green"&& monsterGreenX!==-1 && monsterGreenY!==-1) {
@@ -727,10 +727,10 @@ function UpdatePositionMonsters() {
                 } else if (disY < 0) {//right
                     rightGreen();
                 }
-                else if (disX > 0) {//up
-                    upGreen();
-                } else {//down
+                else if (disX > 0) {//down
                     downGreen();
+                } else {//up
+                    upGreen();
                 }
             }
         } else if (monColor === "red"&& monsterRedX!==-1 && monsterRedY!==-1) {
@@ -760,10 +760,10 @@ function UpdatePositionMonsters() {
                 } else if (disY < 0) {//right
                     rightRed();
                 }
-                else if (disX > 0) {//up
-                    upRed();
-                } else {//down
+                else if (disX > 0) {//down
                     downRed();
+                } else {//up
+                    upRed();
                 }
             }
         }
