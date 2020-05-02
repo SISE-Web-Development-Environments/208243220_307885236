@@ -198,21 +198,6 @@ function showMenuAbout() {
     showModal();
 }
 
-function showPrimary() {
-    if (document.getElementById("game").style.display === 'block') {
-        if (confirm("Do you sure you want to quit?")) {
-            document.getElementById("game").style.display = 'none';
-            document.getElementById('aboutSection').style.display = 'block';
-        }
-    } else {
-        document.getElementById('aboutSection').style.display = 'none';
-        hide('welcome','register','settings','login');
-        document.getElementById("formReg").reset();
-        document.getElementById("formLogIn").reset();
-    }
-
-}
-
 function showMenuSettings() {
     if (document.getElementById("game").style.display === 'block') {
         if (confirm("Do you sure you want to start new game?")) {
