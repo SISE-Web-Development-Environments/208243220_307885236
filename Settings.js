@@ -13,11 +13,6 @@ var keyRight;
 var keyDown;
 var keyLeft;
 
-// function exitGame() {
-//     if (confirm("Do you sure you want to quit the game?")) {
-//         return show('welcome', 'game');
-//     }
-// }
 
 function playFunction(){
     showColorsChosenForCookies();

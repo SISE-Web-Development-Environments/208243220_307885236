@@ -8,7 +8,6 @@
     <script src="Settings.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="Style.css"/>
     <link rel="icon" href="Resources/face.png" type="image/icon type">
-
     <title>Pac&#127850Monster</title>
 </head>
 
@@ -21,14 +20,10 @@
         <img src="Resources/face.png" width="40" height="40">
     </p>
     <ul>
-        <li><a class="menuList" href="#welcome"
-               onclick="showMenuWelcome()">Welcome</a></li>
-        <li><a class="menuList" href="#register"
-               onclick="showMenuRegister()">Register</a></li>
-        <li><a class="menuList" href="#login" onclick="showMenuLogin()">Login</a>
-        </li>
-        <li><a class="menuList" id="aboutMenu" href="#aboutSection"
-               onclick="showMenuAbout()">About</a></li>
+        <li><a class="menuList" href="#welcome" onclick="showMenuWelcome()">Welcome</a></li>
+        <li><a class="menuList" href="#register" onclick="showMenuRegister()">Register</a></li>
+        <li><a class="menuList" href="#login" onclick="showMenuLogin()">Login</a></li>
+        <li><a class="menuList" id="aboutMenu" href="#aboutSection" onclick="showMenuAbout()">About</a></li>
     </ul>
 </div>
 <br>
@@ -141,20 +136,30 @@
 </div>
 
 <dialog id="aboutSection" class="modal">
-    <table class="tableC">
-        <tr>
-            <td colspan="2" align="center"><strong>About</strong></td>
-            <td align="right">
-                <button id="closeButton" onclick="closeAbout();">X</button>
-            </td>
-        </tr>
-        <tr>
-            <td align="center"><strong>Names:</strong>Shahar Ben Shaya, Hilla Peterfreund</td>
-        </tr>
-        <tr>
-            <td align="center">In this site we used jQuery at the validation of log in and register methods.</td>
-        </tr>
-    </table>
+    <!-- Modal content -->
+<!--    <span class="close" onclick="closeAbout();"><h1>&times;</h1></span>-->
+<!--        <table class="tableC">-->
+<!--            <tr>-->
+<!--                <td colspan="2" align="center"><strong>About</strong></td>-->
+
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td align="center"><strong>Names:</strong>Shahar Ben Shaya, Hilla Peterfreund</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td align="center">In this site we used jQuery at the validation of log in and register methods.</td>-->
+<!--            </tr>-->
+<!--        </table>-->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeAbout();"><h1>&times;</h1></span>
+            <p>Some text in the Modal..</p>
+        </div>
+
+    </div>
+
 </dialog>
 
 <div id="settings" class="div" style="display:none">
@@ -194,12 +199,12 @@
                 <tr>
                     <td align="center">
                         <strong>Choose 5 points Cookies</strong><br>
-                        <div  align="left">
+                        <div align="left">
                             <input type="color" id="fiveCookie" name="Cookie" value="#b37700">
                             <label for="fiveCookie">Cookie</label>
                         </div>
 
-                        <div  align="left">
+                        <div align="left">
                             <input type="color" id="fiveChip" name="ChocolateChips" value="#664400">
                             <label for="fiveChip">Chocolate chips</label>
                         </div>
@@ -209,7 +214,7 @@
                             <input type="color" id="fifthCookie" name="Base" value="#ffcc99">
                             <label for="fifthCookie">Cookie</label>
                         </div>
-                        <div  align="left">
+                        <div align="left">
                             <input type="color" id="fifthChip" name="ChocolateChips" value="#fff2e6">
                             <label for="fifthChip">Chocolate chips</label>
                         </div>
@@ -244,10 +249,10 @@
                     </td>
                 </tr>
                 <tr>
-<!--                    <td rowspan="2" align="center">-->
-<!--                        <strong>Choose Time in Seconds </strong><br>-->
-<!--                        <input type="number" id="gameTime" min="60" required><br>-->
-<!--                    </td>-->
+                    <!--                    <td rowspan="2" align="center">-->
+                    <!--                        <strong>Choose Time in Seconds </strong><br>-->
+                    <!--                        <input type="number" id="gameTime" min="60" required><br>-->
+                    <!--                    </td>-->
                 </tr>
             </table>
 
@@ -367,12 +372,19 @@
 <br>
 <br>
 <br>
+
+
+
+<dialog id="dialogWinner" title="Winner" class="modal">
+    <p>Winner:</p>
+    <img src="Resources/happy.gif"/>
+    <button id="closeButtonWinning" onclick="document.getElementById('dialogWinner').close();">X</button>
+</dialog>
+
+</body>
 <footer>
     <center><p class="footerC"><strong>This is Pac&#127850Monster game in html5</strong> <br>
         <strong>Email: </strong>hillapet@post.bgu.ac.il | benshays@post.bgu.ac.il </p></center>
 
 </footer>
-
-</body>
-
 </html>

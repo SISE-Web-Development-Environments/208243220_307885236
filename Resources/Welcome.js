@@ -195,6 +195,7 @@ function showMenuAbout() {
         document.getElementById("formReg").reset();
         document.getElementById("formLogIn").reset();
     }
+    showModal();
 }
 
 function showMenuSettings() {
