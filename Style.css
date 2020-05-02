@@ -1,5 +1,5 @@
 body{
-    background-image: url("back4.jpg");
+    background-image: url("Resources/back4.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -110,20 +110,16 @@ button:hover {
 
 dialog{
     background-color: rgba(64, 108, 178,0.8);
-    width: 300px;
+    width: 500px;
 
 }
-
-/*td.gameTableTd{*/
-/*    border: dotted black;*/
-/*}*/
 
 .square {
     height: 20px;
     width: 20px;
 }
 
-.tableGame , .tableGame.th, .tableGame.tr{
+table.tableGame , table.tableGame.td, table.tableGame.tr{
     font-size: 10px;
     border-style: dotted;
     border-color: black;
@@ -131,6 +127,21 @@ dialog{
     color: #406CB2;
 }
 
+table.settingsTable,table.settingsTable.td, table.settingsTable.tr{
+    font-size: 15px;
+    border-style: dotted;
+    border-color: black;
+    display:inline-block;
+    color: #406CB2;
+    width: 600px;
+}
+
+
 p.userLogo{
     font-size: 15px;
+}
+
+p.footerC{
+    font-size: 15px;
+    color: #406CB2;
 }
