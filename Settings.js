@@ -13,6 +13,8 @@ var keyRight;
 var keyDown;
 var keyLeft;
 
+var listMonsters;
+
 
 function playFunction(){
     showColorsChosenForCookies();
@@ -148,8 +150,6 @@ function isMonsterChecked() {
     }
     return false;
 }
-
-var listMonsters;
 
 function createMonsterPositions(){
     listMonsters=[];
