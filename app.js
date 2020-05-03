@@ -234,7 +234,7 @@ function Start() {
 
     intervalMonsters = setInterval(UpdatePositionMonsters, 750);
     interval = setInterval(UpdatePosition, 500);
-    intervalAlmo = setInterval(updatePositionAlmo, 750);
+  //  intervalAlmo = setInterval(updatePositionAlmo, 750);
 
 }
 

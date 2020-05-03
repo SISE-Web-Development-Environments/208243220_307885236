@@ -117,22 +117,25 @@ button:hover {
     cursor: pointer;
     /*color: white;*/
 }
-dialog.modal{
-    z-index: 10;
-    position:fixed;
+.modal {
     display: none;
-    border: 2px solid black;
-    background-color: #406CB2;
-    color: white;
-    width: 650px;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
     overflow: auto;
-    height: 300px;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
-dialog.winner{
-    background-color: white;
-    width: 550px;
-    height: 300px;
+.modal-content {
+    background-color: #406CB2;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid white;
+    width: 80%; /* Could be more or less, depending on screen size */
 }
 
 .container {
@@ -158,6 +161,12 @@ dialog.winner{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+dialog.winner{
+    background-color: white;
+    width: 550px;
+    height: 300px;
 }
 
 .square {
