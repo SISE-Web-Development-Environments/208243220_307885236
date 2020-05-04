@@ -239,13 +239,13 @@
                             <br>
                             <strong>Choose keyboard </strong><br>
                             Key up&nbsp;
-                            <input type="text" id="keyUpInput" onkeypress="upPress(event)" size="2"><br>
+                            <input type="text" id="keyUpInput" onkeydown="upPress(event)" maxlength="1" size="2"><br>
                             Key right
-                            <input type="text" id="keyRightInput" onkeypress="rightPress(event)" size="2"><br>
+                            <input type="text" id="keyRightInput" onkeydown="rightPress(event)" maxlength="1"  size="2"><br>
                             Key down
-                            <input type="text" id="keyDownInput" onkeypress="downPress(event)" size="2"><br>
+                            <input type="text" id="keyDownInput" onkeydown="downPress(event)" maxlength="1"  size="2"><br>
                             Key left
-                            <input type="text" id="keyLeftInput" onkeypress="leftPress(event)" size="2"><br>
+                            <input type="text" id="keyLeftInput" onkeydown="leftPress(event)" maxlength="1"  size="2"><br>
                             <br>
                             <strong>Choose Time in Seconds </strong><br>
                             <input type="number" id="gameTime" min="60" required size="2"><br>
@@ -387,7 +387,7 @@
                         </tr>
                     </table>
                 </td>
-                <td class="gameTd" height="450">
+                <td height="450">
                     <canvas id="canvas" height="445" width="700"></canvas>
                 </td>
             </table>
@@ -395,11 +395,14 @@
 
         </center>
     </div>
-
+    <br>
+    <br>
+    <br>
+    <br>
 </Content>
 <footer>
-    <center><p class="footerC"><strong>This is Pac&#127850Monster game in html5</strong> <br>
-        <strong>Email: </strong>hillapet@post.bgu.ac.il | benshays@post.bgu.ac.il </p></center>
+   <p><strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;This is Pac&#127850Monster game in html5 </strong>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <strong>Email: </strong>hillapet@post.bgu.ac.il | benshays@post.bgu.ac.il </p>
 
 </footer>
 </body>

@@ -567,7 +567,10 @@ function UpdatePosition() {
         monsterOrange.checked=false;
         monsterGreen.checked=false;
         monsterRed.checked=false;
-
+        board[0][0]=0;
+        board[13][0]=0;
+        board[13][8]=0;
+        board[0][8]=0;
         if (score < 100) {
             window.alert("You are better than " + score + " points");
             showMenuSettings();
@@ -583,6 +586,10 @@ function UpdatePosition() {
         monsterOrange.checked=false;
         monsterGreen.checked=false;
         monsterRed.checked=false;
+        board[0][0]=0;
+        board[13][0]=0;
+        board[13][8]=0;
+        board[0][8]=0;
         window.alert("Loser!");
         showMenuSettings();
     } else {
