@@ -236,16 +236,25 @@
 
                         </td>
                         <td align="center">
-                            <br>
                             <strong>Choose keyboard </strong><br>
-                            Key up&nbsp;
-                            <input type="text" id="keyUpInput" onkeydown="upPress(event)" maxlength="1" size="2"><br>
-                            Key right
-                            <input type="text" id="keyRightInput" onkeydown="rightPress(event)" maxlength="1"  size="2"><br>
-                            Key down
-                            <input type="text" id="keyDownInput" onkeydown="downPress(event)" maxlength="1"  size="2"><br>
-                            Key left
-                            <input type="text" id="keyLeftInput" onkeydown="leftPress(event)" maxlength="1"  size="2"><br>
+                            <table>
+                                <tr>
+                                    <td>Key up</td>
+                                    <td><input type="text" id="keyUpInput" onkeydown="upPress(event)" maxlength="1" size="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>Key right</td>
+                                    <td> <input type="text" id="keyRightInput" onkeydown="rightPress(event)" maxlength="1" size="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>Key down</td>
+                                    <td><input type="text" id="keyDownInput" onkeydown="downPress(event)" maxlength="1"  size="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>Key left</td>
+                                    <td><input type="text" id="keyLeftInput" onkeydown="leftPress(event)" maxlength="1"  size="2"></td>
+                                </tr>
+                            </table>
                             <br>
                             <strong>Choose Time in Seconds </strong><br>
                             <input type="number" id="gameTime" min="60" required size="2"><br>
