@@ -193,11 +193,11 @@ function createMonsterPositions(){
             while(randomMonster2===randomMonster1){
                 randomMonster2= Math.round(Math.random()*3);
             }
-            let newMonsterOrange = {};
-            newMonsterOrange.color = "orange";
-            newMonsterOrange.pos = randomMonster2;
-            listMonsters.push(newMonsterOrange);
         }
+        let newMonsterOrange = {};
+        newMonsterOrange.color = "orange";
+        newMonsterOrange.pos = randomMonster2;
+        listMonsters.push(newMonsterOrange);
     }
     if(monsterGreen.checked){
         randomMonster3= Math.round(Math.random()*3);

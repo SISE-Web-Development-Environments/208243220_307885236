@@ -567,9 +567,9 @@ function UpdatePosition() {
         monsterOrange.checked=false;
         monsterGreen.checked=false;
         monsterRed.checked=false;
+
         if (score < 100) {
             window.alert("You are better than " + score + " points");
-
             showMenuSettings();
         } else {
             win();
@@ -687,7 +687,7 @@ function UpdatePositionMonsters() {
                     upBlue();
                 }
             }
-        } else if (monColor === "orange" && monsterOrangeX !== -1 && monsterOrangeY !== -1) {
+        }else if (monColor === "orange" && monsterOrangeX !== -1 && monsterOrangeY !== -1) {
             currOrange = monPlaceUpdatePosition;
             disX = monsterOrangeX - shape.i;
             disY = monsterOrangeY - shape.j;
@@ -770,7 +770,7 @@ function UpdatePositionMonsters() {
                     upOrange();
                 }
             }
-        } else if (monColor === "green" && monsterGreenX !== -1 && monsterGreenY !== -1) {
+        }else  if (monColor === "green" && monsterGreenX !== -1 && monsterGreenY !== -1) {
             currGreen = monPlaceUpdatePosition;
             disX = monsterGreenX - shape.i;
             disY = monsterGreenY - shape.j;
@@ -853,7 +853,7 @@ function UpdatePositionMonsters() {
                     upGreen();
                 }
             }
-        } else if (monColor === "red" && monsterRedX !== -1 && monsterRedY !== -1) {
+        }else if (monColor === "red" && monsterRedX !== -1 && monsterRedY !== -1) {
             currRed = monPlaceUpdatePosition;
             disX = monsterRedX - shape.i;
             disY = monsterRedY - shape.j;
@@ -1218,8 +1218,6 @@ function goToLastMoveRed() {
 /************************************************SetPosition***********************************************/
 
 function setMonstersStartPoint() {
-
-
     monsterBlueX = -1;
     monsterBlueY = -1;
     monsterRedX = -1;
@@ -1497,6 +1495,7 @@ function checkCollision() {
 
             pacman.img = pacman.imgRight;
 
+            monster.img=null;
             createMonsterPositions();
             setMonstersStartPoint();
         }
