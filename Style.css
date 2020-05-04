@@ -181,6 +181,11 @@ table.tableGame , table.tableGame.td, table.tableGame.tr{
     display:inline-block;
     color: #406CB2;
 }
+td.gameTd{
+    font-size: 10px;
+    border-style: dotted;
+    border-color: black;
+}
 
 table.settingsTable,table.settingsTable.td, table.settingsTable.tr{
     font-size: 15px;

@@ -41,7 +41,9 @@
             <p align="center">
                 <strong>Names: </strong>Shahar Ben Shaya, Hilla Peterfreund<br/><br/>
                 In this site we used jQuery at the validation of login and register methods. <br/>
-                The difficult was to try to understand the logic of how we want to implement the game.<br/>
+                The difficult was to try to understand the logic of how we want to implement the game,
+                and how to make the game more unique- <br>We added 4 different types of monsters that collision with
+                each of them discount different points to players.<br/>
                 <br>
             </p>
             <p align="center"><img src="Resources/face.png" width="40" height="40">
@@ -50,12 +52,14 @@
         </div>
     </dialog>
 
-    <dialog id="dialogWinner" title="Winner" class="winner">
+    <dialog id="dialogWinner" title="Winner" class="modal">
+        <div class="modal-content">
         <span class="closeWin"><strong>&times;</strong></span>
         <center>
             <img src="Resources/happy.gif" title="Winner!"/>
             <div class="centered"><p><strong>Winner!</strong></p></div>
         </center>
+        </div>
     </dialog>
 
     <div id="welcome" class="alert">
@@ -344,6 +348,32 @@
                             </td>
                         </tr>
                         <tr>
+                        <tr>
+                            <td>
+                                <center><label for="lblUp"><strong>UP:</strong></label></center>
+                            </td>
+                            <td><input id="lblUp" type="text" size="5"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><label for="lblRight"><strong>RIGHT:</strong></label></center>
+                            </td>
+                            <td><input id="lblRight" type="text" size="5"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><label for="lblDown"><strong>DOWN:</strong></label></center>
+                            </td>
+                            <td><input id="lblDown" type="text" size="5"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center><label for="lblLeft"><strong>LEFT:</strong></label></center>
+                            </td>
+                            <td><input id="lblLeft" type="text" size="5"/></td>
+                        </tr>
+                        </tr>
+                        <tr>
                             <td colspan="2" align="center">
                                 <button type="submit" id="reloadNew">
                                     <a href="#settings" onclick="startNewGame()">Start new Game</a>
@@ -357,7 +387,7 @@
                         </tr>
                     </table>
                 </td>
-                <td height="450">
+                <td class="gameTd" height="450">
                     <canvas id="canvas" height="445" width="700"></canvas>
                 </td>
             </table>

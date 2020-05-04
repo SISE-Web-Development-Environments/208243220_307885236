@@ -18,6 +18,7 @@ var listMonsters;
 
 function playFunction(){
     showColorsChosenForCookies();
+    insertKeyBoardTypes();
     if(isMonsterChecked() & isNumCookiesValid() & isTimeLegal()){
         musicController();
         return showGame();
@@ -26,6 +27,21 @@ function playFunction(){
         //  alert("sad");
     }
 
+}
+
+function insertKeyBoardTypes(){
+    if(keyUp==null){
+        lblUp.value= "↑";
+    }
+    if(keyRight==null){
+        lblRight.value= "→";
+    }
+    if(keyDown==null){
+        lblDown.value= "↓";
+    }
+    if(keyLeft==null){
+        lblLeft.value= "←";
+    }
 }
 
 function isTimeLegal(){

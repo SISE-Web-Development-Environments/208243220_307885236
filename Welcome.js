@@ -141,10 +141,13 @@ function checkDate() {
 
 /****************************************ShowAllMenus*********************************************/
 function showMenuWelcome() {
+
     if (document.getElementById("game").style.display === 'block') {
         if (confirm("Do you sure you want to quit?")) {
             document.getElementById("game").style.display = 'none';
             document.getElementById('welcome').style.display = 'block';
+            audio.pause();
+            musicOn = true;
         }
     } else {
         document.getElementById('welcome').style.display = 'block';
@@ -156,10 +159,13 @@ function showMenuWelcome() {
 }
 
 function showMenuRegister() {
+
     if (document.getElementById("game").style.display === 'block') {
         if (confirm("Do you sure you want to quit?")) {
             document.getElementById("game").style.display = 'none';
             document.getElementById('register').style.display = 'block';
+            audio.pause();
+            musicOn = true;
         }
     } else {
         document.getElementById('register').style.display = 'block';
@@ -174,6 +180,8 @@ function showMenuLogin() {
         if (confirm("Do you sure you want to quit?")) {
             document.getElementById("game").style.display = 'none';
             document.getElementById('login').style.display = 'block';
+            audio.pause();
+            musicOn = true;
         }
     } else {
         document.getElementById('login').style.display = 'block';
@@ -184,10 +192,13 @@ function showMenuLogin() {
 }
 
 function showMenuAbout() {
+
     if (document.getElementById("game").style.display === 'block') {
         if (confirm("Do you sure you want to quit?")) {
             document.getElementById("game").style.display = 'none';
             document.getElementById('aboutSection').style.display = 'block';
+            audio.pause();
+            musicOn = true;
         }
     } else {
         document.getElementById('aboutSection').style.display = 'block';
@@ -199,27 +210,28 @@ function showMenuAbout() {
 }
 
 function showMenuSettings() {
-    document.getElementsByClassName("closeWin")[0].onclick = function() {
-        document.getElementById('dialogWinner').style.display='none';
-        document.getElementById('dialogWinner').close();
-    }
     if (document.getElementById("game").style.display === 'block') {
-        if (confirm("Do you sure you want to start new game?")) {
+        if (confirm("Do you sure you want to quit?")) {
             document.getElementById("game").style.display = 'none';
             document.getElementById('settings').style.display = 'block';
-            document.getElementById('dialogWinner').style.display='none';
+            audio.pause();
+            musicOn = true;
         }
     } else {
         document.getElementById('settings').style.display = 'block';
         hide('welcome','register','login','aboutSection');
+        document.getElementById("formReg").reset();
+        document.getElementById("formLogIn").reset();
     }
 }
 
 function showGame() {
     if (document.getElementById("game").style.display === 'block') {
-        if (confirm("Do you sure you want to start over?")) {
+        if (confirm("Do you want to start over?")) {
             document.getElementById("game").style.display = 'none';
             document.getElementById('settings').style.display = 'block';
+            audio.pause();
+            musicOn = true;
         }
     } else {
         document.getElementById('game').style.display = 'block';
