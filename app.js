@@ -563,12 +563,13 @@ function UpdatePosition() {
         window.clearInterval(interval);
         window.clearInterval(intervalMonsters);
         window.clearInterval(intervalAlmo);
-        monster1.checked=false;
-        monster2.checked=false;
-        monster3.checked=false;
-        monster4.checked=false;
+        monsterBlue.checked=false;
+        monsterOrange.checked=false;
+        monsterGreen.checked=false;
+        monsterRed.checked=false;
         if (score < 100) {
             window.alert("You are better than " + score + " points");
+
             showMenuSettings();
         } else {
             win();
@@ -578,10 +579,10 @@ function UpdatePosition() {
         window.clearInterval(interval);
         window.clearInterval(intervalMonsters);
         window.clearInterval(intervalAlmo);
-        monster1.checked=false;
-        monster2.checked=false;
-        monster3.checked=false;
-        monster4.checked=false;
+        monsterBlue.checked=false;
+        monsterOrange.checked=false;
+        monsterGreen.checked=false;
+        monsterRed.checked=false;
         window.alert("Loser!");
         showMenuSettings();
     } else {

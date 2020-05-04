@@ -3,23 +3,22 @@ var randomMonster2=5;
 var randomMonster3=5;
 var randomMonster4=5;
 
-var monster1;
-var monster2;
-var monster3;
-var monster4;
+var monsterBlue;
+var monsterOrange;
+var monsterGreen;
+var monsterRed;
 
-var keyUp;
-var keyRight;
-var keyDown;
-var keyLeft;
+var keyUp = null;
+var keyRight = null;
+var keyDown = null;
+var keyLeft = null;
 
 var listMonsters;
 
 
 function playFunction(){
     showColorsChosenForCookies();
-    insertKeyBoardTypes();
-    if(isMonsterChecked() & isNumCookiesValid() & isTimeLegal()){
+    if(isMonsterChecked() & isNumCookiesValid() & isTimeLegal() & insertKeyBoardTypes()){
         musicController();
         return showGame();
     }else{
@@ -30,18 +29,25 @@ function playFunction(){
 }
 
 function insertKeyBoardTypes(){
-    if(keyUp==null){
-        lblUp.value= "↑";
+    lblUp.value= "↑";
+    lblRight.value= "→";
+    lblDown.value= "↓";
+    lblLeft.value= "←";
+    if(keyLeft === null && keyDown === null && keyRight === null && keyUp === null) {
+        return true;
+    } else if (keyUp !== keyDown && keyDown !== keyRight && keyRight !== keyLeft && keyUp !== keyLeft &&
+            keyUp !== keyRight && keyDown !== keyLeft) {
+        lblUp.value = String.fromCharCode(keyUp);
+        lblRight.value = String.fromCharCode(keyRight);
+        lblDown.value = String.fromCharCode(keyDown);
+        lblLeft.value = String.fromCharCode(keyLeft);
+        return true;
+    } else {
+        alert("Please choose 4 different keyboards");
+        return false;
     }
-    if(keyRight==null){
-        lblRight.value= "→";
-    }
-    if(keyDown==null){
-        lblDown.value= "↓";
-    }
-    if(keyLeft==null){
-        lblLeft.value= "←";
-    }
+
+
 }
 
 function isTimeLegal(){
@@ -103,37 +109,37 @@ function fillChoice() {
     document.getElementById('twentyCookie').value = "#331a00";
     document.getElementById('twentyChip').value = "#ffffff";
 
-    document.getElementById("monster1").checked = true;
-    document.getElementById("monster3").checked = true;
-    document.getElementById("monster4").checked = true;
+    document.getElementById("monsterBlue").checked = true;
+    document.getElementById("monsterGreen").checked = true;
+    document.getElementById("monsterRed").checked = true;
 
     document.getElementById('gameTime').value = 120;
 
 }
 
 function clearCheckBox() {
-    document.getElementById("monster1").checked = false;
-    document.getElementById("monster2").checked = false;
-    document.getElementById("monster3").checked = false;
-    document.getElementById("monster4").checked = false;
+    document.getElementById("monsterBlue").checked = false;
+    document.getElementById("monsterOrange").checked = false;
+    document.getElementById("monsterGreen").checked = false;
+    document.getElementById("monsterRed").checked = false;
 }
 
 function randomCheckBox(){
     let randomCheckBox=Math.round(Math.random());
     if(randomCheckBox==1){
-        document.getElementById("monster1").checked = true;
+        document.getElementById("monsterBlue").checked = true;
     }
     randomCheckBox=Math.round(Math.random());
     if(randomCheckBox==1){
-        document.getElementById("monster2").checked = true;
+        document.getElementById("monsterOrange").checked = true;
     }
     randomCheckBox=Math.round(Math.random());
     if(randomCheckBox==1){
-        document.getElementById("monster3").checked = true;
+        document.getElementById("monsterGreen").checked = true;
     }
     randomCheckBox=Math.round(Math.random());
     if(randomCheckBox==1){
-        document.getElementById("monster4").checked = true;
+        document.getElementById("monsterRed").checked = true;
     }
 }
 
@@ -169,11 +175,11 @@ function isMonsterChecked() {
 
 function createMonsterPositions(){
     listMonsters=[];
-    monster1 = document.getElementById('monster1');
-    monster2 = document.getElementById('monster2');
-    monster3 = document.getElementById('monster3');
-    monster4 = document.getElementById('monster4');
-    if(monster1.checked){
+    monsterBlue = document.getElementById('monsterBlue');
+    monsterOrange = document.getElementById('monsterOrange');
+    monsterGreen = document.getElementById('monsterGreen');
+    monsterRed = document.getElementById('monsterRed');
+    if(monsterBlue.checked){
         randomMonster1= Math.round(Math.random()*3);
         let newMonsterBlue = {};
         newMonsterBlue.color = "blue";
@@ -181,9 +187,9 @@ function createMonsterPositions(){
         listMonsters.push(newMonsterBlue);
 
     }
-    if(monster2.checked){
+    if(monsterOrange.checked){
         randomMonster2= Math.round(Math.random()*3);
-        if(monster1.checked){
+        if(monsterBlue.checked){
             while(randomMonster2===randomMonster1){
                 randomMonster2= Math.round(Math.random()*3);
             }
@@ -193,17 +199,17 @@ function createMonsterPositions(){
             listMonsters.push(newMonsterOrange);
         }
     }
-    if(monster3.checked){
+    if(monsterGreen.checked){
         randomMonster3= Math.round(Math.random()*3);
-        if(monster1.checked & monster2.checked){
+        if(monsterBlue.checked & monsterOrange.checked){
             while(randomMonster3===randomMonster1 || randomMonster3===randomMonster2){
                 randomMonster3= Math.round(Math.random()*3);
             }
-        }else if(monster1.checked){
+        }else if(monsterBlue.checked){
             while(randomMonster3===randomMonster1){
                 randomMonster3= Math.round(Math.random()*3);
             }
-        }else if(monster2.checked){
+        }else if(monsterOrange.checked){
             while(randomMonster3===randomMonster2){
                 randomMonster3= Math.round(Math.random()*3);
             }
@@ -213,33 +219,33 @@ function createMonsterPositions(){
         newMonsterGreen.pos = randomMonster3;
         listMonsters.push(newMonsterGreen);
     }
-    if(monster4.checked){
+    if(monsterRed.checked){
         randomMonster4= Math.round(Math.random()*3);
-        if(monster1.checked & monster2.checked & monster3.checked){
+        if(monsterBlue.checked & monsterOrange.checked & monsterGreen.checked){
             while(randomMonster4===randomMonster1 || randomMonster4===randomMonster2|| randomMonster4===randomMonster3){
                 randomMonster4= Math.round(Math.random()*3);
             }
-        }else if(monster1.checked & monster2.checked){
+        }else if(monsterBlue.checked & monsterOrange.checked){
             while(randomMonster4===randomMonster1 || randomMonster4===randomMonster2){
                 randomMonster4= Math.round(Math.random()*3);
             }
-        }else if(monster3.checked & monster2.checked){
+        }else if(monsterGreen.checked & monsterOrange.checked){
             while(randomMonster4===randomMonster3 || randomMonster4===randomMonster2){
                 randomMonster4= Math.round(Math.random()*3);
             }
-        }else if(monster1.checked & monster3.checked){
+        }else if(monsterBlue.checked & monsterGreen.checked){
             while(randomMonster4===randomMonster1 || randomMonster4===randomMonster3){
                 randomMonster4= Math.round(Math.random()*3);
             }
-        }else if(monster1.checked){
+        }else if(monsterBlue.checked){
             while(randomMonster4===randomMonster1){
                 randomMonster4= Math.round(Math.random()*3);
             }
-        }else if(monster2.checked){
+        }else if(monsterOrange.checked){
             while(randomMonster4===randomMonster2){
                 randomMonster4= Math.round(Math.random()*3);
             }
-        }else if(monster3.checked){
+        }else if(monsterGreen.checked){
             while(randomMonster4===randomMonster3){
                 randomMonster4= Math.round(Math.random()*3);
             }
