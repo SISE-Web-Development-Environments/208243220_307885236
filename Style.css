@@ -214,6 +214,13 @@ td.gameTd{
     border-style: dotted;
     border-color: black;
 }
+p.propertiesGame{
+    font-size: 10px;
+    border-style: dotted;
+    border-color: black;
+    display:inline-block;
+    color: #406CB2;
+}
 
 table.settingsTable,table.settingsTable.td, table.settingsTable.tr{
     font-size: 15px;
