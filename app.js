@@ -586,7 +586,7 @@ function UpdatePosition() {
     }
     if (board[shape.i][shape.j] === 13) {
         score += 50;
-        almo.img = null;
+        //almo.img = null;
         currAlmo = -1;
         prevAlmo = -1;
         clearInterval(intervalAlmo);
