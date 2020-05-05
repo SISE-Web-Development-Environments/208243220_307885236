@@ -25,17 +25,19 @@ pacman.imgLeft.src = "Resources/left.png";
 pacman.imgRight = new Image();
 pacman.imgRight.src = "Resources/right.png";
 
-var monster = new Object();
-monster.img = new Image();
-monster.img.src = "Resources/blue.png";
-monster.blue = new Image();
-monster.blue.src = "Resources/blue.png";
-monster.orange = new Image();
-monster.orange.src = "Resources/orange.png";
-monster.green = new Image();
-monster.green.src = "Resources/green.png";
-monster.red = new Image();
-monster.red.src = "Resources/red.png";
+var imgBlue = new Object();
+imgBlue.img = new Image();
+imgBlue.img.src = "Resources/blue.png";
+var imgOrange = new Object();
+imgOrange.img = new Image();
+imgOrange.img.src = "Resources/orange.png";
+var imgGreen = new Object();
+imgGreen.img = new Image();
+imgGreen.img.src = "Resources/green.png";
+var imgRed = new Object();
+imgRed.img = new Image();
+imgRed.img.src = "Resources/red.png";
+var monster;
 
 var potionGood = new Object();
 potionGood.good = new Image();
@@ -115,6 +117,7 @@ function Start() {
     obstacleGreen=false;
     obstacleOrange=false;
     obstacleRed=false;
+    collision = false;
 
 
    // monster.img = null;
@@ -403,53 +406,45 @@ function DrawWalls() {
 
 function DrawMonsters(choose) {
     if (choose === 6) {
-        monster.img = null;
         if (randomMonster1 === 0) {
-            monster.img = monster.blue;
+            context.drawImage(imgBlue.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster2 === 0) {
-            monster.img = monster.orange;
+            context.drawImage(imgOrange.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster3 === 0) {
-            monster.img = monster.green;
+            context.drawImage(imgGreen.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster4 === 0) {
-            monster.img = monster.red;
+            context.drawImage(imgRed.img, center.x - 10, center.y - 18, 32, 34);
         }
-        context.drawImage(monster.img, center.x - 10, center.y - 18, 32, 34);
     } else if (choose === 7) {
-        monster.img = null;
         if (randomMonster1 === 1) {
-            monster.img = monster.blue;
+            context.drawImage(imgBlue.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster2 === 1) {
-            monster.img = monster.orange;
+            context.drawImage(imgOrange.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster3 === 1) {
-            monster.img = monster.green;
+            context.drawImage(imgGreen.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster4 === 1) {
-            monster.img = monster.red;
+            context.drawImage(imgRed.img, center.x - 10, center.y - 18, 32, 34);
         }
-        context.drawImage(monster.img, center.x - 10, center.y - 18, 32, 34);
     } else if (choose === 8) {
-        monster.img = null;
         if (randomMonster1 === 2) {
-            monster.img = monster.blue;
+            context.drawImage(imgBlue.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster2 === 2) {
-            monster.img = monster.orange;
+            context.drawImage(imgOrange.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster3 === 2) {
-            monster.img = monster.green;
+            context.drawImage(imgGreen.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster4 === 2) {
-            monster.img = monster.red;
+            context.drawImage(imgRed.img, center.x - 10, center.y - 18, 32, 34);
         }
-        context.drawImage(monster.img, center.x - 10, center.y - 18, 32, 34);
     } else if (choose === 9) {
-        monster.img = null;
         if (randomMonster1 === 3) {
-            monster.img = monster.blue;
+            context.drawImage(imgBlue.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster2 === 3) {
-            monster.img = monster.orange;
+            context.drawImage(imgOrange.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster3 === 3) {
-            monster.img = monster.green;
+            context.drawImage(imgGreen.img, center.x - 10, center.y - 18, 32, 34);
         } else if (randomMonster4 === 3) {
-            monster.img = monster.red;
+            context.drawImage(imgRed.img, center.x - 10, center.y - 18, 32, 34);
         }
-        context.drawImage(monster.img, center.x - 10, center.y - 18, 32, 34);
     }
 }
 
@@ -574,7 +569,6 @@ function UpdatePosition() {
         if(almo.img !== null){
             window.clearInterval(intervalAlmo);
         }
-        monster.img = null;
         if (score < 100) {
             window.alert("You are better than " + score + " points");
             showMenuSettings();
@@ -592,7 +586,6 @@ function UpdatePosition() {
         if(almo.img !== null){
             window.clearInterval(intervalAlmo);
         }
-        monster.img = null;
         window.alert("Loser!");
         showMenuSettings();
     } else {
@@ -1505,7 +1498,6 @@ function checkCollision() {
 
             pacman.img = pacman.imgRight;
 
-            monster.img=null;
             createMonsterPositions();
             setMonstersStartPoint();
         }
