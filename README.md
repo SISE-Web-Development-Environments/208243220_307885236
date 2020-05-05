@@ -3,7 +3,7 @@
  Shahar Ben Shaya 208243220
  Hilla Peterefreund 307885236
  
- https://sise-web-development-environments.github.io/assignment2-shahar_hilla/
+ https://sise-web-development-environments.github.io/208243220_307885236/.
  
  This site is PacMonster!!
  
