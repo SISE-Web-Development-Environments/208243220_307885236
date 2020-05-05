@@ -201,11 +201,11 @@ p.userLogo{
     font-size: 15px;
 }
 
-
 canvas{
     border-style: dotted;
     border-color: black;
 }
+
 footer{
     overflow: hidden;
     position: fixed;
