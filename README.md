@@ -5,7 +5,6 @@
  
  https://sise-web-development-environments.github.io/assignment2-shahar_hilla/
  
- /**************************************************************************/
  This site is PacMonster!!
  
  Arrows:
@@ -44,7 +43,6 @@ Cookies:
    We added music of cookie monster.
    By clicking the logo of the music on the left side of the game the music stops, by clicking again the music plays again.
    
-/**************************************************************************/
 Functionality that we choose to add:
  
  1.Each monster is in different color, and has different points to loose.
