@@ -123,8 +123,6 @@ function Start() {
     obstacleRed=false;
     collision = false;
 
-
-   // monster.img = null;
     musicOn = false;
     musicController();
 
@@ -301,27 +299,33 @@ function GetKeyPressed() {
     }
 }
 
+function clearBoard(){
+    monsterBlue.checked=false;
+    monsterOrange.checked=false;
+    monsterGreen.checked=false;
+    monsterRed.checked=false;
+    keyUp = null;
+    keyRight = null;
+    keyDown = null;
+    keyLeft = null;
+    lblUp.value= "↑";
+    lblRight.value= "→";
+    lblDown.value= "↓";
+    lblLeft.value= "←";
+    window.clearInterval(interval);
+    window.clearInterval(intervalMonsters);
+    if(almo.img !== null){
+        window.clearInterval(intervalAlmo);
+    }
+}
+
 function endGame() {
-    if(score===cookiesCounter){
+    if(score>=cookiesCounter){
+        clearBoard();
         win();
+        return true;
     } else if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
-        monsterBlue.checked=false;
-        monsterOrange.checked=false;
-        monsterGreen.checked=false;
-        monsterRed.checked=false;
-        keyUp = null;
-        keyRight = null;
-        keyDown = null;
-        keyLeft = null;
-        lblUp.value= "↑";
-        lblRight.value= "→";
-        lblDown.value= "↓";
-        lblLeft.value= "←";
-        window.clearInterval(interval);
-        window.clearInterval(intervalMonsters);
-        if(almo.img !== null){
-            window.clearInterval(intervalAlmo);
-        }
+        clearBoard();
         if (score < 100) {
             window.alert("You are better than " + score + " points");
             showMenuSettings();
@@ -331,23 +335,7 @@ function endGame() {
         return true;
 
     } else if (pacmanLife === 0) {
-        monsterBlue.checked=false;
-        monsterOrange.checked=false;
-        monsterGreen.checked=false;
-        monsterRed.checked=false;
-        keyUp = null;
-        keyRight = null;
-        keyDown = null;
-        keyLeft = null;
-        lblUp.value= "↑";
-        lblRight.value= "→";
-        lblDown.value= "↓";
-        lblLeft.value= "←";
-        window.clearInterval(interval);
-        window.clearInterval(intervalMonsters);
-        if(almo.img !== null){
-            window.clearInterval(intervalAlmo);
-        }
+        clearBoard();
         window.alert("Loser!");
         showMenuSettings();
         return true;
@@ -595,7 +583,7 @@ function UpdatePosition() {
     }
     if (board[shape.i][shape.j] === 13) {
         score += 50;
-        //almo.img = null;
+        cookiesCounter+=50;
         currAlmo = -1;
         prevAlmo = -1;
         clearInterval(intervalAlmo);
@@ -616,15 +604,9 @@ function UpdatePosition() {
 
     checkCollision();
 
-    if (score >30) {
-        win();
-    }else if (!endGame()) {
+    if (!endGame()) {
         Draw();
     }
-
-
-
-
 }
 
 function UpdatePositionMonsters() {
@@ -2456,16 +2438,19 @@ function updateScoreAfterCollision() {
 
     }
     if (score < points) {
+        cookiesCounter-=score;
         score = 0;
     } else {
+        cookiesCounter-=points;
         score -= points;
     }
 
     looseLife();
+
 }
 
 function win() {
-    document.getElementById('dialogWinner').style.display = 'block';
+    document.getElementById('dialogWinner').style.display="block";
 }
 
 /************************************************Others**********************************************/

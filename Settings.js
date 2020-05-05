@@ -60,6 +60,9 @@ function isTimeLegal(){
     if(gameT<60){
         alert("The min time in seconds is 60 seconds to game");
         valid=false;
+    }else if(gameT>180){
+        alert("The max time in seconds is 180 seconds to game");
+        valid=false;
     }
     return valid;
 

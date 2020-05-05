@@ -158,6 +158,7 @@ button:hover {
     border: 1px solid white;
     width: 50%; /* Could be more or less, depending on screen size */
 }
+
 .container {
     position: relative;
     text-align: center;
@@ -176,17 +177,24 @@ button:hover {
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.closeWin:hover,
+.closeWin:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-dialog.winner{
-    background-color: white;
-    width: 550px;
-    height: 300px;
+ .closeWinStartGame:hover,
+ .closeWinStartGame:focus {
+     color: black;
+     text-decoration: none;
+     cursor: pointer;
+ }
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .square {

@@ -30,6 +30,20 @@
 <Content>
     <br>
     <br>
+    <dialog id="dialogWinner" title="Winner" class="modalWinner">
+        <div class="modal-contentDialog" >
+            <center>
+                <p><strong>Winner!</strong></p>
+                <img src="Resources/happy.gif" title="Winner!"/>
+                <br>
+                <label for="lblScoreFinal"><strong>SCORE:</strong></label>
+                <input id="lblScoreFinal" type="text" size="5"/>
+                <br><br>
+                <button class="closeWin">Back To Welcome</button>
+                <button class="closeWinStartGame">Start New Game</button>
+            </center>
+        </div>
+    </dialog>
     <br>
     <br>
     <br>
@@ -50,21 +64,6 @@
             <p align="center"><img src="Resources/face.png" width="40" height="40">
                 <img src="Resources/face.png" width="40" height="40">
                 <img src="Resources/face.png" width="40" height="40">
-        </div>
-    </dialog>
-
-    <dialog id="dialogWinner" title="Winner" class="modalWinner">
-        <div class="modal-contentDialog">
-        <center>
-            <div class="centered"><p><strong>Winner!</strong></p></div>
-            <img src="Resources/happy.gif" title="Winner!"/>
-            <br>
-            <label for="lblScoreFinal"><strong>SCORE:</strong></label>
-            <input id="lblScoreFinal" type="text" size="5"/>
-            <br><br>
-            <button id="btnStartNewGame" type="submit" onclick="showGame();">Start New Game</button>
-            <button id="btnWelcomeNewGame" type="submit" onclick="showMenuWelcome();">Back To Welcome</button>
-        </center>
         </div>
     </dialog>
 
@@ -263,7 +262,7 @@
                             </table>
                             <br>
                             <strong>Choose Time in Seconds </strong><br>
-                            <input type="number" id="gameTime" min="60" required size="2"><br>
+                            <input type="number" id="gameTime" min="60" max="180" required size="2"><br>
 
                         </td>
                     </tr>
@@ -314,8 +313,6 @@
                                     <img id="lblLive4" src="Resources/face.png" width="25" height="25"/>
                                 </p>
                             </td>
-                            <!--                            <td><input id="lblLive" type="text" size="16"> </td>-->
-
                         </tr>
                         <tr>
                             <td>
@@ -425,6 +422,7 @@
 <script src="app.js"></script>
 <script src="Welcome.js"></script>
 <script src="About.js"></script>
+<script src="WinDialog.js"></script>
 <script src="Settings.js"></script>
 
 </html>
