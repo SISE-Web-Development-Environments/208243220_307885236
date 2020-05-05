@@ -83,7 +83,10 @@ function startNewGame() {
 }
 
 function fillFormRandom() {
-
+    keyUp = null;
+    keyRight = null;
+    keyDown = null;
+    keyLeft = null;
     clearCheckBox();
     document.getElementById('numberCookies').value = Math.round(Math.random() * 40 + 50);
     document.getElementById('fiveCookie').value = getRandomColor();
@@ -92,7 +95,10 @@ function fillFormRandom() {
     document.getElementById('fifthChip').value = getRandomColor();
     document.getElementById('twentyCookie').value = getRandomColor();
     document.getElementById('twentyChip').value = getRandomColor();
-
+    document.getElementById('keyUpInput').value= "↑";
+    document.getElementById('keyRightInput').value= "→";
+    document.getElementById('keyDownInput').value= "↓";
+    document.getElementById('keyLeftInput').value= "←";
     while(!isMonsterChecked()){
         randomCheckBox();
     }
@@ -103,7 +109,10 @@ function fillFormRandom() {
 }
 
 function fillChoice() {
-
+    keyUp = null;
+    keyRight = null;
+    keyDown = null;
+    keyLeft = null;
     clearCheckBox();
     document.getElementById('numberCookies').value = 70;
     document.getElementById('fiveCookie').value = "#b37700";

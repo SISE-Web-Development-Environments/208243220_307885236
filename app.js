@@ -113,6 +113,7 @@ $(document).ready(function () {
 });
 
 function Start() {
+    collision = false;
     obstacleBlue=false;
     obstacleGreen=false;
     obstacleOrange=false;
@@ -276,22 +277,74 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-    if (keysDown[38] || keysDown[keyUp]) {//up
+    if (keysDown[keyUp]) {//up
         pacman.img = pacman.imgUp;
         return 1;
     }
-    if (keysDown[40] || keysDown[keyDown]) {//down
+    if (keysDown[keyDown]) {//down
         pacman.img = pacman.imgDown;
         return 2;
     }
-    if (keysDown[37] || keysDown[keyLeft]) {//left
+    if (keysDown[keyLeft]) {//left
         pacman.img = pacman.imgLeft;
         return 3;
     }
-    if (keysDown[39] || keysDown[keyRight]) {//right
+    if (keysDown[keyRight]) {//right
         pacman.img = pacman.imgRight;
         return 4;
     }
+}
+
+function endGame() {
+    if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
+        monsterBlue.checked=false;
+        monsterOrange.checked=false;
+        monsterGreen.checked=false;
+        monsterRed.checked=false;
+        keyUp = null;
+        keyRight = null;
+        keyDown = null;
+        keyLeft = null;
+        lblUp.value= "↑";
+        lblRight.value= "→";
+        lblDown.value= "↓";
+        lblLeft.value= "←";
+        window.clearInterval(interval);
+        window.clearInterval(intervalMonsters);
+        if(almo.img !== null){
+            window.clearInterval(intervalAlmo);
+        }
+        if (score < 100) {
+            window.alert("You are better than " + score + " points");
+            showMenuSettings();
+        } else {
+            win();
+        }
+        return true;
+
+    } else if (pacmanLife === 0) {
+        monsterBlue.checked=false;
+        monsterOrange.checked=false;
+        monsterGreen.checked=false;
+        monsterRed.checked=false;
+        keyUp = null;
+        keyRight = null;
+        keyDown = null;
+        keyLeft = null;
+        lblUp.value= "↑";
+        lblRight.value= "→";
+        lblDown.value= "↓";
+        lblLeft.value= "←";
+        window.clearInterval(interval);
+        window.clearInterval(intervalMonsters);
+        if(almo.img !== null){
+            window.clearInterval(intervalAlmo);
+        }
+        window.alert("Loser!");
+        showMenuSettings();
+        return true;
+    }
+    return false;
 }
 
 /************************************************Draw***********************************************/
@@ -562,50 +615,6 @@ function UpdatePosition() {
     // }else
 
 
-}
-
-function endGame() {
-    if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
-        monsterBlue.checked=false;
-        monsterOrange.checked=false;
-        monsterGreen.checked=false;
-        monsterRed.checked=false;
-        lblUp.value= "↑";
-        lblRight.value= "→";
-        lblDown.value= "↓";
-        lblLeft.value= "←";
-        window.clearInterval(interval);
-        window.clearInterval(intervalMonsters);
-        if(almo.img !== null){
-            window.clearInterval(intervalAlmo);
-        }
-        if (score < 100) {
-            window.alert("You are better than " + score + " points");
-            showMenuSettings();
-        } else {
-            win();
-        }
-        return true;
-
-    } else if (pacmanLife === 0) {
-        monsterBlue.checked=false;
-        monsterOrange.checked=false;
-        monsterGreen.checked=false;
-        monsterRed.checked=false;
-        lblUp.value= "↑";
-        lblRight.value= "→";
-        lblDown.value= "↓";
-        lblLeft.value= "←";
-        window.clearInterval(interval);
-        window.clearInterval(intervalMonsters);
-        if(almo.img !== null){
-            window.clearInterval(intervalAlmo);
-        }
-        window.alert("Loser!");
-        showMenuSettings();
-        return true;
-    }
-    return false;
 }
 
 function UpdatePositionMonsters() {
