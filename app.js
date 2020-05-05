@@ -101,6 +101,8 @@ var obstacleRed = false;
 var lastMoveRed;
 var blockedMoveRed;
 
+var cookiesCounter;
+
 $(document).ready(function () {
     $("#startGameSettings").click(function () {
         context = canvas.getContext("2d");
@@ -113,6 +115,7 @@ $(document).ready(function () {
 });
 
 function Start() {
+    cookiesCounter=0;
     collision = false;
     obstacleBlue=false;
     obstacleGreen=false;
@@ -206,10 +209,13 @@ function Start() {
                     var randomNum3 = Math.random();
                     if (randomNum2 < 0.3) { //fifth
                         board[i][j] = 3;
+                        cookiesCounter+=15;
                     } else if (randomNum3 < 0.1) { //twenty
                         board[i][j] = 5;
+                        cookiesCounter+=25;
                     } else {
                         board[i][j] = 1;
+                        cookiesCounter+=5;
                     }
                 } else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
                     shape.i = i;
@@ -296,7 +302,9 @@ function GetKeyPressed() {
 }
 
 function endGame() {
-    if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
+    if(score===cookiesCounter){
+        win();
+    } else if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
         monsterBlue.checked=false;
         monsterOrange.checked=false;
         monsterGreen.checked=false;
@@ -352,6 +360,7 @@ function endGame() {
 function Draw() {
     canvas.width = canvas.width; //clean board
     lblScore.value = score;
+    lblScoreFinal.value=score;
     lblTime.value = time_elapsed;
 
     for (var i = 0; i < 14; i++) {
@@ -606,13 +615,14 @@ function UpdatePosition() {
     time_elapsed = (currentTime - start_time) / 1000;
 
     checkCollision();
-    if (!endGame()) {
+
+    if (score >30) {
+        win();
+    }else if (!endGame()) {
         Draw();
     }
 
-    // if (score >14) {
-    //     win();
-    // }else
+
 
 
 }
@@ -692,8 +702,7 @@ function UpdatePositionMonsters() {
                         goToLastMoveBlue();
                     }
                 }
-
-            } else if (Math.abs(disX) < Math.abs(disY)) {
+            } else if (Math.abs(disX) <= Math.abs(disY)) {
                 if (disX > 0) {//up
                     upBlue();
                 } else if (disX < 0) {//down
@@ -703,8 +712,6 @@ function UpdatePositionMonsters() {
                 } else {//right
                     rightBlue();
                 }
-
-
             } else if (Math.abs(disX) > Math.abs(disY)) {
                 if (disY > 0) {//left
                     leftBlue();
@@ -778,7 +785,7 @@ function UpdatePositionMonsters() {
                     }
                 }
 
-            } else if (Math.abs(disX) < Math.abs(disY)) {
+            } else if (Math.abs(disX) <= Math.abs(disY)) {
                 if (disX > 0) {//up
                     upOrange();
                 } else if (disX < 0) {//down
@@ -861,7 +868,7 @@ function UpdatePositionMonsters() {
                     }
                 }
 
-            } else if (Math.abs(disX) < Math.abs(disY)) {
+            } else if (Math.abs(disX) <= Math.abs(disY)) {
                 if (disX > 0) {//up
                     upGreen();
                 } else if (disX < 0) {//down
@@ -943,8 +950,7 @@ function UpdatePositionMonsters() {
                         goToLastMoveRed();
                     }
                 }
-
-            } else if (Math.abs(disX) < Math.abs(disY)) {
+            } else if (Math.abs(disX) <= Math.abs(disY)) {
                 if (disX > 0) {//up
                     upRed();
                 } else if (disX < 0) {//down
@@ -2460,29 +2466,6 @@ function updateScoreAfterCollision() {
 
 function win() {
     document.getElementById('dialogWinner').style.display = 'block';
-
-    document.getElementsByClassName("closeWin")[0].onclick = function () {
-         document.getElementById('dialogWinner').style.display = 'none';
-         document.getElementById('dialogWinner').close();
-        showMenuSettings();
-    }
-
-    window.onkeydown = function( event ){
-        // ESCAPE key pressed
-        if ( event.keyCode === 27) {
-            document.getElementById('dialogWinner').style.display = 'none';
-            document.getElementById('dialogWinner').close();
-            showMenuSettings();
-        }
-    };
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            document.getElementById('dialogWinner').style.display = 'none';
-            document.getElementById('dialogWinner').close();
-            showMenuSettings();
-        }
-    }
-
 }
 
 /************************************************Others**********************************************/

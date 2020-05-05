@@ -141,7 +141,7 @@ function checkDate() {
 
 /****************************************ShowAllMenus*********************************************/
 function showMenuWelcome() {
-
+    document.getElementById('dialogWinner').style.display = "none";
     if (document.getElementById("game").style.display === 'block') {
         if (confirm("Do you sure you want to quit?")) {
             document.getElementById("game").style.display = 'none';
@@ -227,12 +227,16 @@ function showMenuSettings() {
 }
 
 function showGame() {
+    document.getElementById('dialogWinner').style.display = "none";
     if (document.getElementById("game").style.display === 'block') {
         if (confirm("Do you want to start over?")) {
             document.getElementById("game").style.display = 'none';
             document.getElementById('settings').style.display = 'block';
             audio.pause();
             musicOn = true;
+        }else{
+            document.getElementById("game").style.display = 'none';
+            document.getElementById('welcome').style.display = 'block';
         }
     } else {
         document.getElementById('game').style.display = 'block';
