@@ -18,7 +18,7 @@ function validationLogIn() {
         keyPassword = Object.keys(details)[1];//password
         valuePassword = details[keyPassword];
 
-            if (valueUserName === $('#userNameLogIn').val() & valuePassword === $('#passwordLogIn').val()) {
+            if (valueUserName === $('#userNameLogIn').val() && valuePassword === $('#passwordLogIn').val()) {
                 // alert("yes");
 
                 return showMenuSettings();
@@ -210,6 +210,7 @@ function showMenuAbout() {
 }
 
 function showMenuSettings() {
+    clearCheckBox();
     if (document.getElementById("game").style.display === 'block') {
         if (confirm("Do you sure you want to quit?")) {
             document.getElementById("game").style.display = 'none';

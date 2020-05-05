@@ -29,11 +29,15 @@ function playFunction(){
 }
 
 function insertKeyBoardTypes(){
-    lblUp.value= "↑";
-    lblRight.value= "→";
-    lblDown.value= "↓";
-    lblLeft.value= "←";
     if(keyLeft === null && keyDown === null && keyRight === null && keyUp === null) {
+        keyUp=38;
+        keyRight=39;
+        keyDown=40;
+        keyLeft=37;
+        lblUp.value= "↑";
+        lblRight.value= "→";
+        lblDown.value= "↓";
+        lblLeft.value= "←";
         return true;
     } else if (keyUp !== keyDown && keyDown !== keyRight && keyRight !== keyLeft && keyUp !== keyLeft &&
             keyUp !== keyRight && keyDown !== keyLeft) {
@@ -115,9 +119,15 @@ function fillChoice() {
 
     document.getElementById('gameTime').value = 120;
 
+    document.getElementById('keyUpInput').value= "↑";
+    document.getElementById('keyRightInput').value= "→";
+    document.getElementById('keyDownInput').value= "↓";
+    document.getElementById('keyLeftInput').value= "←";
+
 }
 
 function clearCheckBox() {
+    listMonsters=[];
     document.getElementById("monsterBlue").checked = false;
     document.getElementById("monsterOrange").checked = false;
     document.getElementById("monsterGreen").checked = false;
@@ -174,7 +184,7 @@ function isMonsterChecked() {
 }
 
 function createMonsterPositions(){
-    listMonsters=[];
+    listMonsters= [];
     monsterBlue = document.getElementById('monsterBlue');
     monsterOrange = document.getElementById('monsterOrange');
     monsterGreen = document.getElementById('monsterGreen');
