@@ -177,14 +177,13 @@ function Start() {
                 (i == 6 && j == 1) ||
                 (i == 6 && j == 2) ||
                 (i == 8 && j == 7) ||
-                (i == 8 && j == 8) ||
                 (i == 1 && j == 7) ||
                 (i == 2 && j == 7) ||
                 (i == 3 && j == 7) ||
                 (i == 9 && j == 4) ||
                 (i == 10 && j == 4) ||
                 (i == 11 && j == 4) ||
-                (i == 10) && (j == 2)
+                (i == 10) && (j == 1)
             ) {
                 board[i][j] = 4;
             } else if ((i == 0 && j == 0)) {
@@ -260,9 +259,9 @@ function Start() {
     );
 
 
-    intervalMonsters = setInterval(UpdatePositionMonsters, 750);
-    interval = setInterval(UpdatePosition, 500);
-    intervalAlmo = setInterval(updatePositionAlmo, 750);
+    intervalMonsters = setInterval(UpdatePositionMonsters, 600);
+    interval = setInterval(UpdatePosition, 200);
+    intervalAlmo = setInterval(updatePositionAlmo, 800);
 
 }
 
@@ -554,16 +553,27 @@ function UpdatePosition() {
     time_elapsed = (currentTime - start_time) / 1000;
 
     checkCollision();
+    if (!endGame()) {
+        Draw();
+    }
 
     // if (score >14) {
     //     win();
     // }else
+
+
+}
+
+function endGame() {
     if (time_elapsed.valueOf() >= parseInt(totalTimeOfGame) + parseInt(tmpTime)) {
         monsterBlue.checked=false;
         monsterOrange.checked=false;
         monsterGreen.checked=false;
         monsterRed.checked=false;
-
+        lblUp.value= "↑";
+        lblRight.value= "→";
+        lblDown.value= "↓";
+        lblLeft.value= "←";
         window.clearInterval(interval);
         window.clearInterval(intervalMonsters);
         if(almo.img !== null){
@@ -575,12 +585,17 @@ function UpdatePosition() {
         } else {
             win();
         }
+        return true;
 
     } else if (pacmanLife === 0) {
         monsterBlue.checked=false;
         monsterOrange.checked=false;
         monsterGreen.checked=false;
         monsterRed.checked=false;
+        lblUp.value= "↑";
+        lblRight.value= "→";
+        lblDown.value= "↓";
+        lblLeft.value= "←";
         window.clearInterval(interval);
         window.clearInterval(intervalMonsters);
         if(almo.img !== null){
@@ -588,10 +603,9 @@ function UpdatePosition() {
         }
         window.alert("Loser!");
         showMenuSettings();
-    } else {
-        Draw();
+        return true;
     }
-
+    return false;
 }
 
 function UpdatePositionMonsters() {
