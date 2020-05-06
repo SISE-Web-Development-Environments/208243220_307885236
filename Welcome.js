@@ -4,6 +4,12 @@ var player = {userName: "p", password: "p", fullName: "ppp ppp", email: "pp@gmai
 listOfPlayers = [player];
 
 var playerName;
+
+var keyUp;
+var keyRight;
+var keyDown;
+var keyLeft;
+
 /****************************************validation*********************************************/
 function validationLogIn() {
     //userNameLogIn, passwordLogIn
@@ -227,6 +233,10 @@ function showMenuAbout() {
 
 function showMenuSettings() {
     clearCheckBox();
+    keyUp = null;
+    keyRight = null;
+    keyDown = null;
+    keyLeft = null;
     if (document.getElementById("game").style.display === 'block') {
         if (confirm("Do you sure you want to quit?")) {
             document.getElementById("game").style.display = 'none';
@@ -244,6 +254,10 @@ function showMenuSettings() {
 
 function showMenuSettingsWhenLoose() {
     clearCheckBox();
+    keyUp = null;
+    keyRight = null;
+    keyDown = null;
+    keyLeft = null;
     if (confirm("Do you want to start a new game?")) {
         document.getElementById("game").style.display = 'none';
         document.getElementById('settings').style.display = 'block';

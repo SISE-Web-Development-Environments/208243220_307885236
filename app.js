@@ -274,26 +274,18 @@ function clearBoard() {
     randomMonster2 = 5;
     randomMonster3 = 5;
     randomMonster4 = 5;
-    keyUp = null;
-    keyRight = null;
-    keyDown = null;
-    keyLeft = null;
-    lblUp.value = "↑";
-    lblRight.value = "→";
-    lblDown.value = "↓";
-    lblLeft.value = "←";
-    window.clearInterval(interval);
-    window.clearInterval(intervalMonsters);
-    if (almo.img !== null) {
-        window.clearInterval(intervalAlmo);
-    }
 
     keyLeft = null;
     keyDown =null;
     keyRight = null;
     keyUp = null;
 
-    checkKeyBoard();
+    window.clearInterval(interval);
+    window.clearInterval(intervalMonsters);
+    if (almo.img !== null) {
+        window.clearInterval(intervalAlmo);
+    }
+
 }
 
 function resetAll() {
@@ -652,6 +644,27 @@ function UpdatePosition() {
     }
     if (board[shape.i][shape.j] === 13) {
         score += 50;
+        if (prevAlmo === 1) {
+            score += 5;
+            cookiesCounter++;
+        }
+        if (prevAlmo === 3) {
+            score += 15;
+            cookiesCounter++;
+        }
+        if (prevAlmo === 5) {
+            score += 25;
+            cookiesCounter++;
+        }
+        if (prevAlmo === 10) {
+            updateLife();
+        }
+        if (prevAlmo === 11) {
+            looseLife();
+        }
+        if (prevAlmo === 12) {
+            tmpTime = 20;
+        }
         currAlmo = -1;
         prevAlmo = -1;
         clearInterval(intervalAlmo);

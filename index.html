@@ -31,7 +31,7 @@
     <br>
     <br>
     <dialog id="dialogWinner" title="Winner" class="modalWinner">
-        <div class="modal-contentDialog" >
+        <div class="modal-contentDialog">
             <center>
                 <p><strong>Winner!</strong></p>
                 <img src="Resources/happy.gif" title="Winner!"/>
@@ -51,10 +51,12 @@
     <dialog id="aboutSection" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p><h1 align="center"><strong>About</strong></h1></p><br>
+            <p>
+            <h1 align="center"><strong>About</strong></h1></p><br>
             <p align="center">
                 <strong>Names: </strong>Shahar Ben Shaya, Hilla Peterfreund<br/><br/>
-                <b>jQuery Plugin: </b>In this site we used jQuery Plugin at the validation of login and register methods. <br/><br>
+                <b>jQuery Plugin: </b>In this site we used jQuery Plugin at the validation of login and register
+                methods. <br/><br>
                 <b>Difficulties: </b>The difficult at the beginning was to learn how to use jQuery and after that the
                 <br>difficult was to try to understand the logic of how we want to implement the game, and how to make
                 <br>the game more unique- We added 4 different types of monsters that collision with
@@ -241,24 +243,28 @@
                             <table>
                                 <tr>
                                     <td>Key up</td>
-                                    <td><input type="text" id="keyUpInput" onkeydown="upPress(event)" maxlength="1" size="2"></td>
+                                    <td><input type="text" id="keyUpInput" onkeydown="upPress(event)" maxlength="1"
+                                               size="2"></td>
                                 </tr>
                                 <tr>
                                     <td>Key right</td>
-                                    <td> <input type="text" id="keyRightInput" onkeydown="rightPress(event)" maxlength="1" size="2"></td>
+                                    <td><input type="text" id="keyRightInput" onkeydown="rightPress(event)"
+                                               maxlength="1" size="2"></td>
                                 </tr>
                                 <tr>
                                     <td>Key down</td>
-                                    <td><input type="text" id="keyDownInput" onkeydown="downPress(event)" maxlength="1"  size="2"></td>
+                                    <td><input type="text" id="keyDownInput" onkeydown="downPress(event)" maxlength="1"
+                                               size="2"></td>
                                 </tr>
                                 <tr>
                                     <td>Key left</td>
-                                    <td><input type="text" id="keyLeftInput" onkeydown="leftPress(event)" maxlength="1"  size="2"></td>
+                                    <td><input type="text" id="keyLeftInput" onkeydown="leftPress(event)" maxlength="1"
+                                               size="2"></td>
                                 </tr>
                             </table>
                             <br>
                             <strong>Choose Time in Seconds For The Game </strong><br>
-                            <input type="number" id="gameTime" min="60" max="180" required size="2"><br>
+                            <input type="number" id="gameTime" min="60" required size="2"><br>
 
                         </td>
                     </tr>
@@ -389,23 +395,28 @@
                         </tr>
                     </table>
                 </td>
-                <td width="700"> <table>
-                    <tr>
-                        <p class="propertiesGame">
-                            <img src="Resources/green.png" width="25" height="25"> -10 &nbsp;&nbsp;
-                            <img src="Resources/blue.png" width="25" height="25"> -15 &nbsp;&nbsp;
-                            <img src="Resources/orange.png" width="25" height="25"> -20 &nbsp;&nbsp;
-                            <img src="Resources/red.png" width="25" height="25"> -25 &nbsp;&nbsp;
-                            <img src="Resources/goodp.png" width="25" height="25"/> +1 life &nbsp;&nbsp;
-                            <img src="Resources/badp.png" width="25" height="25"/> -1 life &nbsp;&nbsp;
-                            <img src="Resources/clock.png" width="20" height="20"/> +20 sec
-                        </p>
-                    </tr>
-                    <tr>
-                        <canvas id="canvas" height="445" width="700"></canvas>
-                    </tr>
+                <td width="700">
+                    <table>
+                        <tr>
+                            <center>
+                                <p class="propertiesGame">
+                                    <img src="Resources/green.png" width="25" height="25"> -10 &nbsp;&nbsp;
+                                    <img src="Resources/blue.png" width="25" height="25"> -15 &nbsp;&nbsp;
+                                    <img src="Resources/orange.png" width="25" height="25"> -20 &nbsp;&nbsp;
+                                    <img src="Resources/red.png" width="25" height="25"> -25 &nbsp;&nbsp;
+                                    <img src="Resources/goodp.png" width="25" height="25"/> +1 life &nbsp;&nbsp;
+                                    <img src="Resources/badp.png" width="25" height="25"/> -1 life &nbsp;&nbsp;
+                                    <img src="Resources/clock.png" width="20" height="20"/> +20 sec &nbsp;&nbsp;
+                                    <img src="Resources/almo.png" width="25" height="25"/> +50 points
+                                </p>
+                            </center>
+                        </tr>
+                        <tr>
+                            <canvas id="canvas" height="445" width="700"></canvas>
+                        </tr>
 
-                </table></td>
+                    </table>
+                </td>
 
             </table>
         </center>
@@ -416,8 +427,10 @@
     <br>
 </Content>
 <footer>
-   <p><strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;©Shahar Ben Shaya, Hilla Peterfreund</strong>
-       &nbsp; &nbsp;&#127850  &nbsp; &nbsp;<strong>Contact us: </strong>hillapet@post.bgu.ac.il | benshays@post.bgu.ac.il </p>
+    <p><strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;©Shahar Ben Shaya, Hilla Peterfreund</strong>
+        &nbsp; &nbsp;&#127850 &nbsp; &nbsp;<strong>Contact us: </strong>hillapet@post.bgu.ac.il |
+        benshays@post.bgu.ac.il </p>
 </footer>
 </body>
 <!--Scripts-->

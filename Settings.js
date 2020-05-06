@@ -23,7 +23,10 @@ function playFunction() {
         startGame = true;
         return showGame();
     } else {
-        alert("You did not fill all the settings!");
+        if (!isMonsterChecked()) {
+            alert("choose at least one monster");
+        }
+        //alert("You did not fill all the settings!");
         startGame = false;
         //  alert("sad");
     }
@@ -31,59 +34,74 @@ function playFunction() {
 }
 
 function checkKeyBoard() {
-    if(keyUp===38 ||keyUp===null ){
+    if (keyUp === 38 || keyUp === null) {
         lblUp.value = "↑";
+        return true;
     }
-    if(keyRight ===38){
+    if (keyRight === 38) {
         lblRight.value = "↑";
+        return true;
     }
-    if(keyDown === 38){
+    if (keyDown === 38) {
         lblDown.value = "↑";
+        return true;
     }
-    if(keyLeft===38){
+    if (keyLeft === 38) {
         lblLeft.value = "↑";
+        return true;
     }
-    if(keyUp===39){
+    if (keyUp === 39) {
         lblUp.value = "→";
+        return true;
     }
-    if(keyRight ===39||keyRight===null){
+    if (keyRight === 39 || keyRight === null) {
         lblRight.value = "→";
+        return true;
     }
-    if(keyDown === 39){
+    if (keyDown === 39) {
         lblDown.value = "→";
+        return true;
     }
-    if(keyLeft===39){
+    if (keyLeft === 39) {
         lblLeft.value = "→";
+        return true;
     }
-    if(keyUp===40){
+    if (keyUp === 40) {
         lblUp.value = "↓";
+        return true;
     }
-    if(keyRight ===40){
+    if (keyRight === 40) {
         lblRight.value = "↓";
+        return true;
     }
-    if(keyDown === 40||keyDown===null){
+    if (keyDown === 40 || keyDown === null) {
         lblDown.value = "↓";
+        return true;
     }
-    if(keyLeft===40){
+    if (keyLeft === 40) {
         lblLeft.value = "↓";
+        return true;
     }
-    if(keyUp===37){
+    if (keyUp === 37) {
         lblUp.value = "←";
+        return true;
     }
-    if(keyRight ===37){
+    if (keyRight === 37) {
         lblRight.value = "←";
+        return true;
     }
-    if(keyDown === 37){
+    if (keyDown === 37) {
         lblDown.value = "←";
+        return true;
     }
-    if(keyLeft===37||keyLeft===null){
+    if (keyLeft === 37 || keyLeft === null) {
         lblLeft.value = "←";
+        return true;
     }
-
+    return false;
 }
 
 function insertKeyBoardTypes() {
-    checkKeyBoard();
     if (keyLeft === null && keyDown === null && keyRight === null && keyUp === null) {
         keyUp = 38;
         keyRight = 39;
@@ -93,6 +111,8 @@ function insertKeyBoardTypes() {
         lblRight.value = "→";
         lblDown.value = "↓";
         lblLeft.value = "←";
+        return true;
+    } else if (checkKeyBoard()) {
         return true;
     } else if (keyUp !== keyDown && keyDown !== keyRight && keyRight !== keyLeft && keyUp !== keyLeft &&
         keyUp !== keyRight && keyDown !== keyLeft) {
@@ -112,9 +132,6 @@ function isTimeLegal() {
     var gameT = document.getElementById("gameTime").value;
     if (gameT < 60) {
         alert("The min time in seconds is 60 seconds to game");
-        valid = false;
-    } else if (gameT > 180) {
-        alert("The max time in seconds is 180 seconds to game");
         valid = false;
     }
     return valid;
@@ -246,7 +263,6 @@ function isMonsterChecked() {
             return true;
         }
     }
-    //alert("choose at least one monster");
     return false;
 }
 
@@ -336,80 +352,80 @@ function createMonsterPositions() {
 
 function upPress(event) {
     keyUp = event.keyCode;
-    if(keyUp===38){
-        keyUpInput.value = "↑";
+    if (keyUp === 38) {
+        document.getElementById('keyUpInput').value = "↑";
         lblUp.value = "↑";
     }
-    if(keyUp===39){
-        keyUpInput.value = "→";
+    if (keyUp === 39) {
+        document.getElementById('keyUpInput').value = "→";
         lblUp.value = "→";
     }
-    if(keyUp===40){
-        keyUpInput.value = "↓";
+    if (keyUp === 40) {
+        document.getElementById('keyUpInput').value = "↓";
         lblUp.value = "↓";
     }
-    if(keyUp===37){
-        keyUpInput.value = "←";
+    if (keyUp === 37) {
+        document.getElementById('keyUpInput').value = "←";
         lblUp.value = "←";
     }
 }
 
 function rightPress(event) {
     keyRight = event.keyCode;
-    if(keyRight===38){
-        keyRightInput.value = "↑";
+    if (keyRight === 38) {
+        document.getElementById('keyRightInput').value = "↑";
         lblRight.value = "↑";
     }
-    if(keyRight===39){
-        keyRightInput.value = "→";
+    if (keyRight === 39) {
+        document.getElementById('keyRightInput').value = "→";
         lblRight.value = "→";
     }
-    if(keyRight===40){
-        keyRightInput.value = "↓";
+    if (keyRight === 40) {
+        document.getElementById('keyRightInput').value = "↓";
         lblRight.value = "↓";
     }
-    if(keyRight===37){
-        keyRightInput.value = "←";
+    if (keyRight === 37) {
+        document.getElementById('keyRightInput').value = "←";
         lblRight.value = "←";
     }
 }
 
 function downPress(event) {
     keyDown = event.keyCode;
-    if(keyDown===38){
-        keyDownInput.value = "↑";
+    if (keyDown === 38) {
+        document.getElementById('keyDownInput').value = "↑";
         lblDown.value = "↑";
     }
-    if(keyDown===39){
-        keyDownInput.value = "→";
+    if (keyDown === 39) {
+        document.getElementById('keyDownInput').value = "→";
         lblDown.value = "→";
     }
-    if(keyDown===40){
-        keyDownInput.value = "↓";
+    if (keyDown === 40) {
+        document.getElementById('keyDownInput').value = "↓";
         lblDown.value = "↓";
     }
-    if(keyDown===37){
-        keyDownInput.value = "←";
+    if (keyDown === 37) {
+        document.getElementById('keyDownInput').value = "←";
         lblDown.value = "←";
     }
 }
 
 function leftPress(event) {
     keyLeft = event.keyCode;
-    if(keyLeft===38){
-        keyLeftInput.value = "↑";
+    if (keyLeft === 38) {
+        document.getElementById('keyLeftInput').value = "↑";
         lblLeft.value = "↑";
     }
-    if(keyLeft===39){
-        keyLeftInput.value = "→";
+    if (keyLeft === 39) {
+        document.getElementById('keyLeftInput').value = "→";
         lblLeft.value = "→";
     }
-    if(keyLeft===40){
-        keyLeftInput.value = "↓";
+    if (keyLeft === 40) {
+        document.getElementById('keyLeftInput').value = "↓";
         lblLeft.value = "↓";
     }
-    if(keyLeft===37){
-        keyLeftInput.value = "←";
+    if (keyLeft === 37) {
+        document.getElementById('keyLeftInput').value = "←";
         lblLeft.value = "←";
     }
 }
