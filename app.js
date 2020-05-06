@@ -298,6 +298,8 @@ function resetAll() {
     obstacleRed = false;
     collision = false;
 
+    tmpTime = 0;
+
     clearInterval(intervalMonsters);
     clearInterval(interval);
     clearInterval(intervalAlmo);
@@ -331,7 +333,7 @@ function resetAll() {
 }
 
 function endGame() {
-    if (cookiesCounter + 1 === cookiesNum) {
+    if (cookiesCounter === cookiesNum) {
         clearBoard();
         win();
         return true;
@@ -339,7 +341,7 @@ function endGame() {
         clearBoard();
         if (score < 100) {
             window.alert("You are better than " + score + " points");
-            showMenuSettings();
+            showMenuSettingsWhenLoose();
         } else {
             win();
         }
@@ -348,7 +350,7 @@ function endGame() {
     } else if (pacmanLife === 0) {
         clearBoard();
         window.alert("Loser!");
-        showMenuSettings();
+        showMenuSettingsWhenLoose();
         return true;
     }
     return false;
@@ -2488,7 +2490,6 @@ function updateScoreAfterCollision(monColor) {
         currRed = 0;
     }
 
-
     let points = 0;
     if (monColor === "blue") {
         points = 15;
@@ -2499,24 +2500,7 @@ function updateScoreAfterCollision(monColor) {
     } else if (monColor === "red") {
         points = 25;
     }
-/*    for (let monsterColor in listMonsters) {
-        let monsterChosen = listMonsters[monsterColor];
-        let tmpKeyColor = Object.keys(monsterChosen)[0];
-        let monColor = monsterChosen[tmpKeyColor];
-        let tmpKeyPos = Object.keys(monsterChosen)[1];
-        let monPlace = monsterChosen[tmpKeyPos];
-        monPlace += 6;
-        if (monColor === "blue") {
-            points = 15;
-        } else if (monColor === "orange") {
-            points = 20;
-        } else if (monColor === "green") {
-            points = 10;
-        } else if (monColor === "red") {
-            points = 25;
-        }
 
-    }*/
     if (score < points) {
         score = 0;
     } else {

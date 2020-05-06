@@ -18,18 +18,17 @@ function validationLogIn() {
         keyPassword = Object.keys(details)[1];//password
         valuePassword = details[keyPassword];
 
-            if (valueUserName === $('#userNameLogIn').val() && valuePassword === $('#passwordLogIn').val()) {
-                // alert("yes");
+        if (valueUserName === $('#userNameLogIn').val() && valuePassword === $('#passwordLogIn').val()) {
+            // alert("yes");
 
-                return showMenuSettings();
-            }
+            return showMenuSettings();
         }
+    }
 
     alert("Wrong user name or password, try again!");
     return false;
 
 }
-
 
 
 function validation() {
@@ -150,7 +149,7 @@ function showMenuWelcome() {
         }
     } else {
         document.getElementById('welcome').style.display = 'block';
-        hide('settings','register','login','aboutSection');
+        hide('settings', 'register', 'login', 'aboutSection');
         document.getElementById("formReg").reset();
         document.getElementById("formLogIn").reset();
     }
@@ -168,7 +167,7 @@ function showMenuRegister() {
         }
     } else {
         document.getElementById('register').style.display = 'block';
-        hide('welcome','settings','login','aboutSection');
+        hide('welcome', 'settings', 'login', 'aboutSection');
         document.getElementById("formReg").reset();
         document.getElementById("formLogIn").reset();
     }
@@ -184,7 +183,7 @@ function showMenuLogin() {
         }
     } else {
         document.getElementById('login').style.display = 'block';
-        hide('welcome','register','settings','aboutSection');
+        hide('welcome', 'register', 'settings', 'aboutSection');
         document.getElementById("formReg").reset();
         document.getElementById("formLogIn").reset();
     }
@@ -201,7 +200,7 @@ function showMenuAbout() {
         }
     } else {
         document.getElementById('aboutSection').style.display = 'block';
-        hide('welcome','register','settings','login');
+        hide('welcome', 'register', 'settings', 'login');
         document.getElementById("formReg").reset();
         document.getElementById("formLogIn").reset();
     }
@@ -219,9 +218,24 @@ function showMenuSettings() {
         }
     } else {
         document.getElementById('settings').style.display = 'block';
-        hide('welcome','register','login','aboutSection');
+        hide('welcome', 'register', 'login', 'aboutSection');
         document.getElementById("formReg").reset();
         document.getElementById("formLogIn").reset();
+    }
+}
+
+function showMenuSettingsWhenLoose() {
+    clearCheckBox();
+    if (confirm("Do you want to start a new game?")) {
+        document.getElementById("game").style.display = 'none';
+        document.getElementById('settings').style.display = 'block';
+        audio.pause();
+        musicOn = true;
+    } else {
+        document.getElementById("game").style.display = 'none';
+        document.getElementById('welcome').style.display = 'block';
+        audio.pause();
+        musicOn = true;
     }
 }
 
@@ -232,19 +246,19 @@ function showGame() {
             document.getElementById('settings').style.display = 'block';
             audio.pause();
             musicOn = true;
-        }else{
+        } else {
             document.getElementById("game").style.display = 'none';
             document.getElementById('welcome').style.display = 'block';
         }
     } else {
         document.getElementById('game').style.display = 'block';
-        hide('welcome','register','login','aboutSection');
+        hide('welcome', 'register', 'login', 'aboutSection');
         document.getElementById('settings').style.display = 'none';
     }
 
 }
 
-function hide(hidden1,hidden2,hidden3,hidden4){
+function hide(hidden1, hidden2, hidden3, hidden4) {
     document.getElementById(hidden1).style.display = 'none';
     document.getElementById(hidden2).style.display = 'none';
     document.getElementById(hidden3).style.display = 'none';
