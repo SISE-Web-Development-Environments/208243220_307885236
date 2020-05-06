@@ -110,14 +110,15 @@ $(document).ready(function () {
         if (startGame) {
             Start();
         }
-        var paragraph = document.getElementById("userNameShow");
-        var text = "User Name: " + document.getElementById("userNameLogIn").value;
-        paragraph.innerText = text;
 
     });
 });
 
 function Start() {
+    var paragraph = document.getElementById("userNameShow");
+    var text = "User Name: " +playerName;
+    paragraph.innerText = text;
+
     resetAll();
 
     musicOn = false;
@@ -286,6 +287,13 @@ function clearBoard() {
     if (almo.img !== null) {
         window.clearInterval(intervalAlmo);
     }
+
+    keyLeft = null;
+    keyDown =null;
+    keyRight = null;
+    keyUp = null;
+
+    checkKeyBoard();
 }
 
 function resetAll() {

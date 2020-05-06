@@ -30,7 +30,60 @@ function playFunction() {
 
 }
 
+function checkKeyBoard() {
+    if(keyUp===38 ||keyUp===null ){
+        lblUp.value = "↑";
+    }
+    if(keyRight ===38){
+        lblRight.value = "↑";
+    }
+    if(keyDown === 38){
+        lblDown.value = "↑";
+    }
+    if(keyLeft===38){
+        lblLeft.value = "↑";
+    }
+    if(keyUp===39){
+        lblUp.value = "→";
+    }
+    if(keyRight ===39||keyRight===null){
+        lblRight.value = "→";
+    }
+    if(keyDown === 39){
+        lblDown.value = "→";
+    }
+    if(keyLeft===39){
+        lblLeft.value = "→";
+    }
+    if(keyUp===40){
+        lblUp.value = "↓";
+    }
+    if(keyRight ===40){
+        lblRight.value = "↓";
+    }
+    if(keyDown === 40||keyDown===null){
+        lblDown.value = "↓";
+    }
+    if(keyLeft===40){
+        lblLeft.value = "↓";
+    }
+    if(keyUp===37){
+        lblUp.value = "←";
+    }
+    if(keyRight ===37){
+        lblRight.value = "←";
+    }
+    if(keyDown === 37){
+        lblDown.value = "←";
+    }
+    if(keyLeft===37||keyLeft===null){
+        lblLeft.value = "←";
+    }
+
+}
+
 function insertKeyBoardTypes() {
+    checkKeyBoard();
     if (keyLeft === null && keyDown === null && keyRight === null && keyUp === null) {
         keyUp = 38;
         keyRight = 39;
@@ -52,8 +105,6 @@ function insertKeyBoardTypes() {
         alert("Please choose 4 different keyboards");
         return false;
     }
-
-
 }
 
 function isTimeLegal() {
@@ -285,16 +336,80 @@ function createMonsterPositions() {
 
 function upPress(event) {
     keyUp = event.keyCode;
+    if(keyUp===38){
+        keyUpInput.value = "↑";
+        lblUp.value = "↑";
+    }
+    if(keyUp===39){
+        keyUpInput.value = "→";
+        lblUp.value = "→";
+    }
+    if(keyUp===40){
+        keyUpInput.value = "↓";
+        lblUp.value = "↓";
+    }
+    if(keyUp===37){
+        keyUpInput.value = "←";
+        lblUp.value = "←";
+    }
 }
 
 function rightPress(event) {
     keyRight = event.keyCode;
+    if(keyRight===38){
+        keyRightInput.value = "↑";
+        lblRight.value = "↑";
+    }
+    if(keyRight===39){
+        keyRightInput.value = "→";
+        lblRight.value = "→";
+    }
+    if(keyRight===40){
+        keyRightInput.value = "↓";
+        lblRight.value = "↓";
+    }
+    if(keyRight===37){
+        keyRightInput.value = "←";
+        lblRight.value = "←";
+    }
 }
 
 function downPress(event) {
     keyDown = event.keyCode;
+    if(keyDown===38){
+        keyDownInput.value = "↑";
+        lblDown.value = "↑";
+    }
+    if(keyDown===39){
+        keyDownInput.value = "→";
+        lblDown.value = "→";
+    }
+    if(keyDown===40){
+        keyDownInput.value = "↓";
+        lblDown.value = "↓";
+    }
+    if(keyDown===37){
+        keyDownInput.value = "←";
+        lblDown.value = "←";
+    }
 }
 
 function leftPress(event) {
     keyLeft = event.keyCode;
+    if(keyLeft===38){
+        keyLeftInput.value = "↑";
+        lblLeft.value = "↑";
+    }
+    if(keyLeft===39){
+        keyLeftInput.value = "→";
+        lblLeft.value = "→";
+    }
+    if(keyLeft===40){
+        keyLeftInput.value = "↓";
+        lblLeft.value = "↓";
+    }
+    if(keyLeft===37){
+        keyLeftInput.value = "←";
+        lblLeft.value = "←";
+    }
 }

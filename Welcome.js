@@ -3,6 +3,7 @@ var player = {userName: "p", password: "p", fullName: "ppp ppp", email: "pp@gmai
 
 listOfPlayers = [player];
 
+var playerName;
 /****************************************validation*********************************************/
 function validationLogIn() {
     //userNameLogIn, passwordLogIn
@@ -18,7 +19,8 @@ function validationLogIn() {
         keyPassword = Object.keys(details)[1];//password
         valuePassword = details[keyPassword];
 
-        if (valueUserName === $('#userNameLogIn').val() && valuePassword === $('#passwordLogIn').val()) {
+        if (valueUserName === $('#userNameLogIn').val() & valuePassword === $('#passwordLogIn').val()) {
+            playerName=valueUserName;
             // alert("yes");
 
             return showMenuSettings();
@@ -130,12 +132,28 @@ function required() {
 
 //check birthdate
 function checkDate() {
-    // if ($('#birthDate').getFullYear()>2020 || $('#birthDate').getDate()<1920 ) {
-    //     alert("Your year of birthday is not valid");
-    //     return false;
-    // }
-    // alert("birthYes");
-    return true;
+    let day, month, year;
+    let date = new Date($('#birthDateReg').val());
+    day = date.getDate();
+    month = date.getMonth() + 1;
+    year = date.getFullYear();
+
+    if (year > 2020 ||year < 1920 || month == 0 || month > 12) {
+        alert("Your entered invalid year or month!");
+        return false;
+    }
+    let monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    // february -every 4 year
+    if(year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0))
+        monthLength[1] = 29;
+
+    if(day > 0 && day <= monthLength[month - 1]){
+        return true;
+    }
+
+    alert("Your entered invalid year or month or day!");
+    return false;
 }
 
 /****************************************ShowAllMenus*********************************************/
