@@ -107,7 +107,9 @@ var cookiesNum;
 $(document).ready(function () {
     $("#startGameSettings").click(function () {
         context = canvas.getContext("2d");
-        Start();
+        if (startGame) {
+            Start();
+        }
         var paragraph = document.getElementById("userNameShow");
         var text = "User Name: " + document.getElementById("userNameLogIn").value;
         paragraph.innerText = text;
@@ -116,47 +118,10 @@ $(document).ready(function () {
 });
 
 function Start() {
-    cookiesNum = 0;
-    cookiesCounter = 0;
-    collision = false;
-    obstacleBlue = false;
-    obstacleGreen = false;
-    obstacleOrange = false;
-    obstacleRed = false;
-    collision = false;
+    resetAll();
 
     musicOn = false;
     musicController();
-
-    clearInterval(intervalMonsters);
-    clearInterval(interval);
-    clearInterval(intervalAlmo);
-
-    totalTimeOfGame = 0;
-    prevBlue = 0;
-    currBlue = 0;
-    prevOrange = 0;
-    currOrange = 0;
-    prevGreen = 0;
-    currGreen = 0;
-    prevRed = 0;
-    currRed = 0;
-
-    blockedMoveBlue = 0;
-    blockedMoveOrange = 0;
-    blockedMoveGreen = 0;
-    blockedMoveRed = 0;
-
-    lastMoveBlue = 0;
-    lastMoveOrange = 0;
-    lastMoveGreen = 0;
-    lastMoveRed = 0;
-
-    prevAlmo = 0;
-    currAlmo = 0;
-
-    pacmanLife = 4;
-    updateLife();
 
     board = new Array();
     score = 0;
@@ -317,6 +282,48 @@ function clearBoard() {
     if (almo.img !== null) {
         window.clearInterval(intervalAlmo);
     }
+}
+
+function resetAll() {
+    cookiesNum = 0;
+    cookiesCounter = 0;
+    collision = false;
+    obstacleBlue = false;
+    obstacleGreen = false;
+    obstacleOrange = false;
+    obstacleRed = false;
+    collision = false;
+
+    clearInterval(intervalMonsters);
+    clearInterval(interval);
+    clearInterval(intervalAlmo);
+
+    totalTimeOfGame = 0;
+    prevBlue = 0;
+    currBlue = 0;
+    prevOrange = 0;
+    currOrange = 0;
+    prevGreen = 0;
+    currGreen = 0;
+    prevRed = 0;
+    currRed = 0;
+
+    blockedMoveBlue = 0;
+    blockedMoveOrange = 0;
+    blockedMoveGreen = 0;
+    blockedMoveRed = 0;
+
+    lastMoveBlue = 0;
+    lastMoveOrange = 0;
+    lastMoveGreen = 0;
+    lastMoveRed = 0;
+
+    prevAlmo = 0;
+    currAlmo = 0;
+
+    pacmanLife = 4;
+    updateLife();
+
 }
 
 function endGame() {
@@ -1494,6 +1501,19 @@ function checkCollision() {
     if (collision) {
         if (pacmanLife !== 0) {
             collision = false;
+            obstacleBlue = false;
+            obstacleOrange = false;
+            obstacleGreen = false;
+            obstacleRed = false;
+            blockedMoveBlue = 0;
+            blockedMoveOrange = 0;
+            blockedMoveGreen = 0;
+            blockedMoveRed = 0;
+            lastMoveBlue = 0;
+            lastMoveOrange = 0;
+            lastMoveGreen = 0;
+            lastMoveRed = 0;
+
             pacman.img = null;
             var randomI = Math.floor(Math.random() * 13);
             var randomJ = Math.floor(Math.random() * 8);
