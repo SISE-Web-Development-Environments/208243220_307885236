@@ -7,9 +7,9 @@
  
  This site is PacMonster!!
  
- Arrows:
+ KeyBoards:
   The arrows is sign to deafult keyboard up, down, left and right.
-    The user can choose different values for the game keyboard
+  The user can choose different values for the game keyboard. If the user choose arrow in numpad, he must choose all the keyBoard from there and the same for letters keyBoards.
 
 Cookies:
  There are different types of cookies, the largest is worth 25 points, the medium is worth 15 points, the smallest is worth 5 points.
